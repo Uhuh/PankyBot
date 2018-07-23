@@ -29,10 +29,13 @@ export default class PankyBot extends Discord.Client {
         sql.pragma('synchronous = 1');
         sql.pragma('journal_mode = wal');
       }
-
+      // this.getScore.get(message.author.id, message.guild.id), generally how this is used.
       this.getScore = sql.prepare("SELECT * FROM scores WHERE user = ? AND guild = ?");
+      // this.setScore.set(score) `score` is an object setup before this is called.
       this.setScore = sql.prepare("INSERT OR REPLACE INTO scores (id, user, guild, points, level) VALUES (@id, @user, @guild, @points, @level);");
     })
+
+
     this.on('message', (message: Discord.Message) => msg(this, message))
   }
 

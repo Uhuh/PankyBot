@@ -15,5 +15,5 @@ export default function msg(client: bot, message: Message) {
   //If the command isn't in the big ol' list.
   if(!cmds.has(args[0])) return
   // Find the command and run it.
-  cmds.get(args[0])(client, message, args)
+  cmds.get(args[0].toLowerCase())(client, message, args)
 }
