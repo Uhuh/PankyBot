@@ -18,3 +18,5 @@ config.json
 docs/
 release/
 
+npm*
+

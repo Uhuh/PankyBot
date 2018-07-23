@@ -1,7 +1,7 @@
 import { Message } from "discord.js"
 import bot from '../src/bot'
 
-export default function dog(client: bot, message: Message, args: any) {
+export default function dog(client: bot, message: Message) {
   const request = require('request')
   const url = 'http://random.dog/woof'
   request({

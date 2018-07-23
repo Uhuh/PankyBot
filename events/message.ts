@@ -11,9 +11,9 @@ export default function msg(client: bot, message: Message) {
   //Ignore anything that doesn't use the prefix
   if (message.content.indexOf(client.config.PREFIX) !== 0) return
 ​
-  const args = message.content.slice(client.config.PREFIX.length).trim().split(/ +/g)
+  const [command, ...args] = message.content.substring(client.config.PREFIX.length).split(" ")
   //If the command isn't in the big ol' list.
-  if(!cmds.has(args[0])) return
+  if(!cmds.has(command.toLowerCase())) return
   // Find the command and run it.
-  cmds.get(args[0].toLowerCase())(client, message, args)
+  cmds.get(command.toLowerCase())(client, message, args)
 }
