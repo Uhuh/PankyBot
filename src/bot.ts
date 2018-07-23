@@ -15,7 +15,6 @@ export default class PankyBot extends Discord.Client {
     this.on('ready', () => {
       console.log(`[Started]: ${new Date()}`)
     })
-
     this.on('message', (message: Discord.Message) => msg(this, message))
   }
 

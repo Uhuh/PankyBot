@@ -32,7 +32,8 @@
   "homepage": "https://github.com/Uhuh/PankyBot#readme",
   "dependencies": {
     "discord.js": "^11.2.1",
-    "dotenv": "^4.0.0"
+    "dotenv": "^4.0.0",
+    "request": "^2.87.0"
   },
   "devDependencies": {
     "@types/dotenv": "^4.0.2",

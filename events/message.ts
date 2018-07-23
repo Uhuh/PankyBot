@@ -3,14 +3,14 @@ import bot from '../src/bot'
 import cmds from '../commands/cmd'
 
 export default function msg(client: bot, message: Message) {
+  //Don't care about bots.
   if (message.author.bot) return
-​
+​  //Ignore anything that doesn't use the prefix
   if (message.content.indexOf(client.config.PREFIX) !== 0) return
 ​
-  // Our standard argument/command name definition.
   const args = message.content.slice(client.config.PREFIX.length).trim().split(/ +/g)
-  
+  //If the command isn't in the big ol' list.
   if(!cmds.has(args[0])) return
-
-  cmds.get(args[0])(client, message)
+  // Find the command and run it.
+  cmds.get(args[0])(client, message, args)
 }
