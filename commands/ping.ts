@@ -3,5 +3,5 @@ import { Message } from 'discord.js'
 
 export default function ping(client: bot, message: Message, args: any) {
   // Good ol' tester.
-  message.channel.send("pong!").catch(console.error);
+  message.channel.send(`${client.ping}ms`).catch(console.error);
 }
