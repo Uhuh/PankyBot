@@ -31,8 +31,10 @@
   },
   "homepage": "https://github.com/Uhuh/PankyBot#readme",
   "dependencies": {
+    "better-sqlite3": "^4.1.4",
     "discord.js": "^11.2.1",
     "dotenv": "^4.0.0",
+    "node-gyp": "^3.7.0",
     "request": "^2.87.0"
   },
   "devDependencies": {

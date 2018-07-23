@@ -12,6 +12,9 @@ node_modules/
 # Config file
 config.json
 
+# SQL
+*.sqlite*
+
 docs/
 release/
 
