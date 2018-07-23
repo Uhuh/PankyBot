@@ -14,7 +14,7 @@ I'm not going anywhere big with this project. I've just made a few DiscordJS bot
 
 ## Getting Started
 
-N/A
+![alt text](https://github.com/Uhuh/PankyBot/blob/master/extra/gif/start.gif)
 
 ## FAQ
 
@@ -22,7 +22,7 @@ N/A
 
 ## Usage
 
-N/A
+![alt text](https://github.com/Uhuh/PankyBot/blob/master/extra/gif/usage.gif)
 
 ## Contributors
 
