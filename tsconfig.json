@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "strict": true,
+        "target": "es6",
+        "lib": [ "es6" ]
+    },
+    "include": [
+        "src/",
+        "events/",
+        "commands/",
+    ]
+}

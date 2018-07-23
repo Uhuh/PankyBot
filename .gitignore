@@ -1,0 +1,17 @@
+# Editors & Environment
+.idea/
+.vscode/
+.vagrant/
+.env
+
+# Compiled files
+node_modules/
+*.js
+*.d.ts
+
+# Config file
+config.json
+
+docs/
+release/
+

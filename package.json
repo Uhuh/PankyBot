@@ -1,0 +1,46 @@
+{
+  "name": "panky",
+  "version": "1.0.0",
+  "description": "Just learnin stuff",
+  "main": "release/index.js",
+  "scripts": {
+    "build": "tsc",
+    "build:dist": "tsc -p tsconfig.dist.json",
+    "clean": "npm run clean:src && npm run clean:events && npm run clean:commands",
+    "clean:src": "rimraf src/**/*.js src/*.js",
+    "clean:events": "rimraf events/*.js",
+    "clean:commands": "rimraf commands/*.js",
+    "prestart": "npm run build",
+    "start": "node src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Uhuh/PankyBot"
+  },
+  "keywords": [
+    "discord",
+    "bot",
+    "maymay",
+    "memes",
+    "stuff"
+  ],
+  "author": "Dylan Warren",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Uhuh/PankyBot"
+  },
+  "homepage": "https://github.com/Uhuh/PankyBot#readme",
+  "dependencies": {
+    "discord.js": "^11.2.1",
+    "dotenv": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/dotenv": "^4.0.2",
+    "@types/moment": "^2.13.0",
+    "@types/node": "^8.5.2",
+    "rimraf": "^2.6.2",
+    "ts-node": "^3.3.0",
+    "tslint": "^5.7.0",
+    "typescript": "^2.6.2"
+  }
+}
