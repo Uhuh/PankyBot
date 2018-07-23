@@ -1,13 +1,10 @@
 import { Message } from 'discord.js'
-import bot from '../src/bot'
+import PankyBot from '../src/bot'
 import cmds from '../commands/cmd'
-import points from './points'
 
-export default function msg(client: bot, message: Message) {
+export default function msg(client: PankyBot, message: Message) {
   //Don't care about bots.
   if (message.author.bot) return
-​  //Any message counts as a point or somethin
-  points(client, message)
   //Ignore anything that doesn't use the prefix
   if (message.content.indexOf(client.config.PREFIX) !== 0) return
 ​

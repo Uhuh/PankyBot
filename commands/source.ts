@@ -1,7 +1,7 @@
-import bot from '../src/bot'
+import PankyBot from '../src/bot'
 import { Message } from 'discord.js';
 
-export default function source(client: bot, message: Message, args: any) {
+export default function source(client: PankyBot, message: Message, args: any) {
   message.channel.send({
     embed: {
       color: 3447003,
