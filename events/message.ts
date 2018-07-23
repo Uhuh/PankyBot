@@ -1,11 +1,13 @@
 import { Message } from 'discord.js'
 import bot from '../src/bot'
 import cmds from '../commands/cmd'
+import points from './points'
 
 export default function msg(client: bot, message: Message) {
   //Don't care about bots.
   if (message.author.bot) return
 ​  //Ignore anything that doesn't use the prefix
+  points(client, message)
   if (message.content.indexOf(client.config.PREFIX) !== 0) return
 ​
   const args = message.content.slice(client.config.PREFIX.length).trim().split(/ +/g)
