@@ -14,6 +14,13 @@ I'm not going anywhere big with this project. I've just made a few DiscordJS bot
 
 ## Getting Started
 
+To setup and run Panky
+
+`git clone git@github.com:Uhuh/PankyBot.git` <br >
+`cd PankyBot/` <br >
+`npm install` <br >
+`npm run start` <br >
+
 ![alt text](https://github.com/Uhuh/PankyBot/blob/master/extra/gif/start.gif)
 
 ## FAQ
