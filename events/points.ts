@@ -13,7 +13,7 @@ export default function points(client: bot, message: Message) {
     const curLevel = Math.floor(0.8 * Math.sqrt(score.points));
     console.log(`CurrL: ${curLevel}; Score.L: ${score.level}`)
     if(score.level < curLevel) {
-      message.reply(`You've leveled up to level **${curLevel}**! Ain't that dandy?`);
+      message.reply(`You've leveled up to level **${curLevel}**!`);
       score.level = curLevel
     }
     client.setScore.run(score);
