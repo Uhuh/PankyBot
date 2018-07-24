@@ -15,7 +15,7 @@ export default function getActivity(client: PankyBot, message: Message, args: st
   const embed: RichEmbed = new RichEmbed()
       .setColor(3447003)
       .setDescription(`Looky look`)
-      .setTitle(`Top ${args[0]} least "active" users.`)
+      .setTitle(`Top ${leastActive.length} least "active" users.`)
   for (const user of leastActive) {
     embed.addField(`*_${client.guilds.get(user.guild)!.members.get(user.user)!.user.username}_*`,`Last active: *${moment(Number(user.date_active)).format('MMM DD hh:mmA YYYY')}*`)
   }
