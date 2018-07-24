@@ -5,6 +5,7 @@ import * as config from './vars'
 import msg from '../events/message'
 import log from '../events/log'
 import setup_tables from './setup_tables';
+import activity from '../events/activity';
 
 export default class PankyBot extends Discord.Client {
   config: any
@@ -28,7 +29,12 @@ export default class PankyBot extends Discord.Client {
     this.on('message', (message: Discord.Message) => msg(this, message))
   }
 
+
   async start() {
     this.login(this.config.TOKEN)
+    // ON startup get who's online (Last message only works while bot is on over time)
+    activity(this)
+    // Log activity every 15minutes.
+    setInterval(() => activity(this), 900000)
   }
 }
