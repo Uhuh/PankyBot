@@ -1,10 +1,17 @@
 import { Message } from 'discord.js'
 import PankyBot from '../src/bot'
 import cmds from '../commands/cmd'
+import activity from './activity';
 
 export default function msg(client: PankyBot, message: Message) {
   //Don't care about bots.
   if (message.author.bot) return
+
+  if (message.isMentioned(client.user)) return message.channel.send(`Beepboop`)
+
+  //If a user sends a message then clearly they're active in the server.
+  activity(client, message.member)
+
   //Ignore anything that doesn't use the prefix
   if (message.content.indexOf(client.config.PREFIX) !== 0) return
 ​
