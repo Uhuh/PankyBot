@@ -16,14 +16,16 @@ export default function getActivity(client: PankyBot, message: Message, args: st
       .setColor(3447003)
       .setDescription(`Looky look`)
       .setTitle(`Top ${leastActive.length} least "active" users.`)
+  
   let gUser: GuildMember | undefined
   let name: string
+
   for (const user of leastActive) {
     gUser = client.guilds.get(user.guild)!.members.get(user.user)
     // Because some people don't change their names so they would be null.
     name = (gUser!.nickname?gUser!.nickname : gUser!.user.username)
 
-    embed.addField(`**_${name}_**`,`Last active: *${moment(Number(user.date_active)).format('MMM DD hh:mmA YYYY')}*`, true)
+    embed.addField(`**_${name}_**`,`Last active: *${moment(Number(user.date_active)).format('MMM DD hh:mmA YYYY')}*`, (leastActive.length===2?false:true))
   }
   message.channel.send({embed})
 }

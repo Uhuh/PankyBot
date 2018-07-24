@@ -12,6 +12,6 @@ export default new Map<string, any>(
     ['github', source],
     ['whois', getName],
     ['setname', setName],
-    ['getactivity', getActivity]
+    ['activity', getActivity]
   ]
 )
