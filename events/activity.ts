@@ -4,7 +4,17 @@ import log from './log'
 export default function activity(client: PankyBot) {
   client.guilds.forEach((guild) => {
     guild.members.forEach((member) => {
-      if(member.presence.status == 'online')
+
+      /*
+        Best way to keep track of... "EVERYONE" is if we just log everyone. Of course if this is a LARGEEEE server this is gonna be ugly..
+        However can't just depend on lastmessage
+        SO check if they're anything but online and NOT currently being watched.
+      */
+      if((member.presence.status == 'idle' || member.presence.status == 'dnd' || 
+          member.presence.status == 'offline') && !client.getActivity.get(member.id, member.guild.id))
+        log(client, member)
+      // If they're online then they're active. OBVO
+      else if(member.presence.status == 'online')
         log(client, member)
       // Might not have user in DB
       else if(member.lastMessage && !client.getActivity.get(member.id, member.guild.id))
