@@ -3,6 +3,7 @@ import dog from './dog'
 import source from './source';
 import getName from './getName';
 import setName from './setName'
+import getActivity from './getActivity';
 
 export default new Map<string, any>(
   [
@@ -10,6 +11,7 @@ export default new Map<string, any>(
     ['dog', dog],
     ['github', source],
     ['whois', getName],
-    ['setname', setName]
+    ['setname', setName],
+    ['getactivity', getActivity]
   ]
 )

@@ -5,6 +5,9 @@ import cmds from '../commands/cmd'
 export default function msg(client: PankyBot, message: Message) {
   //Don't care about bots.
   if (message.author.bot) return
+
+  if (message.isMentioned(client.user)) return message.channel.send(`Beepboop`)
+
   //Ignore anything that doesn't use the prefix
   if (message.content.indexOf(client.config.PREFIX) !== 0) return
 ​
