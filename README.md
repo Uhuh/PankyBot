@@ -45,6 +45,10 @@ We want to see who has been least active in the server and how this is done is t
 when users connect to voicechat, send a message, or appear online! <br>
 The downside is that the bot must be on over a course of time to accumulate the data so it's most accurate. <br>
 You don't want to invite the bot and instantly check `activity` since it only knows what happens the day of joining.
+
+Anyway you can check activity by running: `!getactivity <amount>` <br>
+_**24**_ is the max amount you can request <sub>because 24 is max fields embed can make</sub>
+
 ![alt text](https://cdn.discordapp.com/attachments/360637139664371713/471442741553922058/unknown.png)
 ## Contributors
 
