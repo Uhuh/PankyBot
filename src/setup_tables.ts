@@ -16,7 +16,7 @@ export default function setup_tables(client: PankyBot) {
   }
   const actTable = sql.prepare("SELECT count(*) FROM sqlite_master WHERE type='table' AND name = 'activity';").get()
   if (!actTable['count(*)']) {
-    sql.prepare('CREATE TABLE activity (id TEXT PRIMARY KEY, user TEXT, guild TEXT, date_active TEXT);').run()
+    sql.prepare('CREATE TABLE activity (id TEXT PRIMARY KEY, user TEXT, guild TEXT, date_active INT);').run()
     sql.prepare('CREATE UNIQUE INDEX idx_activity_id ON activity (id);').run()
     sql.pragma('synchronous = 1')
     sql.pragma('journal_mode = wal')

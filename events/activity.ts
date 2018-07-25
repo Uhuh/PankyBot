@@ -1,10 +1,10 @@
 import PankyBot from "../src/bot";
 import log from './log'
+import * as moment from 'moment'
 
 export default function activity(client: PankyBot) {
   client.guilds.forEach((guild) => {
     guild.members.forEach((member) => {
-
       /*
         Best way to keep track of... "EVERYONE" is if we just log everyone. Of course if this is a LARGEEEE server this is gonna be ugly..
         However can't just depend on lastmessage
@@ -20,7 +20,11 @@ export default function activity(client: PankyBot) {
       else if(member.lastMessage && !client.getActivity.get(member.id, member.guild.id))
         log(client, member)
       // The user might have a presence that's invis, so keep track of messages.
-      else if(member.lastMessage && Number(member.lastMessage.createdTimestamp) < Number(client.getActivity.get(member.id, member.guild.id).date_active))
+      // Also this is ugly holy crap. So I store the date_active as a string and that's why it was buggy af
+      else if(member.lastMessage && 
+              moment(member.lastMessage.createdTimestamp).isAfter(
+                moment(client.getActivity.get(member.id, member.guild.id).date_active))
+              )
         log(client, member)
     })
   })
