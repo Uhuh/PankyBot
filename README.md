@@ -24,8 +24,6 @@ Save this file, now you're ready to start!
 
 `npm run start` <br >
 
-![alt text](https://github.com/Uhuh/PankyBot/blob/master/extra/gif/start.gif)
-
 ## Usage
 
 To many people on the server and they decide to switch their names / profile pictures often? <br>
