@@ -45,7 +45,7 @@ The downside is that the bot must be on over a course of time to accumulate the 
 You don't want to invite the bot and instantly check `activity` since it only knows what happens the day of joining.
 
 Anyway you can check activity by running: `!activity <amount>` <br>
-_**24**_ is the max amount you can request <sub>because 24 is max fields embed can make</sub>
+_**25**_ is the max amount you can request <sub>because 25 is max fields embed can make</sub>
 
 ![alt text](https://cdn.discordapp.com/attachments/306310084802117632/471460307236159488/unknown.png)
 ## Contributors
