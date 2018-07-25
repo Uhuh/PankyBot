@@ -13,5 +13,6 @@ export default function setName(client: PankyBot, message: Message, args: string
     user = { id: `${message.guild.id}-${message.mentions.members.first().user.id}`, user: message.mentions.members.first().user.id, guild: message.guild.id, note: name  }
     client.setUser.run(user)
   }
-  message.reply(`Successfully set ${client.users.get(message.mentions.members.first().user.id)!.username}'s name.`)
+  let nick: string = message.mentions.members.first().nickname ? message.mentions.members.first().nickname : message.mentions.members.first().user.username
+  message.reply(`Successfully set ${nick}'s name.`)
 }

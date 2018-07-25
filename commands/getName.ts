@@ -10,6 +10,7 @@ export default function whoIs(client: PankyBot, message: Message) {
     if (!user) {
       return message.channel.send('That user doesn\'t have a name set for them!')
     }
-    message.channel.send(`${message.mentions.members.first().nickname}'s real name is.... ${user.note}`)
+    let nick: string = message.mentions.members.first().nickname ? message.mentions.members.first().nickname : message.mentions.members.first().user.username
+    message.channel.send(`${nick}'s real name is.... ${user.note}`)
   }
 }
