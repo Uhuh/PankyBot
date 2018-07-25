@@ -20,7 +20,7 @@ export default function activity(client: PankyBot) {
       else if(member.lastMessage && !client.getActivity.get(member.id, member.guild.id))
         log(client, member)
       // The user might have a presence that's invis, so keep track of messages.
-      else if(member.lastMessage && Number(member.lastMessage.createdTimestamp) > Number(client.getActivity.get(member.id, member.guild.id).date_active))
+      else if(member.lastMessage && Number(member.lastMessage.createdTimestamp) < Number(client.getActivity.get(member.id, member.guild.id).date_active))
         log(client, member)
     })
   })
