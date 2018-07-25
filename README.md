@@ -35,7 +35,7 @@ To simply give someone a name, run this command. This will stick with them _fore
 If you want to see who is _who_ simple run: <br>
 `!whois @username` <br>
 Panky will tell you that user is (if they have a name set...). <br>
-![alt text](https://cdn.discordapp.com/attachments/285627738772209685/471449870289338378/unknown.png) <br>
+![alt text](https://cdn.discordapp.com/attachments/471078071089496075/471502260816314368/unknown.png) <br>
 
 _**"Dang, I have to many users on my server and don't know which ones to purge! ¯\\\_(ツ)\_/¯"**_ <br>
 
