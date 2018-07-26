@@ -25,7 +25,7 @@ export default function kick(client: PankyBot, message: Message, args: string []
       embed.setColor(16711683)
         .setTitle(':octagonal_sign: **Unable to kick** :octagonal_sign:')
         .setDescription('There was an issue while kicking')
-        .addField(':thinking:', 'I can\'t kick any role higher than mine! Are you trying to kick someone above me?', true)
+        .addField(':thinking:', 'I can\'t kick any role higher or equal to mine! Are you trying to kick someone above me?', true)
         .addField(':thinking:', 'I might not have permissions to kick! Give me permissions by going to server settings and giving me a role that has the ability to kick!', true)
         message.channel.send(embed)
       })
