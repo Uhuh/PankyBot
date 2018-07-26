@@ -6,21 +6,15 @@ export default function activity(client: PankyBot) {
   client.guilds.forEach((guild) => {
     guild.members.forEach((member) => {
       /*
-        Best way to keep track of... "EVERYONE" is if we just log everyone. Of course if this is a LARGEEEE server this is gonna be ugly..
-        However can't just depend on lastmessage
-        SO check if they're anything but online and NOT currently being watched.
+        When the bot joins a new server it doesn't have record of anyone.
+        When the bot joins it will add all users to db.
       */
-      if((member.presence.status == 'idle' || member.presence.status == 'dnd' || 
-          member.presence.status == 'offline') && !client.getActivity.get(member.id, member.guild.id))
+      if(!client.getActivity.get(member.id, member.guild.id))
         log(client, member)
-      // If they're online then they're active. OBVO
-      else if(member.presence.status == 'online')
+      // If they're online or in a vc then they're active.
+      else if(member.presence.status == 'online' || member.voiceChannel)
         log(client, member)
-      // Might not have user in DB
-      else if(member.lastMessage && !client.getActivity.get(member.id, member.guild.id))
-        log(client, member)
-      // The user might have a presence that's invis, so keep track of messages.
-      // Also this is ugly holy crap. So I store the date_active as a string and that's why it was buggy af
+      // If the user has a lastmsg check if it's newer than their current activity recorded.
       else if(member.lastMessage && 
               moment(member.lastMessage.createdTimestamp).isAfter(
                 moment(client.getActivity.get(member.id, member.guild.id).date_active))
