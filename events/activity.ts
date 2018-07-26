@@ -3,8 +3,8 @@ import log from './log'
 import * as moment from 'moment'
 
 export default function activity(client: PankyBot) {
-  client.guilds.forEach((guild) => {
-    guild.members.forEach((member) => {
+  for(const [key, guild] of client.guilds) {
+    for(const [k, member] of guild.members) {
       /*
         When the bot joins a new server it doesn't have record of anyone.
         When the bot joins it will add all users to db.
@@ -20,6 +20,6 @@ export default function activity(client: PankyBot) {
                 moment(client.getActivity.get(member.id, member.guild.id).date_active))
               )
         log(client, member)
-    })
-  })
+    }
+  }
 }

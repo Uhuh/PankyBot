@@ -4,6 +4,7 @@ import source from './source';
 import getName from './getName';
 import setName from './setName'
 import getActivity from './getActivity';
+import kick from './kick';
 
 export default new Map<string, any>(
   [
@@ -12,6 +13,7 @@ export default new Map<string, any>(
     ['github', source],
     ['whois', getName],
     ['setname', setName],
-    ['activity', getActivity]
+    ['activity', getActivity],
+    ['kick', kick]
   ]
 )
