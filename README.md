@@ -48,6 +48,13 @@ Anyway you can check activity by running: `!activity <amount>` <br>
 _**25**_ is the max amount you can request <sub>because 25 is max fields embed can make</sub>
 
 ![alt text](https://cdn.discordapp.com/attachments/306310084802117632/471460307236159488/unknown.png)
+
+Got some pesky users you wanna get rid of? Don't fret! <br>
+You can easily kick up to however many you can tag! You can also add a reason if it matters to you. <br>
+This can be done by doing `!kick @user1 @user2 @user3 ... @userN <reason if you have a reason>` <br>
+Or ye can be simple and kick one fellow out. `!kick @user` <br>
+Only admins can use this command. So not anyone can use this command.
+![alt text](https://cdn.discordapp.com/attachments/288747135569100801/472176150106472448/unknown.png)
 ## Contributors
 
 - [Dylan Warren](https://github.com/Uhuh)
