@@ -6,14 +6,13 @@ export default function msg(client: PankyBot, message: Message) {
   //Don't care about bots.
   if (message.author.bot) return
 
-  if (message.isMentioned(client.user)) return message.channel.send(`Beepboop`)
-
   //Ignore anything that doesn't use the prefix
   if (message.content.indexOf(client.config.PREFIX) !== 0) return
-​
+
   const [command, ...args] = message.content.substring(client.config.PREFIX.length).split(" ")
   //If the command isn't in the big ol' list.
-  if(!cmds.has(command.toLowerCase())) return
+  if (!cmds.has(command.toLowerCase())) return
   // Find the command and run it.
-  cmds.get(command.toLowerCase())(client, message, args)
+  cmds.get(command.toLowerCase()).run(client, message, args)
+
 }

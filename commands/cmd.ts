@@ -6,16 +6,16 @@ import setName from './setName'
 import getActivity from './getActivity';
 import kick from './kick';
 import purge from './purge';
+import commands from './commands';
 
-export default new Map<string, any>(
-  [
-    ['ping', ping],
-    ['dog', dog],
-    ['github', source],
-    ['whois', getName],
-    ['setname', setName],
-    ['activity', getActivity],
-    ['kick', kick],
-    ['purge', purge]
-  ]
-)
+let commandsMap = new Map()
+const list = [ping, dog, source, getName, setName, getActivity, kick, purge, commands]
+
+// Each command might have an alias to make it less tedious to type the command out.
+for (const i of list) {
+  for (const j of i.alias) {
+    commandsMap.set(j, i)
+  }
+}
+
+export default commandsMap

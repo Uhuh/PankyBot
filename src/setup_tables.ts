@@ -21,7 +21,8 @@ export default function setup_tables(client: PankyBot) {
     sql.pragma('synchronous = 1')
     sql.pragma('journal_mode = wal')
   }
-
+  client.removeActivity = sql.prepare("DELETE FROM activity WHERE user = ? AND guild = ?")
+  client.usersActivity = sql.prepare("SELECT * FROM activity WHERE guild = ?")
   client.getActivity = sql.prepare("SELECT * FROM activity WHERE user = ? AND guild = ?")
   client.setActivity = sql.prepare("INSERT OR REPLACE INTO activity (id, user, guild, date_active) VALUES (@id, @user, @guild, @date_active);")
   client.getUser = sql.prepare("SELECT * FROM users WHERE user = ? AND guild = ?")

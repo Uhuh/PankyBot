@@ -13,6 +13,8 @@ export default class PankyBot extends Discord.Client {
   setUser: any
   getActivity: any
   setActivity: any
+  removeActivity: any
+  usersActivity: any
   constructor() {
     super()
     
@@ -20,7 +22,7 @@ export default class PankyBot extends Discord.Client {
     
     this.on('ready', () => {
       console.log(`[Started]: ${new Date()}`)
-
+      this.user.setPresence({ game: { name: `${this.config.PREFIX}help` }, status: 'online'})
       // Setup our sql tables.
       setup_tables(this)
     })
