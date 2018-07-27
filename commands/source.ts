@@ -14,7 +14,7 @@ export default function source(client: PankyBot, message: Message, args: any) {
       description: "This bot does legit nothing but here's the GH.",
       fields: [{
         name: "Bot invite link",
-        value: "https://discordapp.com/oauth2/authorize?client_id=342815158688808961&scope=bot&permissions=0"
+        value: "https://discordapp.com/oauth2/authorize?client_id=342815158688808961&scope=bot&permissions=8"
       }],
       timestamp: new Date(),
       footer: {
