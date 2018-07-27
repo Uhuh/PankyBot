@@ -1,6 +1,7 @@
 ## Description
 
-I'm not going anywhere big with this project. I've just made a few DiscordJS bots previously and just had a good time doing them.
+The way things are going Panky is going to be a moderator bot! Meaning handling kicks/bans, profanity, user activity and more!
+She's still in the works right now so some features are limited but mentioned below in [usage](#usage).
 
 ## Getting Started
 
@@ -54,7 +55,7 @@ You can easily kick up to however many you can tag! You can also add a reason if
 This can be done by doing `!kick @user1 @user2 @user3 ... @userN <reason if you have a reason>` <br>
 Or ye can be simple and kick one fellow out. `!kick @user` <br>
 Only admins can use this command. So not anyone can use this command.
-![alt text](https://cdn.discordapp.com/attachments/288747135569100801/472176150106472448/unknown.png)
+![alt text](https://cdn.discordapp.com/attachments/288747135569100801/472208425913155594/unknown.png)
 ## Contributors
 
 - [Dylan Warren](https://github.com/Uhuh)
