@@ -5,6 +5,7 @@ import getName from './getName';
 import setName from './setName'
 import getActivity from './getActivity';
 import kick from './kick';
+import purge from './purge';
 
 export default new Map<string, any>(
   [
@@ -14,6 +15,7 @@ export default new Map<string, any>(
     ['whois', getName],
     ['setname', setName],
     ['activity', getActivity],
-    ['kick', kick]
+    ['kick', kick],
+    ['purge', purge]
   ]
 )
