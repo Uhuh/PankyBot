@@ -6,9 +6,11 @@ export default function purge(client: PankyBot, message: Message, args: string[]
   let user: User
   const channel = message.channel
   if(!message.guild || !Number(args[0])) return
-
+  if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply(`you don't have permissions to use this command.`)
+  // If you want to purge the messages of a specific user.
   if(args[1]) user = message.mentions.members.first().user
   
+  // Grab as many messages you can panky. Depending on the args delete delete delete.
   channel.fetchMessages().then((msgs) => {
     for(const [k, msg] of msgs) {
       if(amount === 0) return
