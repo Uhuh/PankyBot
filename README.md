@@ -2,8 +2,9 @@
 
 The way things are going Panky is going to be a moderator bot! Meaning handling kicks/bans, profanity, user activity and more!
 She's still in the works right now so some features are limited but mentioned below in [usage](#usage).
+If you would like to invite my live bot here is the [link](https://discordapp.com/oauth2/authorize?client_id=342815158688808961&scope=bot&permissions=8). I am hosting it via Google Cloud Platform.
 
-## Getting Started
+## Hosting yourself
 
 To setup and run Panky
 
