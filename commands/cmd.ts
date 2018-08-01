@@ -9,7 +9,6 @@ import commands from './commands'
 import ban from './ban'
 import status from './status'
 import botStatus from './botstatus';
-import mute from './mute';
 
 let commandsMap = new Map()
 const list = [dog, source, getName, setName, getActivity, kick, purge, commands, ban, status, botStatus]
