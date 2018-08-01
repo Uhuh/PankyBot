@@ -9,9 +9,10 @@ import commands from './commands'
 import ban from './ban'
 import status from './status'
 import botStatus from './botstatus';
+import lock from './lock';
 
 let commandsMap = new Map()
-const list = [dog, source, getName, setName, getActivity, kick, purge, commands, ban, status, botStatus]
+const list = [dog, source, getName, setName, getActivity, kick, purge, commands, ban, status, botStatus, lock]
 
 // Each command might have an alias to make it less tedious to type the command out.
 for (const i of list) {
