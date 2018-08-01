@@ -13,7 +13,7 @@ const kick = {
 
     if (!message.guild) return
     // Don't let some crazy dude spam kick gotta make sure they're the OG
-    if (!message.member.hasPermission("KICK_MEMBERS")) return message.reply("you don't have permissions to use this command.")
+    if (!message.member.hasPermission("KICK_MEMBERS")) return message.reply('you do no have the `KICK_MEMBERS` permission.')
     // Skip all the mentions.
     for (const i of message.mentions.members) { args.shift() }
     // If there is a reason given

@@ -6,6 +6,9 @@ export default function msg(client: PankyBot, message: Message) {
   //Don't care about bots.
   if (message.author.bot) return
 
+  // There's a reason people get server muted.
+  if (message.member.serverMute) message.delete()
+
   //Ignore anything that doesn't use the prefix
   if (message.content.indexOf(client.config.PREFIX) !== 0) return
 

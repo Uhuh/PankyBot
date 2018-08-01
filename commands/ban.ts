@@ -13,7 +13,7 @@ const ban = {
     const embed: RichEmbed = new RichEmbed()
     if (!message.guild) return
     // Shouldn't let just anyone ban members.
-    if (!message.member.hasPermission('BAN_MEMBERS')) return message.reply('you don\'t have permissions to use this command.')
+    if (!message.member.hasPermission('BAN_MEMBERS')) return message.reply('you do not have the `BAN_MEMBERS` permission.')
 
     // Skip through all the users mentioned
     for (const i of message.mentions.members) { args.shift() }
@@ -30,8 +30,8 @@ const ban = {
         embed.setColor(65295)
           .setTitle(`:wave: Sorry ${name}, you've been banned! :wave:`)
           .setDescription(`Successfully banned ${name}!`)
-          .addField(`Banned for: ${days} day${(days>1?'s':'')}`, `Banned by ${message.member.nickname?message.member.nickname:message.author.username}`, true)
-          .addField(`_**Reason for banning ${name}**_`, `Reason: ${reason?reason:'No reason given'}`, true)
+          .addField(`Banned for: ${days} day${(days > 1 ? 's' : '')}`, `Banned by ${message.member.nickname ? message.member.nickname : message.author.username}`, true)
+          .addField(`_**Reason for banning ${name}**_`, `Reason: ${reason ? reason : 'No reason given'}`, true)
         message.channel.send(embed)
         member.send(embed)
       })
