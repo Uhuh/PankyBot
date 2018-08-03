@@ -21,7 +21,7 @@ const commands = {
       // Because I map each commands alias to themselves, it would output the same thing a few times... Let's avoid that.
       if (prevValue === value) continue
 
-      embed.addField(`**${client.config.PREFIX}${value.common}  ${value.args}**`, `Alias: ${value.alias}\n${value.desc}`)
+      embed.addField(`**${client.config.PREFIX} ${value.common} ${value.args}**`, `Alias: ${value.alias}\n${value.desc}`)
       prevValue = value
     }
     message.author.send({ embed })
