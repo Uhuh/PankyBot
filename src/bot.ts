@@ -16,10 +16,12 @@ export default class PankyBot extends Discord.Client {
   setActivity: any
   removeActivity: any
   usersActivity: any
+  getPrefix: any
+  setPrefix: any
   dbl: any
   constructor() {
     super()
-
+    
     this.config = config
     // Discord bot list, gotta up them server numbers for certified ;)
     this.dbl = new DBL(this.config.DBLTOKEN, this)
