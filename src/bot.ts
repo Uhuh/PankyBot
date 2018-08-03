@@ -27,7 +27,7 @@ export default class PankyBot extends Discord.Client {
     this.dbl = new DBL(this.config.DBLTOKEN, this)
     this.on('ready', () => {
       console.log(`[Started]: ${new Date()}`)
-      this.user.setPresence({ game: { name: `${this.config.PREFIX} help` }, status: 'online' })
+      this.user.setPresence({ game: { name: `@${this.user.username} help` }, status: 'online' })
       this.setInterval( () => this.dbl.postStats(this.guilds.size), 1800000)
       // Setup our sql tables.
       setup_tables(this)
