@@ -12,7 +12,7 @@ const lock = {
     let minutes: number = 10
     
     if (!guild) return
-    if (!message.member.hasPermission('MANAGE_CHANNELS')) return message.reply('you do not have the `MANAGE_CHANNELS` permission.')
+    if (!message.member.hasPermission('MANAGE_CHANNELS')) return
 
     if (!Number(args[0])) return message.reply('please use a number for the amount of minutes to lock the channels.')
     minutes = Number(args[0])

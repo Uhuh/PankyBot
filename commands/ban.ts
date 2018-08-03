@@ -13,7 +13,7 @@ const ban = {
     const embed: RichEmbed = new RichEmbed()
     if (!message.guild) return
     // Shouldn't let just anyone ban members.
-    if (!message.member.hasPermission('BAN_MEMBERS')) return message.reply('you do not have the `BAN_MEMBERS` permission.')
+    if (!message.member.hasPermission('BAN_MEMBERS')) return
 
     // Skip through all the users mentioned
     for (const i of message.mentions.members) { args.shift() }

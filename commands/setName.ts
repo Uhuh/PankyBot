@@ -19,7 +19,6 @@ const setName = {
       client.setUser.run(user)
     }
     let nick: string = message.mentions.members.first().nickname ? message.mentions.members.first().nickname : message.mentions.members.first().user.username
-    message.reply(`Successfully set ${nick}'s name to **${name}**.`)
   }
 }
 

@@ -15,7 +15,11 @@ const status = {
     if (!guild) return
 
     for (const [k, role] of guild.roles) { roles.push(role) }
-    for (const [k, channel] of guild.channels) { if (channel.type === 'text') textC++; else if (channel.type === 'voice') voiceC++ }
+
+    for (const [k, channel] of guild.channels) {
+      if (channel.type === 'text') textC++
+      else if (channel.type === 'voice') voiceC++
+    }
 
     embed.setColor(16772864)
       .setThumbnail(guild.iconURL)

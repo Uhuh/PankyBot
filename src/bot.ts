@@ -6,6 +6,7 @@ import msg from '../events/message'
 import log from '../events/log'
 import setup_tables from './setup_tables';
 import activity from '../events/activity';
+import * as DBL from 'dblapi.js'
 
 export default class PankyBot extends Discord.Client {
   config: any
@@ -15,14 +16,17 @@ export default class PankyBot extends Discord.Client {
   setActivity: any
   removeActivity: any
   usersActivity: any
+  dbl: any
   constructor() {
     super()
-    
+
     this.config = config
-    
+    // Discord bot list, gotta up them server numbers for certified ;)
+    this.dbl = new DBL(this.config.DBLTOKEN, this)
     this.on('ready', () => {
       console.log(`[Started]: ${new Date()}`)
-      this.user.setPresence({ game: { name: `${this.config.PREFIX}help` }, status: 'online'})
+      this.user.setPresence({ game: { name: `${this.config.PREFIX} help` }, status: 'online' })
+      this.setInterval( () => this.dbl.postStats(this.guilds.size), 1800000)
       // Setup our sql tables.
       setup_tables(this)
     })

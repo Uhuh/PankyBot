@@ -11,12 +11,13 @@ const purge = {
     let user: User
     const channel = message.channel
     if (!message.guild) return channel.send('I can\'t delete messages in DMs.')
-    if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply('you do not have the `MANAGE_MESSAGES` permission.')
+    if (!message.member.hasPermission("MANAGE_MESSAGES")) return
     if (!Number(args[0])) return message.reply(`Pass the amount you want to purge. EG: \`${client.config.PREFIX}purge 5\``)
 
     // If you want to purge the messages of a specific user.
     if (args[1]) user = message.mentions.members.first().user
-
+    // Delete the message sent
+    message.delete()
     // Grab as many messages you can panky. Depending on the args delete delete delete.
     channel.fetchMessages().then((msgs) => {
       for (const [k, msg] of msgs) {
