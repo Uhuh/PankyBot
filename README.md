@@ -4,28 +4,6 @@ The way things are going Panky is going to be a moderator bot! Meaning handling 
 She's still in the works right now so some features are limited but mentioned below in [usage](#usage).
 If you would like to invite my live bot here is the [link](https://discordapp.com/oauth2/authorize?client_id=342815158688808961&scope=bot&permissions=8). I am hosting it via Google Cloud Platform.
 
-## Hosting yourself
-
-To setup and run Panky
-
-`git clone git@github.com:Uhuh/PankyBot.git` <br>
-`cd PankyBot/` <br>
-`npm install` <br>
-
-Now before you start your bot you need to set up the environment variables. <br>
-Using your preferred text editor or IDE (I will use nano in this case) <br>
-`.env` should be in the root folder of the project: `PankyBot/.env` <br>
-`nano .env` <br>
-Now within `.env` <br>
-```
-PREFIX=!
-TOKEN=superSecretToken
-GUILD_NAME=`Your server name`
-```
-Save this file, now you're ready to start!
-
-`npm run start` <br>
-
 ## Usage
 **Fun Commands** <br>
 These commands are just for fun.
@@ -61,6 +39,22 @@ These commands **_can_** be desctructable. Some require roles to use and these h
 > !purge \<message amount> \<user mention(optional)> <br>
 
 &nbsp;&nbsp;&nbsp;&nbsp;Deletes messages in the channel you request it in, delete user specific commands if user is mentioned. Only users with `MESSAGE_MANAGE` can use this command.
+
+> !ban  <user mention(s)> <number of days(default 7 days)> <reason(optional)>
+
+&nbsp;&nbsp;&nbsp;&nbsp;Bans a user for X amount of days. Only users with `BAN_MEMBERS` can use this command.
+
+> !status
+
+&nbsp;&nbsp;&nbsp;&nbsp;Outputs server information, such as users in server, owner, amount of text/voice channels etc.
+
+> !botstatus
+
+&nbsp;&nbsp;&nbsp;&nbsp;Outputs the bots information.
+
+> !lock <number of minute(s)> <#channel-name(s)>
+
+&nbsp;&nbsp;&nbsp;&nbsp;Users will not be able to send messages to locked channels. Only users with `MANAGE_CHANNELS` can use this command.
 
 ## Contributors
 
