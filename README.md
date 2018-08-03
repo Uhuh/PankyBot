@@ -54,6 +54,10 @@ These commands **_can_** be desctructable. Some require roles to use and these h
 
 &nbsp;&nbsp;&nbsp;&nbsp;Users will not be able to send messages to locked channels. Only users with `MANAGE_CHANNELS` can use this command.
 
+> modpls prefix <custom prefix>
+
+&nbsp;&nbsp;&nbsp;&nbsp;You can change the prefix of the bot for your guild. Only users with `MANAGE_GUILD` can use this command.
+
 ## Contributors
 
 - [Dylan Warren](https://github.com/Uhuh)
