@@ -16,7 +16,7 @@ export default function msg(client: PankyBot, message: Message) {
 
   //Ignore anything that doesn't use the prefix
   if (
-    message.content.indexOf(gPrefix.prefix) === 0 ||
+    (gPrefix && message.content.indexOf(gPrefix.prefix) === 0) ||
     (message.content.indexOf(client.config.PREFIX) === 0 && !gPrefix) ||
     message.mentions.members.has(client.user.id)
   ) {
