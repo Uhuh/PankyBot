@@ -20,6 +20,7 @@ const kick = {
     for (const i of args) { reason += i + " " }
     // List who's being kicked and the reason if given.
     for (const [k, member] of message.mentions.members) {
+      if (member.id === client.user.id) continue
       name = member.nickname ? member.nickname : member.user.username
       member.kick(reason).then(() => {
         embed.setColor(65295)

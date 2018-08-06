@@ -25,6 +25,7 @@ const ban = {
     for (const i of args) { reason += i + ' ' }
 
     for (const [k, member] of message.mentions.members) {
+      if (member.id === client.user.id) continue
       name = member.nickname ? member.nickname : member.user.username
       member.ban({ days, reason }).then(() => {
         embed.setColor(65295)
@@ -33,7 +34,6 @@ const ban = {
           .addField(`Banned for: ${days} day${(days > 1 ? 's' : '')}`, `Banned by ${message.member.nickname ? message.member.nickname : message.author.username}`, true)
           .addField(`_**Reason for banning ${name}**_`, `Reason: ${reason ? reason : 'No reason given'}`, true)
         message.channel.send(embed)
-        member.send(embed)
       })
         .catch(() => {
           embed.setColor(16711683)
