@@ -37,7 +37,6 @@ export default class PankyBot extends Discord.Client {
     this.on('message', (message: Discord.Message) => msg(this, message))
   }
 
-
   async start() {
     await this.login(this.config.TOKEN)
     // ON startup get who's online (Last message only works while bot is on over time)
