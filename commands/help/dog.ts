@@ -1,6 +1,6 @@
 import { Message } from "discord.js"
 
-const dog = {
+export default {
   desc: 'Sends a photo or gif of a random dog.',
   common: 'dog',
   args: '',
@@ -29,5 +29,3 @@ const dog = {
 
   }
 }
-
-export default dog

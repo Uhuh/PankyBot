@@ -1,7 +1,7 @@
 import PankyBot from "../../src/bot"
 import { Message } from 'discord.js'
 
-const source = {
+export default {
   desc: 'Send the github link and the invitation link',
   common: 'github',
   args: '',
@@ -29,5 +29,3 @@ const source = {
     })
   }
 }
-
-export default source

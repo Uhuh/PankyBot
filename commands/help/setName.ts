@@ -1,7 +1,7 @@
 import PankyBot from "../../src/bot"
 import { Message } from "discord.js"
 
-const setName = {
+export default {
   desc: 'Sets the name of a user to make it easier to know who they are.',
   common: 'setname',
   args: '<user mention> <name>',
@@ -21,5 +21,3 @@ const setName = {
     let nick: string = message.mentions.members.first().nickname || message.mentions.members.first().user.username
   }
 }
-
-export default setName

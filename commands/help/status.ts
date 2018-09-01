@@ -1,6 +1,6 @@
 import { Message, RichEmbed, Role, Guild } from "discord.js"
 
-const status = {
+export default {
   desc: 'Gets the server info',
   common: 'status',
   args: '',
@@ -33,5 +33,3 @@ const status = {
     message.channel.send(embed)
   }
 }
-
-export default status

@@ -4,7 +4,7 @@ import { Message, RichEmbed, GuildMember, Guild } from "discord.js"
 import * as moment from 'moment'
 const sql = new SQLite('users.sqlite')
 
-const getActivity = {
+export default {
   desc: 'Returns the request amount of least active users.',
   common: 'activity',
   args: '<# of users>',
@@ -44,5 +44,3 @@ const getActivity = {
     message.channel.send({ embed })
   }
 }
-
-export default getActivity

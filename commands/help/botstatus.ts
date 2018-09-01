@@ -1,7 +1,7 @@
 import { Message, Guild, RichEmbed } from "discord.js"
 import PankyBot from "../../src/bot"
 
-const botStatus = {
+export default {
   desc: 'Gives a list of things about the bot',
   common: 'botstatus',
   args: '',
@@ -27,5 +27,3 @@ const botStatus = {
     message.channel.send(embed)
   }
 }
-
-export default botStatus

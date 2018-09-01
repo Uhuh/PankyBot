@@ -1,7 +1,7 @@
 import { Message } from 'discord.js'
 import PankyBot from "../../src/bot"
 
-const getName = {
+export default {
   desc: 'Returns the set name of a user, if set.',
   common: 'whois',
   args: '<user mention>',
@@ -20,5 +20,3 @@ const getName = {
     }
   }
 }
-
-export default getName

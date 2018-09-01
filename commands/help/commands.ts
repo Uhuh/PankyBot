@@ -2,7 +2,7 @@ import PankyBot from "../../src/bot"
 import { Message, RichEmbed } from "discord.js"
 import cmd from "../cmd"
 
-const commands = {
+export default {
   desc: 'Sends a list of all available commands.',
   common: 'commands',
   args: '',
@@ -27,5 +27,3 @@ const commands = {
     message.author.send({ embed })
   }
 }
-
-export default commands
