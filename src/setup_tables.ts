@@ -4,7 +4,7 @@ import * as SQLite from 'better-sqlite3'
 const sql = new SQLite('./users.sqlite')
 
 
-export default function setup_tables(client: PankyBot) {
+export default (client: PankyBot) => {
   const table = sql.prepare("SELECT count(*) FROM sqlite_master WHERE type = 'table' AND name = 'users';").get()
   if (!table['count(*)']) {
     // If the table isn't there, create it and setup the database correctly.

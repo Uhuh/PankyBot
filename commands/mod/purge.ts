@@ -1,18 +1,18 @@
 import PankyBot from "../../src/bot"
 import { Message, User } from "discord.js"
 
-const purge = {
+export default {
   desc: 'Deletes number of messages requested, or delete user specific commands if given.',
   common: 'purge',
   args: '<# of messages> <user mention(optional)>',
   alias: ['purge'],
-  run: async function (client: PankyBot, message: Message, args: string[]) {
+  run: async function (message: Message, args: string[], client: PankyBot) {
     let amount: number = Number(args[0])
     let user: User
     const channel = message.channel
     if (message.channel.type === 'dm') return channel.send('I can\'t delete messages in DMs.')
     if (!message.member.hasPermission("MANAGE_MESSAGES")) return
-    if (!Number(args[0])) return message.reply(`Pass the amount you want to purge. EG: \`${client.config.PREFIX}purge 5\``)
+    if (!Number(args[0])) return message.reply(`Pass the amount you want to purge. EG: \`@${client.user.username} purge 5\``)
 
     // If you want to purge the messages of a specific user.
     if (args[1]) user = message.mentions.members.first().user
@@ -37,5 +37,3 @@ const purge = {
       })
   }
 }
-
-export default purge

@@ -1,12 +1,12 @@
 import PankyBot from "../../src/bot"
 import { Message, RichEmbed } from "discord.js"
 
-const ban = {
+export default {
   desc: 'Bans a user',
   common: 'ban',
   args: '<user mention(s)> <number of days(default 7 days)> <reason(optional)',
   alias: ['ban'],
-  run: async function (client: PankyBot, message: Message, args: string[]) {
+  run: async function (message: Message, args: string[], client: PankyBot) {
     let days: number = 7
     let reason: string = ''
     let name: string = ''
@@ -45,5 +45,3 @@ const ban = {
     }
   }
 }
-
-export default ban

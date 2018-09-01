@@ -1,12 +1,12 @@
 import PankyBot from "../../src/bot"
 import { Message, Permissions, RichEmbed } from "discord.js"
 
-const kick = {
+export default {
   desc: 'Kicks requested user, assuming requestee has permissions and user can be kicked.',
   common: 'kick',
   args: '<user mention> <reason(optional)>',
   alias: ['kick'],
-  run: async function (client: PankyBot, message: Message, args: string[]) {
+  run: async function (message: Message, args: string[], client: PankyBot) {
     let reason: string = ""
     let name: string = ""
     let embed: RichEmbed = new RichEmbed()
@@ -38,5 +38,3 @@ const kick = {
     }
   }
 }
-
-export default kick

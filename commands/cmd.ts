@@ -11,9 +11,10 @@ import status from './help/status'
 import botStatus from './help/botstatus'
 import lock from './mod/lock'
 import prefix from './mod/prefix'
+import userInfo from './help/userinfo'
 
 let commandsMap = new Map()
-const list = [dog, source, getName, setName, getActivity, kick, purge, commands, ban, status, botStatus, lock, prefix]
+const list = [dog, source, getName, setName, getActivity, kick, purge, commands, ban, status, botStatus, lock, prefix, userInfo]
 
 // Each command might have an alias to make it less tedious to type the command out.
 for (const i of list) {

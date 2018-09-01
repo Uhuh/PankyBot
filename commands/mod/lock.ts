@@ -1,12 +1,12 @@
 import PankyBot from "../../src/bot"
 import { Message, Guild, GuildChannel, Collection } from "discord.js"
 
-const lock = {
+export default {
   desc: 'Locks a channel for X minutes.',
   common: 'lock',
   args: '<number of minute(s)> <#Channel-name(s)>',
   alias: ['lock'],
-  run: async function(client: PankyBot, message: Message, args: string[]) {
+  run: async function(message: Message, args: string[]) {
     const guild: Guild = message.guild
     let channels: Collection<String, GuildChannel> = message.mentions.channels
     let minutes: number = 10
@@ -33,5 +33,3 @@ const lock = {
     }
   }
 }
-
-export default lock

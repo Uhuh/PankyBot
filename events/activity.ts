@@ -2,7 +2,7 @@ import PankyBot from "../src/bot"
 import log from './log'
 import * as moment from 'moment'
 
-export default function activity(client: PankyBot) {
+export default (client: PankyBot) => {
   for (const [key, guild] of client.guilds) {
     for (const [k, member] of guild.members) {
       /*
@@ -19,7 +19,7 @@ export default function activity(client: PankyBot) {
         moment(member.lastMessage.createdTimestamp).isAfter(
           moment(client.getActivity.get(member.id, member.guild.id).date_active))
       )
-        log(client, member)
+      log(client, member)
     }
   }
 }

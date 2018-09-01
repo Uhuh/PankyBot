@@ -1,12 +1,12 @@
 import PankyBot from "../../src/bot"
 import { Message } from "discord.js"
 
-const prefix = {
+export default {
   desc: 'Change the bots prefix for the requested server. If no arguments passed it will display the guilds prefix.',
   common: 'prefix',
   args: '<prefix you want>',
   alias: ['prefix'],
-  run: async function (client: PankyBot, message: Message, args: string[]) {
+  run: async function (message: Message, args: string[], client: PankyBot) {
     const gPrefix = client.getPrefix.get(message.guild.id)
     if (message.channel.type === 'dm') return
     if (args.length === 0) return message.channel.send(`The guild's prefix is \`${gPrefix?gPrefix.prefix:'modpls'}\``)
@@ -24,5 +24,3 @@ const prefix = {
     message.react('✅')
   }
 }
-
-export default prefix
