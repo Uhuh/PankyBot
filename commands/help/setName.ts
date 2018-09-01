@@ -6,7 +6,7 @@ const setName = {
   common: 'setname',
   args: '<user mention> <name>',
   alias: ['setname', 'set', 'sn'],
-  run: async function (client: PankyBot, message: Message, args: string[]) {
+  run: async function (message: Message, args: string[], client: PankyBot) {
     let user
     let name: string = ""
     if (!args) return

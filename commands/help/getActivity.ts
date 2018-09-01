@@ -9,7 +9,7 @@ const getActivity = {
   common: 'activity',
   args: '<# of users>',
   alias: ['active', 'activity', 'ga'],
-  run: async function (client: PankyBot, message: Message, args: string[]) {
+  run: async function (message: Message, args: string[], client: PankyBot) {
     if (!args[0] || !(typeof Number(args[0]) === 'number') || isNaN(Number(args[0]))) {
       return message.channel.send(`Please enter a number. EG: \`${client.config.PREFIX}getactivity 5\``)
     }
@@ -38,7 +38,7 @@ const getActivity = {
       gUser = client.guilds.get(user.guild)!.members.get(user.user)
 
       // Because some people don't change their names so they would be null.
-      name = (gUser!.nickname ? gUser!.nickname : gUser!.user.username)
+      name = (gUser!.nickname || gUser!.user.username)
       embed.addField(`**_${name}_**`, `Last active: *${moment(user.date_active).format('MMM DD hh:mmA YYYY')}*`, (leastActive.length === 2 ? false : true))
     }
     message.channel.send({ embed })

@@ -1,4 +1,3 @@
-import PankyBot from "../../src/bot"
 import { Message, RichEmbed, Role, Guild } from "discord.js"
 
 const status = {
@@ -6,7 +5,7 @@ const status = {
   common: 'status',
   args: '',
   alias: ['status', 'serverinfo', 'guild', 'server'],
-  run: async function (client: PankyBot, message: Message) {
+  run: async function (message: Message) {
     const embed: RichEmbed = new RichEmbed()
     const guild: Guild = message.guild
     let roles: Role[] = []

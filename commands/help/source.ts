@@ -6,7 +6,7 @@ const source = {
   common: 'github',
   args: '',
   alias: ['source', 'github'],
-  run: async function (client: PankyBot, message: Message) {
+  run: async function (message: Message, client: PankyBot) {
     message.channel.send({
       embed: {
         color: 3447003,

@@ -1,12 +1,11 @@
 import { Message } from "discord.js"
-import PankyBot from "../../src/bot"
 
 const dog = {
   desc: 'Sends a photo or gif of a random dog.',
   common: 'dog',
   args: '',
   alias: ['doge', 'dog', 'dg'],
-  run: async function (client: PankyBot, message: Message) {
+  run: async function (message: Message) {
     const request = require('request')
     const url = 'http://random.dog/woof'
     request({

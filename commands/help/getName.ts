@@ -6,7 +6,7 @@ const getName = {
   common: 'whois',
   args: '<user mention>',
   alias: ['whois', 'getname', 'who'],
-  run: async function (client: PankyBot, message: Message, args: string[]) {
+  run: async function (message: Message, args: string[], client: PankyBot) {
     let user
     if (message.guild) {
       // Get the users current user info.

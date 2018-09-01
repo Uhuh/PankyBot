@@ -6,12 +6,12 @@ const botStatus = {
   common: 'botstatus',
   args: '',
   alias: ['botstatus', 'bs'],
-  run: async function (client: PankyBot, message: Message, args: string[]) {
-    const guild: Guild = message.guild
+  run: async function (message: Message, args: string[], client: PankyBot) {
+
     const embed: RichEmbed = new RichEmbed()
     let userCount: number = 0
     let channelCount: number = 0
-    if (!guild) return
+
     for (const [k, g] of client.guilds) { userCount += g.memberCount; channelCount += g.channels.size }
 
     embed.setColor(16711683)

@@ -7,7 +7,7 @@ const commands = {
   common: 'commands',
   args: '',
   alias: ['cmd', 'commands', 'help'],
-  run: async function (client: PankyBot, message: Message, args: string[]) {
+  run: async function (message: Message, args: string[], client: PankyBot) {
     const embed: RichEmbed = new RichEmbed()
     let prevValue
     embed.setTitle('**List of commands**')
