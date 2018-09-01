@@ -11,6 +11,7 @@ import { Message } from "discord.js";
     info += `\nID: ${message.author.id}`
     info += `\nName: ${message.author.username}`
     info += `\nCreated: ${message.author.createdAt}`
+    if (message.author.presence.game) info += `\nPlaying: ${message.author.presence.game.name}`
     if (message.guild) info += `\nJoined: ${message.guild.members.get(message.author.id)!.joinedAt}`
     message.channel.send(`\`\`\`ruby\n${info}\n\`\`\``)
   }
