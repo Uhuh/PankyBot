@@ -1,5 +1,5 @@
-import PankyBot from "../src/bot";
-import { Message, RichEmbed, Role, Guild } from "discord.js";
+import PankyBot from "../../src/bot"
+import { Message, RichEmbed, Role, Guild } from "discord.js"
 
 const status = {
   desc: 'Gets the server info',
@@ -12,7 +12,7 @@ const status = {
     let roles: Role[] = []
     let textC: number = 0
     let voiceC: number = 0
-    if (!guild) return
+    if (message.channel.type === 'dm') return
 
     for (const [k, role] of guild.roles) { roles.push(role) }
 

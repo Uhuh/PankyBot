@@ -1,5 +1,5 @@
-import PankyBot from "../src/bot";
-import { Message, Permissions, RichEmbed } from "discord.js";
+import PankyBot from "../../src/bot"
+import { Message, Permissions, RichEmbed } from "discord.js"
 
 const kick = {
   desc: 'Kicks requested user, assuming requestee has permissions and user can be kicked.',
@@ -11,7 +11,7 @@ const kick = {
     let name: string = ""
     let embed: RichEmbed = new RichEmbed()
 
-    if (!message.guild) return
+    if (message.channel.type === 'dm') return
     // Don't let some crazy dude spam kick gotta make sure they're the OG
     if (!message.member.hasPermission("KICK_MEMBERS")) return
     // Skip all the mentions.
@@ -21,7 +21,7 @@ const kick = {
     // List who's being kicked and the reason if given.
     for (const [k, member] of message.mentions.members) {
       if (member.id === client.user.id) continue
-      name = member.nickname ? member.nickname : member.user.username
+      name = member.nickname || member.user.username
       member.kick(reason).then(() => {
         embed.setColor(65295)
           .setTitle(`:wave: Bye ${name} :wave:`)

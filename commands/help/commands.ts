@@ -1,6 +1,6 @@
-import PankyBot from "../src/bot";
-import { Message, RichEmbed } from "discord.js";
-import cmd from "./cmd";
+import PankyBot from "../../src/bot"
+import { Message, RichEmbed } from "discord.js"
+import cmd from "../cmd"
 
 const commands = {
   desc: 'Sends a list of all available commands.',

@@ -1,5 +1,5 @@
 import { Message } from 'discord.js'
-import PankyBot from '../src/bot';
+import PankyBot from "../../src/bot"
 
 const getName = {
   desc: 'Returns the set name of a user, if set.',
@@ -7,7 +7,7 @@ const getName = {
   args: '<user mention>',
   alias: ['whois', 'getname', 'who'],
   run: async function (client: PankyBot, message: Message, args: string[]) {
-    let user;
+    let user
     if (message.guild) {
       // Get the users current user info.
       user = client.getUser.get(message.mentions.members.first().user.id, message.guild.id)

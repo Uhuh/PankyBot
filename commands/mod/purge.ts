@@ -1,5 +1,5 @@
-import PankyBot from "../src/bot";
-import { Message, User } from "discord.js";
+import PankyBot from "../../src/bot"
+import { Message, User } from "discord.js"
 
 const purge = {
   desc: 'Deletes number of messages requested, or delete user specific commands if given.',
@@ -10,7 +10,7 @@ const purge = {
     let amount: number = Number(args[0])
     let user: User
     const channel = message.channel
-    if (!message.guild) return channel.send('I can\'t delete messages in DMs.')
+    if (message.channel.type === 'dm') return channel.send('I can\'t delete messages in DMs.')
     if (!message.member.hasPermission("MANAGE_MESSAGES")) return
     if (!Number(args[0])) return message.reply(`Pass the amount you want to purge. EG: \`${client.config.PREFIX}purge 5\``)
 

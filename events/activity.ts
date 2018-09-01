@@ -1,4 +1,4 @@
-import PankyBot from "../src/bot";
+import PankyBot from "../src/bot"
 import log from './log'
 import * as moment from 'moment'
 

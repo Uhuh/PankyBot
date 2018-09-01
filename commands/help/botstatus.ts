@@ -1,5 +1,5 @@
-import PankyBot from "../src/bot";
-import { Message, Guild, RichEmbed } from "discord.js";
+import { Message, Guild, RichEmbed } from "discord.js"
+import PankyBot from "../../src/bot"
 
 const botStatus = {
   desc: 'Gives a list of things about the bot',

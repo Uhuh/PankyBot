@@ -1,5 +1,5 @@
 import { Message } from "discord.js"
-import PankyBot from '../src/bot'
+import PankyBot from "../../src/bot"
 
 const dog = {
   desc: 'Sends a photo or gif of a random dog.',

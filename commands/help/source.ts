@@ -1,5 +1,5 @@
-import PankyBot from '../src/bot'
-import { Message } from 'discord.js';
+import PankyBot from "../../src/bot"
+import { Message } from 'discord.js'
 
 const source = {
   desc: 'Send the github link and the invitation link',

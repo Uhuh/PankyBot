@@ -1,6 +1,6 @@
-import PankyBot from "../src/bot";
-import { GuildMember } from "discord.js";
-import * as moment from "moment";
+import PankyBot from "../src/bot"
+import { GuildMember } from "discord.js"
+import * as moment from "moment"
 
 export default function log(client: PankyBot, member: GuildMember) {
   // Don't log any bots or DM's

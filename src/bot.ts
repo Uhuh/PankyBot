@@ -4,8 +4,8 @@ dotenv.config()
 import * as config from './vars'
 import msg from '../events/message'
 import log from '../events/log'
-import setup_tables from './setup_tables';
-import activity from '../events/activity';
+import setup_tables from './setup_tables'
+import activity from '../events/activity'
 import * as DBL from 'dblapi.js'
 
 export default class PankyBot extends Discord.Client {
@@ -23,7 +23,7 @@ export default class PankyBot extends Discord.Client {
     super()
     
     this.config = config
-    // Discord bot list, gotta up them server numbers for certified ;)
+    // Discord bot list, gotta up them server numbers for certified )
     this.dbl = new DBL(this.config.DBLTOKEN, this)
     this.on('ready', () => {
       console.log(`[Started]: ${new Date()}`)

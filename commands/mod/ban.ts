@@ -1,5 +1,5 @@
-import PankyBot from "../src/bot";
-import { Message, RichEmbed } from "discord.js";
+import PankyBot from "../../src/bot"
+import { Message, RichEmbed } from "discord.js"
 
 const ban = {
   desc: 'Bans a user',
@@ -11,7 +11,7 @@ const ban = {
     let reason: string = ''
     let name: string = ''
     const embed: RichEmbed = new RichEmbed()
-    if (!message.guild) return
+    if (message.channel.type === 'dm') return
     // Shouldn't let just anyone ban members.
     if (!message.member.hasPermission('BAN_MEMBERS')) return
 
@@ -26,13 +26,13 @@ const ban = {
 
     for (const [k, member] of message.mentions.members) {
       if (member.id === client.user.id) continue
-      name = member.nickname ? member.nickname : member.user.username
+      name = member.nickname || member.user.username
       member.ban({ days, reason }).then(() => {
         embed.setColor(65295)
           .setTitle(`:wave: Sorry ${name}, you've been banned! :wave:`)
           .setDescription(`Successfully banned ${name}!`)
-          .addField(`Banned for: ${days} day${(days > 1 ? 's' : '')}`, `Banned by ${message.member.nickname ? message.member.nickname : message.author.username}`, true)
-          .addField(`_**Reason for banning ${name}**_`, `Reason: ${reason ? reason : 'No reason given'}`, true)
+          .addField(`Banned for: ${days} day${(days > 1 ? 's' : '')}`, `Banned by ${message.member.nickname || message.author.username}`, true)
+          .addField(`_**Reason for banning ${name}**_`, `Reason: ${reason || 'No reason given'}`, true)
         message.channel.send(embed)
       })
         .catch(() => {

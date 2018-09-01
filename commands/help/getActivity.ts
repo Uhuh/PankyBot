@@ -1,6 +1,6 @@
-import PankyBot from "../src/bot";
+import PankyBot from "../../src/bot"
 import * as SQLite from 'better-sqlite3'
-import { Message, RichEmbed, GuildMember, Guild } from "discord.js";
+import { Message, RichEmbed, GuildMember, Guild } from "discord.js"
 import * as moment from 'moment'
 const sql = new SQLite('users.sqlite')
 

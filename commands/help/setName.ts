@@ -1,5 +1,5 @@
-import PankyBot from "../src/bot";
-import { Message } from "discord.js";
+import PankyBot from "../../src/bot"
+import { Message } from "discord.js"
 
 const setName = {
   desc: 'Sets the name of a user to make it easier to know who they are.',
@@ -18,7 +18,7 @@ const setName = {
       user = { id: `${message.guild.id}-${message.mentions.members.first().user.id}`, user: message.mentions.members.first().user.id, guild: message.guild.id, note: name }
       client.setUser.run(user)
     }
-    let nick: string = message.mentions.members.first().nickname ? message.mentions.members.first().nickname : message.mentions.members.first().user.username
+    let nick: string = message.mentions.members.first().nickname || message.mentions.members.first().user.username
   }
 }
 

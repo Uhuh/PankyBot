@@ -1,16 +1,16 @@
-import dog from './dog'
-import source from './source'
-import getName from './getName'
-import setName from './setName'
-import getActivity from './getActivity'
-import kick from './kick'
-import purge from './purge'
-import commands from './commands'
-import ban from './ban'
-import status from './status'
-import botStatus from './botstatus';
-import lock from './lock';
-import prefix from './prefix';
+import dog from './help/dog'
+import source from './help/source'
+import getName from './help/getName'
+import setName from './help/setName'
+import getActivity from './help/getActivity'
+import kick from './mod/kick'
+import purge from './mod/purge'
+import commands from './help/commands'
+import ban from './mod/ban'
+import status from './help/status'
+import botStatus from './help/botstatus'
+import lock from './mod/lock'
+import prefix from './mod/prefix'
 
 let commandsMap = new Map()
 const list = [dog, source, getName, setName, getActivity, kick, purge, commands, ban, status, botStatus, lock, prefix]

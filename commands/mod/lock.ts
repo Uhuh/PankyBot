@@ -1,5 +1,5 @@
-import PankyBot from "../src/bot";
-import { Message, Guild, GuildChannel, Collection } from "discord.js";
+import PankyBot from "../../src/bot"
+import { Message, Guild, GuildChannel, Collection } from "discord.js"
 
 const lock = {
   desc: 'Locks a channel for X minutes.',
@@ -11,7 +11,7 @@ const lock = {
     let channels: Collection<String, GuildChannel> = message.mentions.channels
     let minutes: number = 10
     
-    if (!guild) return
+    if (message.channel.type === 'dm') return
     if (!message.member.hasPermission('MANAGE_CHANNELS')) return
 
     if (!Number(args[0])) return message.reply('please use a number for the amount of minutes to lock the channels.')
