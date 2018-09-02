@@ -7,7 +7,7 @@ const sql = new SQlite('users.sqlite')
 
 export default (client: PankyBot, message: Message) => {
   //Don't care about bots.
-  if (message.author.bot) return
+  if (message.author.bot) return "Bot"
 
   const gPrefix = message.guild ? client.getPrefix.get(message.guild.id) : null
 
@@ -16,7 +16,7 @@ export default (client: PankyBot, message: Message) => {
     (gPrefix && message.content.indexOf(gPrefix.prefix) === 0)        ||
     (message.content.indexOf(client.config.PREFIX) === 0 && !gPrefix) ||
     (message.guild && message.mentions.members.has(client.user.id))   ||
-    (message.channel.type === 'dm')
+    (message.channel.type === 'dm' && (gPrefix || client.config.PREFIX))
   ) {
     const length: number = message.content.indexOf(client.config.PREFIX) === 0 ? client.config.PREFIX.length : (message.content.split(' ')[0].length)
     // + 1 for the damn space.
@@ -24,8 +24,9 @@ export default (client: PankyBot, message: Message) => {
     // If the user mentions the bot then send them a pm with commands.
     if (gPrefix && message.mentions.members.has(client.user.id) && !command) commands.run(message, args, client)
     //If the command isn't in the big ol' list.
-    if (!cmds.has(command.toLowerCase())) return
+    if (!cmds.has(command.toLowerCase())) return "Command DNE"
     // Find the command and run it.
     cmds.get(command.toLowerCase()).run(message, args, client)
   }
+  return "Prefix not used"
 }
