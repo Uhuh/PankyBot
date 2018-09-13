@@ -1,5 +1,5 @@
 import PankyBot from "../../src/bot"
-import { Message, Permissions, RichEmbed } from "discord.js"
+import { Message, RichEmbed } from "discord.js"
 
 export default {
   desc: 'Kicks requested user, assuming requestee has permissions and user can be kicked.',

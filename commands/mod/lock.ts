@@ -1,4 +1,3 @@
-import PankyBot from "../../src/bot"
 import { Message, Guild, GuildChannel, Collection } from "discord.js"
 
 export default {

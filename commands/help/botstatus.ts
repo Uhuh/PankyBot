@@ -1,4 +1,4 @@
-import { Message, Guild, RichEmbed } from "discord.js"
+import { Message, RichEmbed } from "discord.js"
 import PankyBot from "../../src/bot"
 
 export default {
