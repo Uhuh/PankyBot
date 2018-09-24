@@ -2,7 +2,6 @@ import { Message } from 'discord.js'
 import PankyBot from '../src/bot'
 import cmds from '../commands/cmd'
 import commands from '../commands/help/commands'
-import * as SQlite from 'better-sqlite3'
 
 export default (client: PankyBot, message: Message) => {
   //Don't care about bots.
