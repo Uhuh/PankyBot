@@ -15,7 +15,7 @@ export default {
       if (!user) {
         return message.channel.send('That user doesn\'t have a name set for them!')
       }
-      let nick: string = message.mentions.members.first().nickname ? message.mentions.members.first().nickname : message.mentions.members.first().user.username
+      let nick: string = message.mentions.members.first().nickname || message.mentions.members.first().user.username
       message.channel.send(`${nick}'s real name is.... ${user.note}`)
     }
   }

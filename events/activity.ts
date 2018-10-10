@@ -19,7 +19,7 @@ export default (client: PankyBot) => {
         moment(member.lastMessage.createdTimestamp).isAfter(
           moment(client.getActivity.get(member.id, member.guild.id).date_active))
       )
-      log(client, member)
+        log(client, member)
     }
   }
 }

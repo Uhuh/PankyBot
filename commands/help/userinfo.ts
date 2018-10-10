@@ -1,11 +1,11 @@
 import { Message } from "discord.js";
 
- export default {
+export default {
   desc: 'Information about the user; created account, roles, etc.',
   common: 'userinfo',
   args: '',
   alias: ['userinfo'],
-  run: async function(message: Message) {
+  run: async function (message: Message) {
     let info: string = ""
     info = `User: ${message.author.tag}`
     info += `\nID: ${message.author.id}`

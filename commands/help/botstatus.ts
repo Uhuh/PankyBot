@@ -1,5 +1,6 @@
 import { Message, RichEmbed } from "discord.js"
 import PankyBot from "../../src/bot"
+import * as OS from "os"
 
 export default {
   desc: 'Gives a list of things about the bot',
@@ -12,7 +13,10 @@ export default {
     let userCount: number = 0
     let channelCount: number = 0
 
-    for (const [k, g] of client.guilds) { userCount += g.memberCount; channelCount += g.channels.size }
+    for (const [k, g] of client.guilds) { 
+      userCount += g.memberCount
+      channelCount += g.channels.size 
+    }
 
     embed.setColor(16711683)
       .setTitle(`**Bot Status**`)
@@ -23,7 +27,7 @@ export default {
       .addField(`**The bot is watching:**`, `${userCount} users`, true)
       .addField(`**The bot is watching:**`, `${channelCount} channels`, true)
       .addField(`**Ping:**`, `${client.ping} ms`, true)
-      .addField(`**Bot OS:**`, `Linux`, true)
+      .addField(`**Bot OS:**`, `${OS.platform()}`, true)
     message.channel.send(embed)
   }
 }

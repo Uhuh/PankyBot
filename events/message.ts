@@ -2,10 +2,14 @@ import { Message } from 'discord.js'
 import PankyBot from '../src/bot'
 import cmds from '../commands/cmd'
 import commands from '../commands/help/commands'
+import log from './log';
 
 export default (client: PankyBot, message: Message) => {
   //Don't care about bots.
   if (message.author.bot) return "Bot"
+
+  // User is clearly active by sending a message. Log this activity.
+  log(client, message.member)
 
   const gPrefix = message.guild ? client.getPrefix.get(message.guild.id) : null
 

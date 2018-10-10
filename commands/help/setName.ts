@@ -15,7 +15,11 @@ export default {
       name += i + " "
     })
     if (message.guild) {
-      user = { id: `${message.guild.id}-${message.mentions.members.first().user.id}`, user: message.mentions.members.first().user.id, guild: message.guild.id, note: name }
+      user = { id: `${message.guild.id}-${message.mentions.members.first().user.id}`, 
+               user: message.mentions.members.first().user.id, 
+               guild: message.guild.id, 
+               note: name 
+      }
       client.setUser.run(user)
     }
     let nick: string = message.mentions.members.first().nickname || message.mentions.members.first().user.username
