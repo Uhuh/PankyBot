@@ -1,5 +1,5 @@
-import PankyBot from "../../src/bot"
-import { Message } from 'discord.js'
+import { Message } from 'discord.js';
+import PankyBot from "../../src/bot";
 
 export default {
   desc: 'Send the github link and the invitation link',
@@ -26,6 +26,6 @@ export default {
           text: "© ye boi"
         }
       }
-    })
+    });
   }
-}
+};

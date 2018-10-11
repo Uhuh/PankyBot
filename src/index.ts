@@ -1,7 +1,7 @@
-import PankyBot from './bot'
+import PankyBot from './bot';
 
-const Panky = new PankyBot()
+const Panky = new PankyBot();
 
-Panky.start().catch((e) => {
-  console.log(e)
-})
+Panky.start().catch(e => {
+  console.log(e);
+});

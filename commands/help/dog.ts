@@ -1,4 +1,4 @@
-import { Message } from "discord.js"
+import { Message } from "discord.js";
 
 export default {
   desc: 'Sends a photo or gif of a random dog.',
@@ -6,8 +6,8 @@ export default {
   args: '',
   alias: ['doge', 'dog', 'dg'],
   run: async function (message: Message) {
-    const request = require('request')
-    const url = 'http://random.dog/woof'
+    const request = require('request');
+    const url = 'http://random.dog/woof';
     request({
       url: url,
       json: false
@@ -21,11 +21,11 @@ export default {
                 url: `http://random.dog/${body}`
               }
             }
-          }).catch((err) => {
-            console.log(`Error with dog: ${err}`)
-          })
+          }).catch(err => {
+            console.log(`Error with dog: ${err}`);
+          });
         }
-      })
+      });
 
   }
-}
+};

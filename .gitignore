@@ -18,5 +18,7 @@ config.json
 docs/
 release/
 
+yarn-error*
+
 npm*
 
