@@ -10,7 +10,7 @@ export default {
     const gPrefix = client.getPrefix.get(message.guild.id);
     if (message.channel.type === 'dm') { return; }
     if (args.length === 0) { return message.channel.send(`The guild's prefix is \`${gPrefix?gPrefix.prefix:'modpls'}\``); }
-    if (!message.member.hasPermission('MANAGE_GUILD')) { return; }
+    if (!message.member.hasPermission('MANAGE_GUILD')) { message.react('👎'); return; }
     if (args.length > 1) { return; }
     // user mentions start with `<@`
     if (args[0].includes('<@')) { return; }

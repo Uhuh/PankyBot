@@ -8,20 +8,23 @@ export default {
   alias: ['setname', 'set', 'sn'],
   run: async function (message: Message, args: string[], client: PankyBot) {
     let user;
-    let name: string = "";
+    let name = "";
     if (!args) { return; }
     args.shift();
     args.forEach(i => {
       name += i + " ";
     });
-    if (message.guild) {
-      user = { id: `${message.guild.id}-${message.mentions.members.first().user.id}`,
-               user: message.mentions.members.first().user.id,
+    if (message.guild && name) {
+      user = { id: `${message.guild.id}-${message.mentions.members.find(val => val.id !== client.user.id).user.id}`,
+               user: message.mentions.members.find(val => val.id !== client.user.id).user.id,
                guild: message.guild.id,
                note: name
       };
       client.setUser.run(user);
+      message.react("✅");
     }
-    const nick: string = message.mentions.members.first().nickname || message.mentions.members.first().user.username;
+    else {
+      message.react("❌");
+    }
   }
 };

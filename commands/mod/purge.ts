@@ -8,31 +8,31 @@ export default {
   alias: ['purge'],
   run: async function (message: Message, args: string[], client: PankyBot) {
     let amount: number = Number(args[0]);
-    let user: User;
+    const purgeUser = message.mentions.members.find(val => val.id !== client.user.id);
     const channel = message.channel;
     if (message.channel.type === 'dm') { return channel.send('I can\'t delete messages in DMs.'); }
-    if (!message.member.hasPermission("MANAGE_MESSAGES")) { return; }
-    if (!Number(args[0])) { return message.reply(`Pass the amount you want to purge. EG: \`@${client.user.username} purge 5\``); }
+    if (!message.member.hasPermission("MANAGE_MESSAGES")) { message.react('👎'); return; }
+    if (!Number(args[0])) {
+      return message.reply(`Pass the amount of messages you want to purge. EG: \`@${client.user.username} purge 5\``);
+    }
 
-    // If you want to purge the messages of a specific user.
-    if (args[1]) { user = message.mentions.members.first().user; }
     // Delete the message sent
     message.delete();
     // Grab as many messages you can panky. Depending on the args delete delete delete.
     channel.fetchMessages().then(msgs => {
       for (const [k, msg] of msgs) {
         if (amount === 0) { return; }
-        if (user && amount > 0 && user === msg.author) {
+        if (purgeUser && amount > 0 && purgeUser.user === msg.author) {
           msg.delete()
           .catch(() => {
-            console.log("Error deleting message");
+            console.log('Error deleting message');
           });
           amount--;
         }
-        if (!user && amount > 0) {
+        if (!purgeUser && amount > 0) {
           msg.delete()
           .catch(() => {
-            console.log("Error deleting message");
+            console.log('Error deleting message.');
           });
           amount--;
         }

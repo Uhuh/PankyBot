@@ -11,7 +11,7 @@ export default {
     let minutes: number = 10;
 
     if (message.channel.type === 'dm') { return; }
-    if (!message.member.hasPermission('MANAGE_CHANNELS')) { return; }
+    if (!message.member.hasPermission('MANAGE_CHANNELS')) { message.react('👎'); return; }
 
     if (!Number(args[0])) { return message.reply('please use a number for the amount of minutes to lock the channels.'); }
     minutes = Number(args[0]);

@@ -1,3 +1,4 @@
+import avatar from './help/avatar';
 import botStatus from './help/botstatus';
 import commands from './help/commands';
 import dog from './help/dog';
@@ -14,7 +15,7 @@ import prefix from './mod/prefix';
 import purge from './mod/purge';
 
 const commandsMap = new Map();
-const list = [dog, source, getName, setName, getActivity, kick, purge, commands, ban, status, botStatus, lock, prefix, userInfo];
+const list = [dog, source, getName, setName, getActivity, kick, purge, commands, ban, status, botStatus, lock, prefix, userInfo, avatar];
 
 // Each command might have an alias to make it less tedious to type the command out.
 for (const i of list) {
