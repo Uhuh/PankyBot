@@ -22,8 +22,10 @@ These commands are non destructable commands, they are meerly for making some th
 &nbsp;&nbsp;&nbsp;&nbsp;Outputs the users name if set. <br>
 > modpls ping
   
-&nbsp;&nbsp;&nbsp;&nbsp;Returns the bots ping.
-  
+&nbsp;&nbsp;&nbsp;&nbsp;Returns the bots ping. <br>
+> modpls avatar \<user mention>
+
+&nbsp;&nbsp;&nbsp;&nbsp;Returns user link to avatar. <br>1
   
 **Moderation Commands** <br>
 These commands **_can_** be desctructable. Some require roles to use and these help manage the server.
