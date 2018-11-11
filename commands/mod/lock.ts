@@ -11,24 +11,24 @@ export default {
     let minutes: number = 10;
 
     if (message.channel.type === 'dm') { return; }
-    if (!message.member.hasPermission('MANAGE_CHANNELS')) { message.react('👎'); return; }
+    if (!message.member.hasPermission('MANAGE_CHANNELS')) { return message.react('👎') }
 
-    if (!Number(args[0])) { return message.reply('please use a number for the amount of minutes to lock the channels.'); }
-    minutes = Number(args[0]);
+    if (!Number(args[0])) { return message.reply('please use a number for the amount of minutes to lock the channels.') }
+    minutes = Number(args[0])
 
     for (const [k, channel] of channels) {
       for (const [k, role] of guild.roles) {
         channel.overwritePermissions(role, {
           SEND_MESSAGES: false,
           ATTACH_FILES: false
-        });
+        })
         setTimeout(() => {
           channel.overwritePermissions(role, {
             SEND_MESSAGES: true,
             ATTACH_FILES: true
-          });
-        }, minutes*60000);
+          })
+        }, minutes*60000)
       }
     }
   }
-};
+}

@@ -21,6 +21,6 @@ export default {
     if (message.guild) { info += `\nJoined: ${member.joinedAt}`; }
     info += `\nLast_Message: ${member.user.lastMessage.createdAt}`;
     info += `\nAvatarURL: ${member.user.avatarURL}`;
-    message.channel.send(`\`\`\`ruby\n${info}\n\`\`\``);
+    message.channel.send(`\`\`\`ruby\n${info}\n\`\`\``)
   }
-};
+}

@@ -60,6 +60,10 @@ These commands **_can_** be desctructable. Some require roles to use and these h
 
 &nbsp;&nbsp;&nbsp;&nbsp;You can change the prefix of the bot for your guild. Only users with `MANAGE_GUILD` can use this command.
 
+> modpls softban <user to softban>
+
+&nbsp;&nbsp;&nbsp;&nbsp;Ban and unban a user which will clear 7 days worth of messages they sent. You need the `BAN_MEMBERS` permission.
+
 ## Contributors
 
 - [Dylan Warren](https://github.com/Uhuh)

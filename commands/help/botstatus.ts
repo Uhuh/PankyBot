@@ -9,7 +9,7 @@ export default {
   alias: ['botstatus', 'bs'],
   run: async function (message: Message, args: string[], client: PankyBot) {
 
-    const embed: RichEmbed = new RichEmbed();
+    const embed: RichEmbed = new RichEmbed()
     let userCount: number = 0;
     let channelCount: number = 0;
 
@@ -27,7 +27,7 @@ export default {
       .addField(`**The bot is watching:**`, `${userCount} users`, true)
       .addField(`**The bot is watching:**`, `${channelCount} channels`, true)
       .addField(`**Ping:**`, `${client.ping} ms`, true)
-      .addField(`**Bot OS:**`, `${OS.platform()}`, true);
-    message.channel.send(embed);
+      .addField(`**Bot OS:**`, `${OS.platform()}`, true)
+    message.channel.send(embed)
   }
-};
+}

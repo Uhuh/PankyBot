@@ -6,14 +6,14 @@ export default {
   args: '',
   alias: ['status', 'serverinfo', 'guild', 'server'],
   run: async function (message: Message) {
-    const embed: RichEmbed = new RichEmbed();
+    const embed: RichEmbed = new RichEmbed()
     const guild: Guild = message.guild;
     const roles: Role[] = [];
     let textC: number = 0;
     let voiceC: number = 0;
     if (message.channel.type === 'dm') { return; }
 
-    for (const [k, role] of guild.roles) { roles.push(role); }
+    for (const [k, role] of guild.roles) { roles.push(role) }
 
     for (const [k, channel] of guild.channels) {
       if (channel.type === 'text') { textC++; }
@@ -28,8 +28,8 @@ export default {
       .addField(`_**> Users**_`, `\`${guild.memberCount}\``, true)
       .addField(`_**> Text Channels**_`, `\`${textC}\``, true)
       .addField(`_**> Voice Channels**_`, `\`${voiceC}\``, true)
-      .addField(`_**> Roles** from highest to lowest_`, `${roles.reverse().join(' ')}`, true);
+      .addField(`_**> Roles** from highest to lowest_`, `${roles.reverse().join(' ')}`, true)
 
-    message.channel.send(embed);
+    message.channel.send(embed)
   }
-};
+}

@@ -7,17 +7,17 @@ export default {
   args: '<# of messages> <user mention(optional)>',
   alias: ['purge'],
   run: async function (message: Message, args: string[], client: PankyBot) {
-    let amount: number = Number(args[0]);
-    const purgeUser = message.mentions.members.find(val => val.id !== client.user.id);
+    let amount: number = Number(args[0])
+    const purgeUser = message.mentions.members.find(val => val.id !== client.user.id)
     const channel = message.channel;
-    if (message.channel.type === 'dm') { return channel.send('I can\'t delete messages in DMs.'); }
-    if (!message.member.hasPermission("MANAGE_MESSAGES")) { message.react('👎'); return; }
+    if (message.channel.type === 'dm') { return channel.send('I can\'t delete messages in DMs.') }
+    if (!message.member.hasPermission("MANAGE_MESSAGES")) { return message.react('👎') }
     if (!Number(args[0])) {
-      return message.reply(`Pass the amount of messages you want to purge. EG: \`@${client.user.username} purge 5\``);
+      return message.reply(`Pass the amount of messages you want to purge. EG: \`@${client.user.username} purge 5\``)
     }
 
     // Delete the message sent
-    message.delete();
+    message.delete()
     // Grab as many messages you can panky. Depending on the args delete delete delete.
     channel.fetchMessages().then(msgs => {
       for (const [k, msg] of msgs) {
@@ -25,21 +25,21 @@ export default {
         if (purgeUser && amount > 0 && purgeUser.user === msg.author) {
           msg.delete()
           .catch(() => {
-            console.log('Error deleting message');
-          });
+            console.log('Error deleting message')
+          })
           amount--;
         }
-        if (!purgeUser && amount > 0) {
+        else if (amount > 0) {
           msg.delete()
           .catch(() => {
-            console.log('Error deleting message.');
-          });
+            console.log('Error deleting message.')
+          })
           amount--;
         }
       }
     })
       .catch(err => {
-        console.log(err);
-      });
+        console.log(err)
+      })
   }
-};
+}

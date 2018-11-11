@@ -1,4 +1,4 @@
-import { Message } from 'discord.js';
+import { Message } from 'discord.js'
 import PankyBot from "../../src/bot";
 
 export default {
@@ -26,6 +26,6 @@ export default {
           text: "© ye boi"
         }
       }
-    });
+    })
   }
-};
+}

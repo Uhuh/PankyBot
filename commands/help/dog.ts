@@ -6,8 +6,8 @@ export default {
   args: '',
   alias: ['doge', 'dog', 'dg'],
   run: async function (message: Message) {
-    const request = require('request');
-    const url = 'http://random.dog/woof';
+    const request = require('request')
+    const url = 'http://random.dog/woof'
     request({
       url: url,
       json: false
@@ -22,10 +22,10 @@ export default {
               }
             }
           }).catch(err => {
-            console.log(`Error with dog: ${err}`);
-          });
+            console.log(`Error with dog: ${err}`)
+          })
         }
-      });
+      })
 
   }
-};
+}
