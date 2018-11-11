@@ -7,9 +7,10 @@ export default {
   args: '<# of messages> <user mention(optional)>',
   alias: ['purge'],
   run: async function (message: Message, args: string[], client: PankyBot) {
-    let amount: number = Number(args[0])
+    let amount = Number(args[0])
     const purgeUser = message.mentions.members.find(val => val.id !== client.user.id)
-    const channel = message.channel;
+    const channel = message.channel
+    
     if (message.channel.type === 'dm') { return channel.send('I can\'t delete messages in DMs.') }
     if (!message.member.hasPermission("MANAGE_MESSAGES")) { return message.react('👎') }
     if (!Number(args[0])) {
@@ -21,7 +22,7 @@ export default {
     // Grab as many messages you can panky. Depending on the args delete delete delete.
     channel.fetchMessages().then(msgs => {
       for (const [k, msg] of msgs) {
-        if (amount === 0) { return; }
+        if (amount === 0) { return }
         if (purgeUser && amount > 0 && purgeUser.user === msg.author) {
           msg.delete()
           .catch(() => {

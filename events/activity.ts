@@ -1,5 +1,5 @@
 import * as moment from 'moment'
-import PankyBot from "../src/bot";
+import PankyBot from '../src/bot'
 import log from './log'
 
 export default (client: PankyBot) => {

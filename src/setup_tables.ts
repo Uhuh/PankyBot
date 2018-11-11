@@ -1,5 +1,5 @@
 import * as SQLite from 'better-sqlite3'
-import PankyBot from "./bot";
+import PankyBot from './bot'
 
 const sql = new SQLite('./users.sqlite')
 

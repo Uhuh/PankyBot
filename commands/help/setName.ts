@@ -7,8 +7,8 @@ export default {
   args: '<user mention> <name>',
   alias: ['setname', 'set', 'sn'],
   run: async function (message: Message, args: string[], client: PankyBot) {
-    let user;
-    let name = "";
+    let user
+    let name = ""
     if (!args) { return; }
     args.shift()
     args.forEach(i => {

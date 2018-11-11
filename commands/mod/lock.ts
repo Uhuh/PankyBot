@@ -6,9 +6,9 @@ export default {
   args: '<number of minute(s)> <#Channel-name(s)>',
   alias: ['lock'],
   run: async function(message: Message, args: string[]) {
-    const guild: Guild = message.guild;
-    const channels: Collection<string, GuildChannel> = message.mentions.channels;
-    let minutes: number = 10;
+    const guild = message.guild
+    const channels = message.mentions.channels
+    let minutes = 10
 
     if (message.channel.type === 'dm') { return; }
     if (!message.member.hasPermission('MANAGE_CHANNELS')) { return message.react('👎') }

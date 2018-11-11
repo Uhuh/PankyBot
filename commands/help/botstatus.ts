@@ -9,9 +9,9 @@ export default {
   alias: ['botstatus', 'bs'],
   run: async function (message: Message, args: string[], client: PankyBot) {
 
-    const embed: RichEmbed = new RichEmbed()
-    let userCount: number = 0;
-    let channelCount: number = 0;
+    const embed = new RichEmbed()
+    let userCount = 0
+    let channelCount = 0
 
     for (const [k, g] of client.guilds) {
       userCount += g.memberCount;

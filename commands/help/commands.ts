@@ -8,8 +8,8 @@ export default {
   args: '',
   alias: ['cmd', 'commands', 'help'],
   run: async function (message: Message, args: string[], client: PankyBot) {
-    const embed: RichEmbed = new RichEmbed()
-    let prevValue;
+    const embed = new RichEmbed()
+    let prevValue
     embed.setTitle('**List of commands**')
       .setColor(16711684)
       .setAuthor(client.user.username, client.user.avatarURL)
@@ -19,7 +19,7 @@ export default {
 
     for (const value of cmd.values()) {
       // Because I map each commands alias to themselves, it would output the same thing a few times... Let's avoid that.
-      if (prevValue === value) { continue; }
+      if (prevValue === value) { continue }
 
       embed.addField(`**${client.config.PREFIX} ${value.common} ${value.args}**`, `Alias: ${value.alias}\n${value.desc}`)
       prevValue = value;

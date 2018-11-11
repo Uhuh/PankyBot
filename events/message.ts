@@ -11,7 +11,7 @@ export default (client: PankyBot, message: Message) => {
   // User is clearly active by sending a message. Log this activity.
   log(client, message.member)
 
-  const gPrefix = message.guild ? client.getPrefix.get(message.guild.id) : null;
+  const gPrefix = message.guild ? client.getPrefix.get(message.guild.id) : null
 
   //Ignore anything that doesn't use the prefix
   if (
@@ -20,14 +20,14 @@ export default (client: PankyBot, message: Message) => {
     (message.guild && message.mentions.members.has(client.user.id))   ||
     (message.channel.type === 'dm' && (gPrefix || client.config.PREFIX))
   ) {
-    const length: number = message.content.indexOf(client.config.PREFIX) === 0 ? client.config.PREFIX.length :
+    const length = message.content.indexOf(client.config.PREFIX) === 0 ? client.config.PREFIX.length :
                           (message.content.split(' ')[0].length)
     // + 1 for the damn space.
     const [command, ...args] = message.content.substring(length + 1).split(' ')
     // If the user mentions the bot then send them a pm with commands.
     if (gPrefix && message.mentions.members.has(client.user.id) && !command) { commands.run(message, args, client) }
     //If the command isn't in the big ol' list.
-    if (!cmds.has(command.toLowerCase())) { return "Command DNE"; }
+    if (!cmds.has(command.toLowerCase())) { return "Command DNE" }
     // Find the command and run it.
     cmds.get(command.toLowerCase()).run(message, args, client)
   }

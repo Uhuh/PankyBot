@@ -6,11 +6,11 @@ export default {
   args: '',
   alias: ['status', 'serverinfo', 'guild', 'server'],
   run: async function (message: Message) {
-    const embed: RichEmbed = new RichEmbed()
-    const guild: Guild = message.guild;
-    const roles: Role[] = [];
-    let textC: number = 0;
-    let voiceC: number = 0;
+    const embed = new RichEmbed()
+    const guild = message.guild
+    const roles = []
+    let textC = 0
+    let voiceC = 0
     if (message.channel.type === 'dm') { return; }
 
     for (const [k, role] of guild.roles) { roles.push(role) }

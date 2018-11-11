@@ -7,9 +7,9 @@ export default {
   args: '<user mention> <reason(optional)>',
   alias: ['kick'],
   run: async function (message: Message, args: string[], client: PankyBot) {
-    let reason: string = "";
-    let name: string = "";
-    const embed: RichEmbed = new RichEmbed()
+    let reason = ""
+    let name = ""
+    const embed = new RichEmbed()
 
     if (message.channel.type === 'dm') { return; }
     // Don't let some crazy dude spam kick gotta make sure they're the OG

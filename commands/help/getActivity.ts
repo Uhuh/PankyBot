@@ -13,14 +13,14 @@ export default {
     if (!args[0] || !(typeof Number(args[0]) === 'number') || isNaN(Number(args[0]))) {
       return message.channel.send(`Please enter a number. EG: \`${client.config.PREFIX}getactivity 5\``)
     }
-    const guild: Guild | undefined = client.guilds.get(message.guild.id)
+    const guild = client.guilds.get(message.guild.id)
     const lostUsers = client.usersActivity.all(message.guild.id)
-    const embed: RichEmbed = new RichEmbed()
+    const embed= new RichEmbed()
       .setColor(3447003)
       .setDescription(`Looky look`)
 
-    let gUser: GuildMember | undefined;
-    let name: string;
+    let gUser
+    let name
 
     // User might leave so clean the db
     for (const user of lostUsers) {
