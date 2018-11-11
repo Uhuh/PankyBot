@@ -2,15 +2,16 @@ import { Message } from 'discord.js'
 import commands from '../commands/help/commands'
 import PankyBot from '../src/bot'
 import log from './log'
+import { GET_PREFIX } from '../src/setup_tables';
 
 export default (client: PankyBot, message: Message) => {
   //Don't care about bots.
-  if (message.author.bot) { return "Bot"; }
+  if (message.author.bot) { return "Bot" }
 
   // User is clearly active by sending a message. Log this activity.
   log(client, message.member)
 
-  const gPrefix = message.guild ? client.getPrefix.get(message.guild.id) : null
+  const gPrefix = message.guild ? GET_PREFIX.get(message.guild.id) : null
 
   //Ignore anything that doesn't use the prefix
   if (

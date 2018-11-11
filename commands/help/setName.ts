@@ -1,5 +1,6 @@
 import { Message } from "discord.js";
 import PankyBot from "../../src/bot";
+import { SET_USER } from "../../src/setup_tables";
 
 export default {
   desc: 'Sets the name of a user to make it easier to know who they are.',
@@ -19,7 +20,7 @@ export default {
                guild: message.guild.id,
                note: name
       }
-      client.setUser.run(user)
+      SET_USER.run(user)
       message.react("✅")
     }
     else {

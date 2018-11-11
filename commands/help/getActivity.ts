@@ -1,7 +1,8 @@
 import * as SQLite from 'better-sqlite3'
-import { Guild, GuildMember, Message, RichEmbed } from "discord.js";
+import { Message, RichEmbed } from "discord.js";
 import * as moment from 'moment'
 import PankyBot from "../../src/bot";
+import { USER_ACTIVITY, REMOVE_ACTIVITY } from '../../src/setup_tables';
 const sql = new SQLite('users.sqlite')
 
 export default {
@@ -13,7 +14,7 @@ export default {
       return message.channel.send(`Please enter a number. EG: \`${client.config.PREFIX}getactivity 5\``)
     }
     const guild = client.guilds.get(message.guild.id)
-    const lostUsers = client.usersActivity.all(message.guild.id)
+    const lostUsers = USER_ACTIVITY.all(message.guild.id)
     const embed= new RichEmbed()
       .setColor(3447003)
       .setDescription(`Looky look`)
@@ -25,7 +26,7 @@ export default {
     for (const user of lostUsers) {
       gUser = guild!.members.get(user.user)
       if (!gUser) {
-        client.removeActivity.run(user.user, user.guild)
+        REMOVE_ACTIVITY.run(user.user, user.guild)
       }
     }
 

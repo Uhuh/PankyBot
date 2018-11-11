@@ -2,12 +2,11 @@ import * as Discord from 'discord.js'
 import * as dotenv from 'dotenv'
 dotenv.config()
 import * as DBL from 'dblapi.js'
-import activity from '../events/activity'
 import log from '../events/log'
 import msg from '../events/message'
-import setup_tables from './setup_tables'
 import * as config from './vars'
 import commandHandler from '../commands/commandHandler';
+import activity from '../events/activity';
 
 interface Command {
   desc: string,
@@ -18,14 +17,6 @@ interface Command {
 
 export default class PankyBot extends Discord.Client {
   config: any;
-  getUser: any;
-  setUser: any;
-  getActivity: any;
-  setActivity: any;
-  removeActivity: any;
-  usersActivity: any;
-  getPrefix: any;
-  setPrefix: any;
   dbl: any;
   commands: Discord.Collection<string, Command>
   constructor() {
@@ -41,7 +32,6 @@ export default class PankyBot extends Discord.Client {
       this.user.setPresence({ game: { name: `@${this.user.username} help` }, status: 'online' })
       this.setInterval( () => this.dbl.postStats(this.guilds.size), 1800000)
       // Setup our sql tables.
-      setup_tables(this)
       commandHandler(this)
       
     })
@@ -52,10 +42,8 @@ export default class PankyBot extends Discord.Client {
 
   async start() {
     await this.login(this.config.TOKEN)
-    
-    // ON startup get who's online (Last message only works while bot is on over time)
     activity(this)
     // Log activity every 2.5minutes.
-    setInterval(() => activity(this), 150000)
+    setInterval(() => activity(this), 150000) 
   }
 }
