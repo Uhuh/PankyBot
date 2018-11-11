@@ -26,7 +26,7 @@ export default (client: PankyBot, message: Message) => {
     // If the user mentions the bot then send them a pm with commands.
     if (gPrefix && message.mentions.members.has(client.user.id) && !command) { commands.run(message, args, client) }
     //If the command isn't in the big ol' list.
-    if (!client.commands.has(command.toLowerCase())) { return message.reply(`${command} doesn't exist`) }
+    if (!client.commands.has(command.toLowerCase())) { return 'Command DNE' }
     // Find the command and run it.
     client.commands.get(command.toLowerCase())!.run(message, args, client)
   }
