@@ -3,9 +3,8 @@ import PankyBot from '../../src/bot'
 
 export default {
   desc: 'Bans and then ubans a user, which clears 7 days worth of messages.',
-  common: 'softban',
+  name: 'softban',
   args: '<user to softban>',
-  alias: ['softban'],
   run: async function (message: Message, args: string[], client: PankyBot) {
     const member = message.mentions.members.find(val => val.id !== client.user.id)
     const days = 7

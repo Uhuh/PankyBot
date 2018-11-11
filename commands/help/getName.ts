@@ -3,9 +3,8 @@ import PankyBot from "../../src/bot";
 
 export default {
   desc: 'Returns the set name of a user, if set.',
-  common: 'whois',
+  name: 'whois',
   args: '<user mention>',
-  alias: ['whois', 'getname', 'who'],
   run: async function (message: Message, args: string[], client: PankyBot) {
     let user
     if (message.guild) {

@@ -1,15 +1,13 @@
 import { Message, RichEmbed } from "discord.js";
 import PankyBot from "../../src/bot";
-import cmd from "../cmd";
 
 export default {
   desc: 'Sends a list of all available commands.',
-  common: 'commands',
+  name: 'commands',
   args: '',
-  alias: ['cmd', 'commands', 'help'],
   run: async function (message: Message, args: string[], client: PankyBot) {
     const embed = new RichEmbed()
-    let prevValue
+
     embed.setTitle('**List of commands**')
       .setColor(16711684)
       .setAuthor(client.user.username, client.user.avatarURL)
@@ -17,12 +15,8 @@ export default {
       .setFooter('Have a great day :D')
       .setTimestamp(new Date())
 
-    for (const value of cmd.values()) {
-      // Because I map each commands alias to themselves, it would output the same thing a few times... Let's avoid that.
-      if (prevValue === value) { continue }
-
-      embed.addField(`**${client.config.PREFIX} ${value.common} ${value.args}**`, `Alias: ${value.alias}\n${value.desc}`)
-      prevValue = value;
+    for (const func of client.commands.values()) {
+      embed.addField(`**${client.config.PREFIX} ${func.name} ${func.args}**`, `Description: ${func.desc}`)
     }
     message.author.send({ embed })
   }

@@ -2,9 +2,8 @@ import { Collection, Guild, GuildChannel, Message } from "discord.js";
 
 export default {
   desc: 'Locks a channel for X minutes.',
-  common: 'lock',
+  name: 'lock',
   args: '<number of minute(s)> <#Channel-name(s)>',
-  alias: ['lock'],
   run: async function(message: Message, args: string[]) {
     const guild = message.guild
     const channels = message.mentions.channels

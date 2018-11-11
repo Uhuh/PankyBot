@@ -3,9 +3,8 @@ import PankyBot from "../../src/bot";
 
 export default {
   desc: 'Sets the name of a user to make it easier to know who they are.',
-  common: 'setname',
+  name: 'setname',
   args: '<user mention> <name>',
-  alias: ['setname', 'set', 'sn'],
   run: async function (message: Message, args: string[], client: PankyBot) {
     let user
     let name = ""

@@ -3,9 +3,8 @@ import PankyBot from "../../src/bot";
 
 export default {
   desc: 'Deletes number of messages requested, or delete user specific commands if given.',
-  common: 'purge',
+  name: 'purge',
   args: '<# of messages> <user mention(optional)>',
-  alias: ['purge'],
   run: async function (message: Message, args: string[], client: PankyBot) {
     let amount = Number(args[0])
     const purgeUser = message.mentions.members.find(val => val.id !== client.user.id)

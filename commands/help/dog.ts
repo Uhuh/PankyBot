@@ -2,9 +2,8 @@ import { Message } from "discord.js";
 
 export default {
   desc: 'Sends a photo or gif of a random dog.',
-  common: 'dog',
+  name: 'dog',
   args: '',
-  alias: ['doge', 'dog', 'dg'],
   run: async function (message: Message) {
     const request = require('request')
     const url = 'http://random.dog/woof'

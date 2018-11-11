@@ -3,9 +3,8 @@ import PankyBot from "../../src/bot";
 
 export default {
   desc: 'Kicks requested user, assuming requestee has permissions and user can be kicked.',
-  common: 'kick',
+  name: 'kick',
   args: '<user mention> <reason(optional)>',
-  alias: ['kick'],
   run: async function (message: Message, args: string[], client: PankyBot) {
     let reason = ""
     let name = ""

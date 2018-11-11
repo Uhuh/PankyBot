@@ -3,9 +3,8 @@ import PankyBot from "../../src/bot";
 
 export default {
   desc: 'Information about the user; created account, roles, etc.',
-  common: 'userinfo',
+  name: 'userinfo',
   args: '',
-  alias: ['userinfo'],
   run: async function (message: Message, args: string[], client: PankyBot) {
     let info = "";
     // There is some issues with discord and cached users so if someone hasn't sent a message this command won't

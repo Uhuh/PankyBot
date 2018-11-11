@@ -3,9 +3,8 @@ import PankyBot from "../../src/bot";
 
 export default {
   desc: 'Change the bots prefix for the requested server. If no arguments passed it will display the guilds prefix.',
-  common: 'prefix',
+  name: 'prefix',
   args: '<prefix you want>',
-  alias: ['prefix'],
   run: async function (message: Message, args: string[], client: PankyBot) {
     const gPrefix = client.getPrefix.get(message.guild.id)
 

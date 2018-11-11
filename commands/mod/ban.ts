@@ -4,9 +4,8 @@ import PankyBot from "../../src/bot";
 
 export default {
   desc: 'Bans a user and deletes user messages on amount of days passed in.',
-  common: 'ban',
+  name: 'ban',
   args: '<user mention(s)> <number of days(default 7 days)> <reason(optional)',
-  alias: ['ban'],
   run: async function (message: Message, args: string[], client: PankyBot) {
     let days = 0
     let reason= ''

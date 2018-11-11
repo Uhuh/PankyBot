@@ -7,6 +7,14 @@ import log from '../events/log'
 import msg from '../events/message'
 import setup_tables from './setup_tables'
 import * as config from './vars'
+import commandHandler from '../commands/commandHandler';
+
+interface Command {
+  desc: string,
+  name: string,
+  args: string,
+  run: Function
+}
 
 export default class PankyBot extends Discord.Client {
   config: any;
@@ -19,10 +27,13 @@ export default class PankyBot extends Discord.Client {
   getPrefix: any;
   setPrefix: any;
   dbl: any;
+  commands: Discord.Collection<string, Command>
   constructor() {
     super()
 
     this.config = config;
+    this.commands = new Discord.Collection()
+    
     // Discord bot list, gotta up them server numbers for certified )
     this.dbl = new DBL(this.config.DBLTOKEN, this)
     this.on('ready', () => {
@@ -31,6 +42,8 @@ export default class PankyBot extends Discord.Client {
       this.setInterval( () => this.dbl.postStats(this.guilds.size), 1800000)
       // Setup our sql tables.
       setup_tables(this)
+      commandHandler(this)
+      
     })
 
     this.on('voiceStateUpdate', (member: Discord.GuildMember) => log(this, member))
@@ -39,6 +52,7 @@ export default class PankyBot extends Discord.Client {
 
   async start() {
     await this.login(this.config.TOKEN)
+    
     // ON startup get who's online (Last message only works while bot is on over time)
     activity(this)
     // Log activity every 2.5minutes.

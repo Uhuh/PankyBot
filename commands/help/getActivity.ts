@@ -6,9 +6,8 @@ const sql = new SQLite('users.sqlite')
 
 export default {
   desc: 'Returns the request amount of least active users.',
-  common: 'activity',
+  name: 'activity',
   args: '<# of users>',
-  alias: ['active', 'activity', 'ga'],
   run: async function (message: Message, args: string[], client: PankyBot) {
     if (!args[0] || !(typeof Number(args[0]) === 'number') || isNaN(Number(args[0]))) {
       return message.channel.send(`Please enter a number. EG: \`${client.config.PREFIX}getactivity 5\``)

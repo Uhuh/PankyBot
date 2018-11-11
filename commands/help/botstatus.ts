@@ -4,9 +4,8 @@ import PankyBot from "../../src/bot";
 
 export default {
   desc: 'Gives a list of things about the bot',
-  common: 'botstatus',
+  name: 'botstatus',
   args: '',
-  alias: ['botstatus', 'bs'],
   run: async function (message: Message, args: string[], client: PankyBot) {
 
     const embed = new RichEmbed()

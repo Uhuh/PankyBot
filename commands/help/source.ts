@@ -3,9 +3,8 @@ import PankyBot from "../../src/bot";
 
 export default {
   desc: 'Send the github link and the invitation link',
-  common: 'github',
+  name: 'github',
   args: '',
-  alias: ['source', 'github'],
   run: async function (message: Message, client: PankyBot) {
     message.channel.send({
       embed: {
