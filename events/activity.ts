@@ -1,7 +1,7 @@
 import PankyBot from '../src/bot'
 import log from './log'
 
-export default async (client: PankyBot) => {
+export default (client: PankyBot) => {
   for (const [key, guild] of client.guilds) {
     for (const [k, member] of guild.members) {
       /*
