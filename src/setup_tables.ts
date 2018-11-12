@@ -9,21 +9,21 @@ const SETUP = () => {
     sql.prepare('CREATE TABLE users (id TEXT PRIMARY KEY, user TEXT, guild TEXT, note TEXT)').run()
     // Ensure that the 'id' row is always unique and indexed.
     sql.prepare('CREATE UNIQUE INDEX idx_users_id ON users (id)').run()
-    sql.pragma('synchronous = 1')
+    sql.pragma('synchronous = 0')
     sql.pragma('journal_mode = wal')
   }
   const actTable = sql.prepare("SELECT count(*) FROM sqlite_master WHERE type = 'table' AND name = 'activity'").get()
   if (!actTable['count(*)']) {
     sql.prepare('CREATE TABLE activity (id TEXT PRIMARY KEY, user TEXT, guild TEXT, date_active INT)').run()
     sql.prepare('CREATE UNIQUE INDEX idx_activity_id ON activity (id)').run()
-    sql.pragma('synchronous = 1')
+    sql.pragma('synchronous = 0')
     sql.pragma('journal_mode = wal')
   }
   const guildPrefix = sql.prepare("SELECT count(*) FROM sqlite_master WHERE type = 'table' AND name = 'guild_prefix'").get()
   if (!guildPrefix['count(*)']) {
     sql.prepare('CREATE TABLE guild_prefix (id TEXT PRIMARY KEY, guild TEXT, prefix TEXT)').run()
     sql.prepare('CREATE UNIQUE INDEX idx_guild_prefix_id ON activity (id)').run()
-    sql.pragma('synchronous = 1')
+    sql.pragma('synchronous = 0')
     sql.pragma('journal_mode = wal')
   } 
 }

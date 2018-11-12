@@ -36,7 +36,7 @@ export default class PankyBot extends Discord.Client {
       
     })
 
-    this.on('voiceStateUpdate', (member: Discord.GuildMember) => log(this, member))
+    this.on('voiceStateUpdate', (member: Discord.GuildMember) => log(member))
     this.on('message', (message: Discord.Message) => msg(this, message))
   }
 

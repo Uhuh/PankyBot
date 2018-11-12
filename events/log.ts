@@ -1,9 +1,8 @@
 import { GuildMember } from "discord.js"
 import * as moment from "moment"
-import PankyBot from "../src/bot"
 import { SET_ACTIVITY } from "../src/setup_tables";
 
-export default (client: PankyBot, member: GuildMember) => {
+export default async function (member: GuildMember) {
   // Don't log any bots or DM's
   if (!member.guild.id || member.user.bot) { return; }
 

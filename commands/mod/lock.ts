@@ -4,7 +4,7 @@ export default {
   desc: 'Locks a channel for X minutes.',
   name: 'lock',
   args: '<number of minute(s)> <#Channel-name(s)>',
-  run: async function(message: Message, args: string[]) {
+  run: async function (message: Message, args: string[]) {
     const guild = message.guild
     const channels = message.mentions.channels
     let minutes = 10
@@ -26,7 +26,7 @@ export default {
             SEND_MESSAGES: true,
             ATTACH_FILES: true
           })
-        }, minutes*60000)
+        }, minutes * 60000)
       }
     }
   }
