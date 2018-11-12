@@ -19,6 +19,16 @@ export default {
     // Delete the message sent
     message.delete()
     // Grab as many messages you can panky. Depending on the args delete delete delete.
+    if(!purgeUser) { 
+      return channel.bulkDelete(amount)
+      .then(() => {
+        console.log(`Bulk deleted ${amount}`)
+      })
+      .catch(() => {
+        console.log(`Issue bulk deleting`)
+      })
+    }
+
     channel.fetchMessages().then(msgs => {
       for (const [k, msg] of msgs) {
         if (amount === 0) { return }
@@ -29,17 +39,10 @@ export default {
           })
           amount--;
         }
-        else if (amount > 0) {
-          msg.delete()
-          .catch(() => {
-            console.log('Error deleting message.')
-          })
-          amount--;
-        }
       }
     })
-      .catch(err => {
-        console.log(err)
-      })
+    .catch(err => {
+      console.log(err)
+    })
   }
 }
