@@ -10,7 +10,7 @@ export default (client: PankyBot) => {
         When the bot joins a new server it doesn't have record of anyone.
         When the bot joins it will add all users to db.
       */
-      if (GET_ACTIVITY.get(member.id, member.guild.id)) {
+      if (!GET_ACTIVITY.get(member.id, member.guild.id)) {
         log(client, member)
       }
       // If they're online or in a vc then they're active.
