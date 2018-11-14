@@ -9,7 +9,7 @@ export default {
     let amount = Number(args[0])
     const purgeUser = message.mentions.members.find(val => val.id !== client.user.id)
     const channel = message.channel
-    
+
     if (message.channel.type === 'dm') { return channel.send('I can\'t delete messages in DMs.') }
     if (!message.member.hasPermission("MANAGE_MESSAGES")) { return message.react('👎') }
     if (!Number(args[0])) {
@@ -19,14 +19,23 @@ export default {
     // Delete the message sent
     message.delete()
     // Grab as many messages you can panky. Depending on the args delete delete delete.
-    if(!purgeUser) { 
-      return channel.bulkDelete(amount)
-      .then(() => {
-        console.log(`Bulk deleted ${amount}`)
-      })
-      .catch(() => {
-        console.log(`Issue bulk deleting`)
-      })
+    if (!purgeUser) {
+      channel.bulkDelete(amount)
+        .then(() => {
+          console.log(`Bulk deleted ${amount}`)
+        })
+        // So Discord;s bulkdelete wont delete anything older than 14 days. So we gotta manually delete it.
+        .catch(() => {
+          channel.fetchMessages().then(msgs => {
+            for (const [k, msg] of msgs) {
+              if (amount === 0) { return }
+              if (amount > 0) {
+                msg.delete()
+                amount--
+              }
+            }
+          })
+        })
     }
 
     channel.fetchMessages().then(msgs => {
@@ -34,15 +43,15 @@ export default {
         if (amount === 0) { return }
         if (purgeUser && amount > 0 && purgeUser.user === msg.author) {
           msg.delete()
-          .catch(() => {
-            console.log('Error deleting message')
-          })
+            .catch(() => {
+              console.log('Error deleting message')
+            })
           amount--;
         }
       }
     })
-    .catch(err => {
-      console.log(err)
-    })
+      .catch(err => {
+        console.log(err)
+      })
   }
 }

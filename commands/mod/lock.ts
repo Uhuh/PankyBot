@@ -1,4 +1,4 @@
-import { Collection, Guild, GuildChannel, Message } from "discord.js";
+import { Message } from "discord.js";
 
 export default {
   desc: 'Locks a channel for X minutes.',
