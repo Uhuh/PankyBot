@@ -43,7 +43,7 @@ export default class PankyBot extends Discord.Client {
   async start() {
     await this.login(this.config.TOKEN)
     activity(this)
-    // Log activity every 2.5minutes.
-    setInterval(() => activity(this), 150000) 
+    // Log activity every 10minutes.
+    setInterval(() => activity(this), 600000) 
   }
 }
