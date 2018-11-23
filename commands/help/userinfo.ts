@@ -10,7 +10,7 @@ export default {
     // There is some issues with discord and cached users so if someone hasn't sent a message this command won't
     // work for said user. Assuming the person mentions a new user.
     const member = message.mentions.members.find(val => val.id !== client.user.id) || message.member;
-    
+
     info = `User: ${member.user.tag}`;
     info += `\nID: ${member.user.id}`;
     info += `\nName: ${member.displayName}`;

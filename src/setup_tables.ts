@@ -25,7 +25,7 @@ const SETUP = () => {
     sql.prepare('CREATE UNIQUE INDEX idx_guild_prefix_id ON activity (id)').run()
     sql.pragma('synchronous = 0')
     sql.pragma('journal_mode = wal')
-  } 
+  }
 }
 
 SETUP()
@@ -35,11 +35,11 @@ const activeSql = [
   "VALUES (@id, @user, @guild, @date_active)"
 ].join(" ")
 
-export const SET_ACTIVITY     = sql.prepare(`${activeSql}`)
-export const GET_PREFIX       = sql.prepare("SELECT prefix FROM guild_prefix WHERE guild = ?")
-export const SET_PREFIX       = sql.prepare("INSERT OR REPLACE INTO guild_prefix (id, guild, prefix) VALUES (@id, @guild, @prefix)")
-export const REMOVE_ACTIVITY  = sql.prepare("DELETE FROM activity WHERE user = ? AND guild = ?")
-export const USER_ACTIVITY    = sql.prepare("SELECT * FROM activity WHERE guild = ?")
-export const GET_ACTIVITY     = sql.prepare("SELECT * FROM activity WHERE user = ? AND guild = ?")
-export const GET_USER         = sql.prepare("SELECT * FROM users WHERE user = ? AND guild = ?")
-export const SET_USER         = sql.prepare("INSERT OR REPLACE INTO users (id, user, guild, note) VALUES (@id, @user, @guild, @note)")
+export const SET_ACTIVITY = sql.prepare(`${activeSql}`)
+export const GET_PREFIX = sql.prepare("SELECT prefix FROM guild_prefix WHERE guild = ?")
+export const SET_PREFIX = sql.prepare("INSERT OR REPLACE INTO guild_prefix (id, guild, prefix) VALUES (@id, @guild, @prefix)")
+export const REMOVE_ACTIVITY = sql.prepare("DELETE FROM activity WHERE user = ? AND guild = ?")
+export const USER_ACTIVITY = sql.prepare("SELECT * FROM activity WHERE guild = ?")
+export const GET_ACTIVITY = sql.prepare("SELECT * FROM activity WHERE user = ? AND guild = ?")
+export const GET_USER = sql.prepare("SELECT * FROM users WHERE user = ? AND guild = ?")
+export const SET_USER = sql.prepare("INSERT OR REPLACE INTO users (id, user, guild, note) VALUES (@id, @user, @guild, @note)")

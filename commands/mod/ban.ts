@@ -8,9 +8,9 @@ export default {
   args: '<user mention(s)> <number of days(default 7 days)> <reason(optional)',
   run: async function (message: Message, args: string[], client: PankyBot) {
     let days = 0
-    let reason= ''
-    let name= ''
-    const embed= new RichEmbed()
+    let reason = ''
+    let name = ''
+    const embed = new RichEmbed()
     if (message.channel.type === 'dm') { return; }
     // Shouldn't let just anyone ban members.
     if (!message.member.hasPermission('BAN_MEMBERS')) { return message.react('👎') }

@@ -15,7 +15,7 @@ export default {
     }
     const guild = client.guilds.get(message.guild.id)
     const lostUsers = USER_ACTIVITY.all(message.guild.id)
-    const embed= new RichEmbed()
+    const embed = new RichEmbed()
       .setColor(3447003)
       .setDescription(`Looky look`)
 
@@ -31,7 +31,7 @@ export default {
     }
 
     const leastActive = sql.prepare("SELECT * FROM activity WHERE guild = ? ORDER BY date_active ASC LIMIT ?")
-                        .all(message.guild.id, args[0])
+      .all(message.guild.id, args[0])
     embed.setTitle(`Top ${leastActive.length} least "active" users.`)
 
     for (const user of leastActive) {
@@ -40,7 +40,7 @@ export default {
       // Because some people don't change their names so they would be null.
       name = (gUser!.nickname || gUser!.user.username)
       embed.addField(`**_${name}_**`, `Last active: *${moment(user.date_active)
-            .format('MMM DD hh:mmA YYYY')}*`, (leastActive.length === 2 ? false : true))
+        .format('MMM DD hh:mmA YYYY')}*`, (leastActive.length === 2 ? false : true))
     }
     message.channel.send({ embed })
   }
