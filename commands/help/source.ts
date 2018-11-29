@@ -5,7 +5,7 @@ export default {
   desc: 'Send the github link and the invitation link',
   name: 'github',
   args: '',
-  run: async function (message: Message, client: PankyBot) {
+  run: async function (message: Message, args: string[], client: PankyBot) {
     message.channel.send({
       embed: {
         color: 3447003,
@@ -15,7 +15,7 @@ export default {
         },
         title: "PankyBot's GitHub",
         url: "https://github.com/Uhuh/PankyBot",
-        description: "This bot does legit nothing but here's the GH.",
+        description: "Panky is a moderation focused bot.",
         fields: [{
           name: "Bot invite link",
           value: "https://discordapp.com/oauth2/authorize?client_id=342815158688808961&scope=bot&permissions=8"
