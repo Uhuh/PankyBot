@@ -26,18 +26,10 @@ export default {
       if (member.id === client.user.id) { continue; }
       name = member.displayName;
       member.kick(reason).then(() => {
-        embed.setColor(65295)
-          .setTitle(`:wave: Bye ${name} :wave:`)
-          .setDescription(`Successfully kicked ${name}!`)
-        message.channel.send(embed)
+        message.react('✅')
       })
         .catch(() => {
-          embed.setColor(16711683)
-            .setTitle(`:octagonal_sign: **Unable to kick ${name}** :octagonal_sign:`)
-            .addField('**__Check who you\'re trying to kick.__**', 'Discord doesn\'t allow a role to kick its equal or superior')
-            .addField('**__I might not have the correct permissions__**',
-              `Panky should have correct perms when invited. Check this in your server settings.`)
-          message.channel.send(embed)
+          message.react('👎')
         })
     }
   }
