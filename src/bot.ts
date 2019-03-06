@@ -31,6 +31,7 @@ export default class PankyBot extends Discord.Client {
       console.log(`[Started]: ${new Date()}`)
       this.user.setPresence({ game: { name: `@${this.user.username} help` }, status: 'online' })
       this.setInterval(() => this.dbl.postStats(this.guilds.size), 1800000)
+      setInterval(() => this.presence(), 10000);
       // Setup our sql tables.
       commandHandler(this)
 
@@ -44,6 +45,19 @@ export default class PankyBot extends Discord.Client {
         log(member)
       }
     })
+  }
+
+  presence() {
+    const presArr = [
+      `@${this.user.username} help`,
+      `in ${this.guilds.size} guilds`,
+      `with ${Math.floor(this.ping)} ping`
+    ];
+
+    this.user.setPresence({
+      game: { name: presArr[Math.floor(Math.random() * presArr.length)] },
+      status: "online"
+    });
   }
 
   async start() {
