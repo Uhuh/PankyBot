@@ -4,7 +4,7 @@ import { SET_ACTIVITY } from "../src/setup_tables";
 
 export default async function (member: GuildMember) {
   // Don't log any bots or DM's
-  if (!member.guild.id || member.user.bot) { return; }
+  if (!member.guild || member.user.bot) { return; }
 
   const activity = {
     id: `${member.guild.id}-${member.id}`,

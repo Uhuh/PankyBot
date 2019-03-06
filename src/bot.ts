@@ -38,6 +38,12 @@ export default class PankyBot extends Discord.Client {
 
     this.on('voiceStateUpdate', (member: Discord.GuildMember) => log(member))
     this.on('message', (message: Discord.Message) => msg(this, message))
+    this.on('guildMemberAdd', (member: Discord.GuildMember) => log(member))
+    this.on('guildCreate', (guild: Discord.Guild) => {
+      for (const [k, member] of guild.members) {
+        log(member)
+      }
+    })
   }
 
   async start() {
