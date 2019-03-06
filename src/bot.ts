@@ -29,7 +29,6 @@ export default class PankyBot extends Discord.Client {
     this.dbl = new DBL(this.config.DBLTOKEN, this)
     this.on('ready', () => {
       console.log(`[Started]: ${new Date()}`)
-      this.user.setPresence({ game: { name: `@${this.user.username} help` }, status: 'online' })
       this.setInterval(() => this.dbl.postStats(this.guilds.size), 1800000)
       setInterval(() => this.presence(), 10000);
       // Setup our sql tables.
@@ -37,8 +36,8 @@ export default class PankyBot extends Discord.Client {
 
     })
 
-    this.on('voiceStateUpdate', (member: Discord.GuildMember) => log(member))
     this.on('message', (message: Discord.Message) => msg(this, message))
+    this.on('voiceStateUpdate', (member: Discord.GuildMember) => log(member))
     this.on('guildMemberAdd', (member: Discord.GuildMember) => log(member))
     this.on('guildCreate', (guild: Discord.Guild) => {
       for (const [k, member] of guild.members) {

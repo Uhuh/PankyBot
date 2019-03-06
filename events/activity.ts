@@ -6,7 +6,7 @@ export default async function (client: PankyBot) {
     for (const [k, member] of guild.members) {
       if (member.user.bot) { continue }
       // If they're online or in a vc then they're active.
-      if (member.presence.status === 'online' || member.voiceChannel) {
+      if (member.voiceChannel) {
         log(member)
       }
     }
