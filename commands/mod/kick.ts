@@ -12,7 +12,7 @@ export default {
 
     if (message.channel.type === 'dm') { return; }
     // Don't let some crazy dude spam kick gotta make sure they're the OG
-    if (!message.member.hasPermission("KICK_MEMBERS")) { return message.react('👎') }
+    if (!message.member.hasPermission("KICK_MEMBERS")) { return message.react('❌') }
     // Skip all the mentions.
     for (const [k, member] of message.mentions.members) {
       if (member.id !== client.user.id) {
