@@ -45,16 +45,19 @@ export default class PankyBot extends Discord.Client {
   }
 
   presence = () => {
+    const { user } = this;
+    if (!user) return console.log("Is client dead? Can't find in presence.");
+
     const presArr = [
-      `@${this.user.username} help`,
+      `@${user.username} help`,
       `in ${this.guilds.size} guilds`,
-      `with ${Math.floor(this.ping)} ping`
+      `moderation...`
     ];
 
-    this.user.setPresence({
-      game: { name: presArr[Math.floor(Math.random() * presArr.length)] },
+    user.setPresence({
+      activity: { name: presArr[Math.floor(Math.random() * presArr.length)], type: "CUSTOM_STATUS" },
       status: "online"
-    });
+    }).catch(console.error);
   }
 
   async start() {

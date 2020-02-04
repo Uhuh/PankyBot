@@ -19,13 +19,6 @@ const SETUP = () => {
     sql.pragma('synchronous = 0')
     sql.pragma('journal_mode = wal')
   }
-  const guildPrefix = sql.prepare("SELECT count(*) FROM sqlite_master WHERE type = 'table' AND name = 'guild_prefix'").get()
-  if (!guildPrefix['count(*)']) {
-    sql.prepare('CREATE TABLE guild_prefix (id TEXT PRIMARY KEY, guild TEXT, prefix TEXT)').run()
-    sql.prepare('CREATE UNIQUE INDEX idx_guild_prefix_id ON activity (id)').run()
-    sql.pragma('synchronous = 0')
-    sql.pragma('journal_mode = wal')
-  }
 }
 
 SETUP()
