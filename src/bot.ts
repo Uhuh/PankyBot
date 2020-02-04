@@ -24,28 +24,27 @@ export default class PankyBot extends Discord.Client {
     this.config = config;
     this.commands = new Discord.Collection()
 
+    commandHandler(this)
+    
     // Discord bot list, gotta up them server numbers for certified )
     this.dbl = new DBL(this.config.DBLTOKEN, this)
     this.on('ready', () => {
       console.log(`[Started]: ${new Date()}`)
       this.setInterval(() => this.dbl.postStats(this.guilds.size), 1800000)
       setInterval(() => this.presence(), 10000);
-      // Setup our sql tables.
-      commandHandler(this)
-
     })
 
     this.on('message', (message: Discord.Message) => msg(this, message))
     this.on('voiceStateUpdate', (member: Discord.GuildMember) => log(member))
     this.on('guildMemberAdd', (member: Discord.GuildMember) => log(member))
     this.on('guildCreate', (guild: Discord.Guild) => {
-      for (const [k, member] of guild.members) {
+      for (const [, member] of guild.members) {
         log(member)
       }
     })
   }
 
-  presence() {
+  presence = () => {
     const presArr = [
       `@${this.user.username} help`,
       `in ${this.guilds.size} guilds`,

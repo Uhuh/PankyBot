@@ -1,4 +1,3 @@
-import * as SQLite from 'better-sqlite3'
 import { Message, RichEmbed } from "discord.js";
 import * as moment from 'moment'
 import PankyBot from "../../src/bot";
