@@ -1,13 +1,30 @@
-import { Message } from 'discord.js'
+import { Message, MessageEmbed } from 'discord.js'
 import PankyBot from '../../src/bot'
 
 export default {
   desc: 'Grabs users avatar link.',
   name: 'avatar',
   args: '<user mention (optional)>',
-  run: async function (message: Message, args: string[], client: PankyBot) {
-    const member = message.mentions.members.find(val => val.id !== client.user.id)
-    // Just returns a link to the persons avatar. /shrug
-    message.channel.send(`Avatar: ${member ? member.user.avatarURL : message.author.avatarURL}`)
+  run: (message: Message, _args: string[], client: PankyBot) => {
+    const { user }= client;
+    const { members } = message.mentions;
+    if (!user) 
+      throw new Error("Client missing?");
+    if (!members)
+      throw new Error("Idk how it got here without a mention...");
+
+    const member = members.find(val => val.id !== user.id);
+    const embed = new MessageEmbed();
+
+    const m = member || message.member;
+
+    if (!m)
+      throw new Error("Somehow user doesn't exist");
+
+    embed.setTitle(`${m.displayName}'s Avatar`)
+    embed.setDescription(`[Link to Avatar](${m.user.avatarURL({ dynamic: true })})`)
+    embed.setImage(m.user.avatarURL({ dynamic: true }) || "");
+
+    message.channel.send(embed)
   }
 }

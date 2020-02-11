@@ -5,23 +5,29 @@ export default {
   desc: 'Bans and then ubans a user, which clears 7 days worth of messages.',
   name: 'softban',
   args: '<user to softban>',
-  run: async function (message: Message, args: string[], client: PankyBot) {
-    const member = message.mentions.members.find(val => val.id !== client.user.id)
+  run: (message: Message, _args: string[], client: PankyBot) => {
+    const { user } = client;
+    const { mentions, guild, member } = message;
+    if (!guild || !guild.available || !mentions.members || !user || !member) return;
+
+    const found = mentions.members.find(val => val.id !== user.id)
     const days = 7
 
-    if (!message.member.hasPermission(['BAN_MEMBERS'])) { return message.react('👎') }
-    if (!member) { return message.reply(`That user isn't apart of the server`) }
+    if (!member.hasPermission(['BAN_MEMBERS'])) { return message.react('👎') }
+    if (!found) { return message.reply(`That user isn't apart of the server`) }
 
-    message.guild.ban(member, days)
+    found.ban({ days })
       .then(() => {
         message.react('✅')
-        message.guild.unban(member)
+        guild.members.unban(found.id)
           .catch(() => {
-            message.channel.send(`Couldn't unban ${member.displayName}`)
+            message.channel.send(`Couldn't unban ${found.displayName}`)
           })
       })
       .catch(() => {
-        message.channel.send(`Couldn't ban ${member.displayName}.`)
+        message.channel.send(`Couldn't ban ${found.displayName}.`)
       })
+
+    return;
   }
 }

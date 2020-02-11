@@ -20,8 +20,7 @@ export default {
               url: body
             }
           }
-        }).catch(err => {
-        })
+        }).catch(console.error)
       }
     })
   }

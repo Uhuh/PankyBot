@@ -5,13 +5,17 @@ export default {
   desc: 'Send the github link and the invitation link',
   name: 'github',
   args: '',
-  run: async function (message: Message, args: string[], client: PankyBot) {
+  run: async function (message: Message, _args: string[], client: PankyBot) {
+    const {user} = client;
+
+    if (!user) return;
+
     message.channel.send({
       embed: {
         color: 3447003,
         author: {
-          name: client.user.username,
-          icon_url: client.user.avatarURL
+          name: user.username,
+          icon_url: user.avatarURL
         },
         title: "PankyBot's GitHub",
         url: "https://github.com/Uhuh/PankyBot",

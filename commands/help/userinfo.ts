@@ -5,22 +5,27 @@ export default {
   desc: 'Information about the user; created account, roles, etc.',
   name: 'userinfo',
   args: '',
-  run: async function (message: Message, args: string[], client: PankyBot) {
+  run: async function (message: Message, _args: string[], client: PankyBot) {
     let info = "";
+    const { user } = client;
+
+    if (!user || !message.mentions || !message.mentions.members) return;
+
     // There is some issues with discord and cached users so if someone hasn't sent a message this command won't
     // work for said user. Assuming the person mentions a new user.
-    const member = message.mentions.members.find(val => val.id !== client.user.id) || message.member;
+    const member = message.mentions.members.find(val => val.id !== user.id) || message.member;
+
+    if (!member) return;
 
     info = `User: ${member.user.tag}`;
     info += `\nID: ${member.user.id}`;
     info += `\nName: ${member.displayName}`;
     info += `\nCreated: ${member.user.createdAt}`;
-    if (member.user.presence.game) {
-      info += `\nPresence: ${member.user.presence.game.name}`;
+    if (member.user.presence.activities) {
+      info += `\nPresence: ${member.user.presence.activities[0]}`;
     }
     if (message.guild) { info += `\nJoined: ${member.joinedAt}`; }
-    info += `\nLast_Message: ${member.user.lastMessage.createdAt}`;
-    info += `\nAvatarURL: ${member.user.avatarURL}`;
+    info += `\nAvatarURL: ${member.user.avatarURL({ dynamic: true })}`;
     message.channel.send(`\`\`\`ruby\n${info}\n\`\`\``)
   }
 }

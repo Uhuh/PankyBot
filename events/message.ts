@@ -1,17 +1,12 @@
 import { Message } from 'discord.js'
 import commands from '../commands/help/commands'
 import PankyBot from '../src/bot'
-import log from './log'
 import * as logger from "log-to-file"
 
 export default async function (client: PankyBot, message: Message) {
   //Don't care about bots.
   if (message.author.bot) { return "Bot" }
-
-  // User is clearly active by sending a message. Log this activity.
-  if(message.member)
-    log(message.member)
-
+  
   const mention = message.mentions.users.first();
 
   if (mention && client.user && mention.id === client.user.id) {

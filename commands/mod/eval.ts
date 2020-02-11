@@ -1,11 +1,11 @@
-import { Message } from "discord.js"
+import * as Discord from "discord.js"
 import PankyBot from "../../src/bot"
 
 export default {
   desc: '',
   name: 'eval',
   args: '',
-  run: async (message: Message, args: string[], client: PankyBot) => {
+  run: async (message: Discord.Message, args: string[], client: PankyBot) => {
     if (message.author.id !== client.config.BOT_OWNER) return
 
     const clean = (text: string) => {
