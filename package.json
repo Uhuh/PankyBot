@@ -5,7 +5,7 @@
   "main": "release/index.js",
   "scripts": {
     "build": "tsc",
-    "prestart": "npm run build",
+    "prestart": "yarn build",
     "start": "node build/src/index.js",
     "tslint": "tslint --project ./tsconfig.json --fix"
   },

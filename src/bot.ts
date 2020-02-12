@@ -32,9 +32,12 @@ export default class PankyBot extends Discord.Client {
       this.setInterval(() => this.dbl.postStats(this.guilds.size), 1800000)
       this.setInterval(() => this.randPres(), 10000);
       this.serverChannels();
-      this.clownHour();
+      // this.clownHour();
       this.setInterval(() => this.serverChannels(), 10000);
-      this.setInterval(() => this.clownHour(), 24*60*60000);
+      this.setInterval(() => {
+        // I like this, need to add more to it
+        // this.clownHour();
+      }, 10000);
     })
 
     this.on('message', (message: Discord.Message) => msg(this, message));
@@ -57,16 +60,21 @@ export default class PankyBot extends Discord.Client {
   }
 
   clownHour = () => {
-    const ROLE_ID = "676943874220097536";
+    const ROLE_ID = "677235204435476480";
     const G_ID = "647960154079232041";
     const guild = this.guilds.get(G_ID);
 
     if (!guild) return console.log("yeet");
 
-    const member = guild.members.random();
+    const member = guild.members.filter(m => ["idle", "dnd", "online"].includes(m.presence.status)).random();
 
-    member.roles.add(ROLE_ID)
-    this.setTimeout(() => member.roles.remove(ROLE_ID), 24*60*60000);
+    // console.log(`Adding: ${member.displayName} = ${new Date()}`)
+    member.roles.add(ROLE_ID);
+
+    this.setTimeout(() => {
+      // console.log(`Removing: ${member.displayName} = ${new Date()}`)
+      member.roles.remove(ROLE_ID)
+    }, 9000);
   }
 
   serverChannels = () => {
@@ -74,6 +82,7 @@ export default class PankyBot extends Discord.Client {
     const M_COUNT = "676629201645862962";
     const MSG_VC = "676639231648464908";
     const COUNT = "676613498968473610";
+    const ROLE_ID = "677235204435476480";
     
     const guild = this.guilds.get(G_ID);
 
@@ -89,11 +98,17 @@ export default class PankyBot extends Discord.Client {
       name: `Member count: ${guild.memberCount}`
     });
 
-    if (!count_channel.lastMessage) return console.log("Last message not found. shrug");
+    if (!count_channel.lastMessage) return; // console.log("Last message not found. shrug");
 
     const num = parseInt(count_channel.lastMessage.content.replace(/\s/g, ''), 2);
 
-    console.log(num)
+    if(count_channel.lastMessage.member && guild.roles.get(ROLE_ID) && !guild.roles.get(ROLE_ID)!.members.find(m => count_channel.lastMessage!.member === m)) {
+      const role = guild.roles.get(ROLE_ID)
+      if (role) {
+        role.members.forEach(m => m.roles.remove(ROLE_ID));
+      }
+      count_channel.lastMessage.member.roles.add(ROLE_ID);
+    }
 
     if (Number.isNaN(num)) return;
 

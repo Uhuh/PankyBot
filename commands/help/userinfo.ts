@@ -21,11 +21,11 @@ export default {
     info += `\nID: ${member.user.id}`;
     info += `\nName: ${member.displayName}`;
     info += `\nCreated: ${member.user.createdAt}`;
-    if (member.user.presence.activities) {
-      info += `\nPresence: ${member.user.presence.activities[0]}`;
+    if (member.user.presence.activity) {
+      info += `\nPresence: ${member.user.presence.activity}`;
     }
     if (message.guild) { info += `\nJoined: ${member.joinedAt}`; }
-    info += `\nAvatarURL: ${member.user.avatarURL({ dynamic: true })}`;
+    info += `\nAvatarURL: ${member.user.avatarURL()}`;
     message.channel.send(`\`\`\`ruby\n${info}\n\`\`\``)
   }
 }
