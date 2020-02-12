@@ -4,7 +4,7 @@ dotenv.config()
 import * as DBL from 'dblapi.js'
 import msg from '../events/message'
 import * as config from './vars'
-import commandHandler from '../commands/commandHandler';
+import commandHandler from '../commands/commandHandler'
 
 interface Command {
   desc: string,
@@ -30,8 +30,11 @@ export default class PankyBot extends Discord.Client {
     this.on('ready', () => {
       console.log(`[Started]: ${new Date()}`)
       this.setInterval(() => this.dbl.postStats(this.guilds.size), 1800000)
-      setInterval(() => this.randPres(), 10000);
+      this.setInterval(() => this.randPres(), 10000);
+      this.serverChannels();
+      this.clownHour();
       this.setInterval(() => this.serverChannels(), 10000);
+      this.setInterval(() => this.clownHour(), 24*60*60000);
     })
 
     this.on('message', (message: Discord.Message) => msg(this, message));
@@ -53,6 +56,19 @@ export default class PankyBot extends Discord.Client {
     }).catch(console.error);
   }
 
+  clownHour = () => {
+    const ROLE_ID = "676943874220097536";
+    const G_ID = "647960154079232041";
+    const guild = this.guilds.get(G_ID);
+
+    if (!guild) return console.log("yeet");
+
+    const member = guild.members.random();
+
+    member.roles.add(ROLE_ID)
+    this.setTimeout(() => member.roles.remove(ROLE_ID), 24*60*60000);
+  }
+
   serverChannels = () => {
     const G_ID = "647960154079232041";
     const M_COUNT = "676629201645862962";
@@ -70,14 +86,20 @@ export default class PankyBot extends Discord.Client {
     if(!channel || !m_channel || !count_channel) return console.log("VC Channel not avial");
 
     channel.edit({
-      name: `Server member count: ${guild.memberCount}`
+      name: `Member count: ${guild.memberCount}`
     });
 
-    count_channel.messages.fetch().then(m => {
-      m_channel.edit({
-        name: `Count number: ${m.size}`
-      });
-    })
+    if (!count_channel.lastMessage) return console.log("Last message not found. shrug");
+
+    const num = parseInt(count_channel.lastMessage.content.replace(/\s/g, ''), 2);
+
+    console.log(num)
+
+    if (Number.isNaN(num)) return;
+
+    m_channel.edit({
+      name: `Count number: ${num}`
+    });
   }
 
   async start() {
