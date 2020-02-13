@@ -21,8 +21,8 @@ export default {
     info += `\nID: ${member.user.id}`;
     info += `\nName: ${member.displayName}`;
     info += `\nCreated: ${member.user.createdAt}`;
-    if (member.user.presence.activity) {
-      info += `\nPresence: ${member.user.presence.activity}`;
+    if (member.user.presence.activities[0]) {
+      info += `\nPresence: ${member.user.presence.activities[0]}`;
     }
     if (message.guild) { info += `\nJoined: ${member.joinedAt}`; }
     info += `\nAvatarURL: ${member.user.avatarURL()}`;

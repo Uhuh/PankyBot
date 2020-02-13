@@ -62,11 +62,15 @@ export default class PankyBot extends Discord.Client {
   clownHour = () => {
     const ROLE_ID = "677235204435476480";
     const G_ID = "647960154079232041";
+    const MOD_ID = "647963820043534356";
     const guild = this.guilds.get(G_ID);
 
     if (!guild) return console.log("yeet");
 
     const member = guild.members.filter(m => ["idle", "dnd", "online"].includes(m.presence.status)).random();
+
+    if(member.roles.find(r => r.id === MOD_ID))
+      return;
 
     // console.log(`Adding: ${member.displayName} = ${new Date()}`)
     member.roles.add(ROLE_ID);
@@ -83,6 +87,7 @@ export default class PankyBot extends Discord.Client {
     const MSG_VC = "676639231648464908";
     const COUNT = "676613498968473610";
     const ROLE_ID = "677235204435476480";
+    const MOD_ID = "647963820043534356";
     
     const guild = this.guilds.get(G_ID);
 
@@ -103,6 +108,8 @@ export default class PankyBot extends Discord.Client {
     const num = parseInt(count_channel.lastMessage.content.replace(/\s/g, ''), 2);
 
     if(count_channel.lastMessage.member && guild.roles.get(ROLE_ID) && !guild.roles.get(ROLE_ID)!.members.find(m => count_channel.lastMessage!.member === m)) {
+      if(count_channel.lastMessage.member.roles.find(r => r.id === MOD_ID))
+        return;
       const role = guild.roles.get(ROLE_ID)
       if (role) {
         role.members.forEach(m => m.roles.remove(ROLE_ID));
