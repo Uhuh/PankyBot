@@ -81,6 +81,25 @@ export default class PankyBot extends Discord.Client {
     }, 9000);
   }
 
+  maoHexCount = async () => {
+    const C_ID = "677701145002508293";
+    const G_ID = "647960154079232041";
+
+    const guild = this.guilds.get(G_ID);
+    
+    if (!guild) return;
+
+    const channel = guild.channels.get(C_ID) as Discord.TextChannel;
+
+    if (!channel) return;
+
+    // let message = {} as Discord.Message;
+
+    if (!channel.lastMessage) {
+    
+    }
+  }
+
   serverChannels = () => {
     const G_ID = "647960154079232041";
     const M_COUNT = "676629201645862962";
@@ -107,9 +126,10 @@ export default class PankyBot extends Discord.Client {
 
     const num = parseInt(count_channel.lastMessage.content.replace(/\s/g, ''), 2);
 
-    if(count_channel.lastMessage.member && guild.roles.get(ROLE_ID) && !guild.roles.get(ROLE_ID)!.members.find(m => count_channel.lastMessage!.member === m)) {
-      if(count_channel.lastMessage.member.roles.find(r => r.id === MOD_ID))
-        return;
+    if(count_channel.lastMessage.member && 
+      guild.roles.get(ROLE_ID) && !guild.roles.get(ROLE_ID)!.members.find(m => count_channel.lastMessage!.member === m) &&
+      !count_channel.lastMessage.member.roles.find(r => r.id === MOD_ID)
+      ) {
       const role = guild.roles.get(ROLE_ID)
       if (role) {
         role.members.forEach(m => m.roles.remove(ROLE_ID));
