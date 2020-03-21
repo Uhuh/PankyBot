@@ -1,4 +1,4 @@
-import { Message } from 'discord.js'
+import { Message, TextChannel } from 'discord.js'
 import commands from '../commands/help/commands'
 import PankyBot from '../src/bot'
 import * as logger from "log-to-file"
@@ -6,6 +6,27 @@ import * as logger from "log-to-file"
 export default async function (client: PankyBot, message: Message) {
   //Don't care about bots.
   if (message.author.bot) { return "Bot" }
+
+  if (
+      message.channel.type === 'dm' && 
+      // comp sci discord lol
+      client.guilds.get('647960154079232041')?.members.has(message.author.id) &&
+      client.tickets.has(message.author.id)
+  ) { client.handleTicketMessage(message, 'dm') } 
+  else if(
+    client.tickets.has((message.channel as TextChannel).name) &&
+    message.content.includes('!close')
+  ) { client.handleTicketMessage(message, 'close') } 
+  else if(
+    client.tickets.has((message.channel as TextChannel).name)
+  ) { client.handleTicketMessage(message, 'reply') }
+  else if (
+    client.guilds.get('647960154079232041')?.members.get(message.author.id) &&
+    !client.tickets.has((message.channel as TextChannel).name) &&
+    message.channel.type === 'dm'
+  ) {
+    client.handleTicketMessage(message, 'create')
+  }
   
   const mention = message.mentions.users.first();
 
