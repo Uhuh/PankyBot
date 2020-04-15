@@ -13,7 +13,7 @@ yarn.lock
 config.json
 
 # SQL
-*.sqlite*
+
 
 docs/
 release/

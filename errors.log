@@ -1,0 +1,11 @@
+2020.04.15, 06:45:48.0880 UTC -> Error occurred trying to run command: TypeError: Cannot read property 'sort' of undefined
+2020.04.15, 06:47:30.0383 UTC -> Error occurred trying to run command: TypeError: Cannot read property 'sort' of undefined
+2020.04.15, 06:55:34.0153 UTC -> Error occurred trying to run command: TypeError: SCORES.sort is not a function or its return value is not iterable
+2020.04.15, 06:58:53.0485 UTC -> Error occurred trying to run command: TypeError: SCORES.sort is not a function or its return value is not iterable
+2020.04.15, 07:05:11.0153 UTC -> Error occurred trying to run command: TypeError: Cannot read property 'sort' of undefined
+2020.04.15, 07:06:39.0557 UTC -> Error occurred trying to run command: TypeError: SCORES.sort is not a function or its return value is not iterable
+2020.04.15, 07:07:03.0346 UTC -> Error occurred trying to run command: TypeError: SCORES.sort is not a function or its return value is not iterable
+2020.04.15, 07:10:18.0681 UTC -> Error occurred trying to run command: TypeError: SCORES.sort is not a function or its return value is not iterable
+2020.04.15, 07:10:36.0427 UTC -> Error occurred trying to run command: TypeError: SCORES.sort is not a function or its return value is not iterable
+2020.04.15, 07:13:29.0824 UTC -> Error occurred trying to run command: TypeError: SCORES.sort is not a function or its return value is not iterable
+2020.04.15, 07:21:22.0308 UTC -> Error occurred trying to run command: TypeError: SCORES.sort is not a function or its return value is not iterable
