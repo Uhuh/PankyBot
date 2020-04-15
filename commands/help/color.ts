@@ -16,7 +16,7 @@ export default {
 
     message.delete();
 
-    const role = guild.roles.find(r => r.name.toLowerCase() === color.toLowerCase());
+    const role = guild.roles.cache.find(r => r.name.toLowerCase() === color.toLowerCase());
 
     if(!RegExp.test(color)) {
       return channel.send("You need to match this format: `#012345` with the # and 6 letters/numbers.").then(m => setTimeout(() => m.delete(), 5000));

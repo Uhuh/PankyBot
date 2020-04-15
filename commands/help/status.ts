@@ -14,9 +14,9 @@ export default {
 
     if (!guild) return;
 
-    for (const [, role] of guild.roles) { roles.push(role) }
+    for (const [, role] of guild.roles.cache) { roles.push(role) }
 
-    for (const [, channel] of guild.channels) {
+    for (const [, channel] of guild.channels.cache) {
       if (channel.type === 'text') { textC++; }
       else if (channel.type === 'voice') { voiceC++; }
     }

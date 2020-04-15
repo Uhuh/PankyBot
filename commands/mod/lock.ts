@@ -23,41 +23,25 @@ export default {
     if (!E_ID) return;
 
     for(const [, channel] of channels) {
-      channel.overwritePermissions({
-        permissionOverwrites: [
+      channel.overwritePermissions(
+        [
           {
             id: E_ID,
             deny: ['SEND_MESSAGES', 'ADD_REACTIONS']
           }
         ]
-      });
+      );
       setTimeout(() => {
-        channel.overwritePermissions({
-          permissionOverwrites: [
+        channel.overwritePermissions(
+          [
             {
               id: E_ID,
               allow: ['SEND_MESSAGES', 'ADD_REACTIONS']
             }
           ]
-        });
+        );
       }, minutes * 60000);
     }
-
-    /* for (const [, channel] of channels) {
-      for (const [, role] of guild.roles) {
-        channel.overwritePermissions(role, {
-          SEND_MESSAGES: false,
-          ATTACH_FILES: false
-        })
-        setTimeout(() => {
-          channel.overwritePermissions(role, {
-            SEND_MESSAGES: true,
-            ATTACH_FILES: true
-          })
-        }, minutes * 60000)
-      }
-    } */
-
     return;
   }
 }

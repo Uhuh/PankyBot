@@ -10,7 +10,7 @@ export default {
     if(!guild) return;
 
     client.tickets.delete((message.channel as Discord.TextChannel).name)
-    const tickUser = guild.members.find(m => (message.channel as Discord.TextChannel).name === m.id)
+    const tickUser = guild.members.cache.find(m => (message.channel as Discord.TextChannel).name === m.id)
     if(tickUser)
       tickUser.send(`Ticket closed by ${message.author.username}`)
     // message.channel.delete()

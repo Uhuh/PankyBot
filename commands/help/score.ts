@@ -32,7 +32,7 @@ export default {
         .setTimestamp(new Date());
 
       for (const s of SCORES) {
-        embed.addField(`**${message.guild.members.get(s.user)?.displayName}**`, `Counting points: ${s.points}`)
+        embed.addField(`**${message.guild.members.cache.get(s.user)?.displayName}**`, `Counting points: ${s.points}`)
       }
       message.channel.send({ embed })
     }

@@ -17,7 +17,7 @@ export default {
 
     client.tickets.set(ticket.user.id, true);
     message.channel.send(`Accepted ${ticket.user.name}'s ticket for \`${ticket.message}\``)
-    const member = message.guild?.members.find(m => m.id === ticket.user.id)
+    const member = message.guild?.members.cache.find(m => m.id === ticket.user.id)
     if(!member) return message.channel.send(`Couldn't find member with ${ticket.user.id}`)
 
     member.send(`Your ticket has been accepted by ${message.author.username}. Start talking to me here connect.`)

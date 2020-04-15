@@ -49,7 +49,7 @@ export default class PankyBot extends Discord.Client {
     this.dbl = new DBL(this.config.DBLTOKEN, this)
     this.on('ready', () => {
       console.log(`[Started]: ${new Date()}`)
-      this.setInterval(() => this.dbl.postStats(this.guilds.size), 1800000)
+      this.setInterval(() => this.dbl.postStats(this.guilds.cache.size), 1800000)
       this.setInterval(() => this.randPres(), 10000);
       this.memberCount();
     })
@@ -70,9 +70,9 @@ export default class PankyBot extends Discord.Client {
     // CS server id
     const M_COUNT = "676629201645862962";
 
-    const guild = this.guilds.get('647960154079232041');
+    const guild = this.guilds.cache.get('647960154079232041');
     if(!guild) return console.log("how")
-    const channel = guild.channels.get(M_COUNT);
+    const channel = guild.channels.cache.get(M_COUNT);
 
     if(!channel) return console.log("VC Channel not avial");
 
@@ -82,11 +82,11 @@ export default class PankyBot extends Discord.Client {
   }
 
   handleTicketMessage = async (message: Discord.Message, type: string) => {
-    const guild = this.guilds.get('647960154079232041')
+    const guild = this.guilds.cache.get('647960154079232041')
     if(!guild) 
       return console.error(`Couldn't find guild to handle ticket message`)
     
-    let channel: Discord.TextChannel | void = guild.channels.find(c => c.name === message.author.id) as Discord.TextChannel
+    let channel: Discord.TextChannel | void = guild.channels.cache.find(c => c.name === message.author.id) as Discord.TextChannel
     
     if(!channel && (type !== 'reply')) 
       return console.error(`Couldn't find channel: ${message.author.id} : ${type}`)
@@ -97,7 +97,7 @@ export default class PankyBot extends Discord.Client {
           channel.send(`[ ${message.author.username} ] - ${message.content}`)
         break;
       case 'reply':
-        const ticketer = guild.members.find(m => (message.channel as Discord.TextChannel).name === m.id)
+        const ticketer = guild.members.cache.find(m => (message.channel as Discord.TextChannel).name === m.id)
         if(ticketer)
           ticketer.send(`[ ${message.author.username} ] - ${message.content}`)
         break;
@@ -112,7 +112,7 @@ export default class PankyBot extends Discord.Client {
 
     const presArr = [
       `@${user.username} help`,
-      `in ${this.guilds.size} guilds`,
+      `in ${this.guilds.cache.size} guilds`,
       `moderation...`
     ];
 
@@ -129,7 +129,7 @@ export default class PankyBot extends Discord.Client {
     const ROLE_ID = "677235204435476480";
     const MOD_ID = "647963820043534356";
     
-    const guild = this.guilds.get(G_ID);
+    const guild = this.guilds.cache.get(G_ID);
 
     // How many points will said user get? :)
     // Always +1 by default
@@ -141,8 +141,8 @@ export default class PankyBot extends Discord.Client {
 
     if (!guild) return console.log("Somehow not in CS guild");
 
-    const m_channel = guild.channels.get(MSG_VC);
-    const count_channel = guild.channels.get(COUNT) as Discord.TextChannel;
+    const m_channel = guild.channels.cache.get(MSG_VC);
+    const count_channel = guild.channels.cache.get(COUNT) as Discord.TextChannel;
 
     if(!m_channel || !count_channel) return console.log("VC Channel not avial");
 
@@ -162,10 +162,10 @@ export default class PankyBot extends Discord.Client {
     this.prevCounter = msg.author;
     
     if(msg.member && 
-      guild.roles.get(ROLE_ID) && !guild.roles.get(ROLE_ID)!.members.find(m => msg!.member === m) &&
-      !msg.member.roles.find(r => r.id === MOD_ID)
+      guild.roles.cache.get(ROLE_ID) && !guild.roles.cache.get(ROLE_ID)!.members.find(m => msg!.member === m) &&
+      !msg.member.roles.cache.find(r => r.id === MOD_ID)
       ) {
-      const role = guild.roles.get(ROLE_ID)
+      const role = guild.roles.cache.get(ROLE_ID)
       if (role) {
         role.members.forEach(m => m.roles.remove(ROLE_ID));
       }
