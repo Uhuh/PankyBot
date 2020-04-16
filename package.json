@@ -27,7 +27,7 @@
     "@types/ws": "^7.2.1",
     "better-sqlite3": "^6.0.1",
     "dblapi.js": "^2.3.1",
-    "discord.js": "discordjs/discord.js",
+    "discord.js": "12.0.0",
     "dotenv": "^8.2.0",
     "fs": "^0.0.1-security",
     "log-to-file": "^2.0.2",
