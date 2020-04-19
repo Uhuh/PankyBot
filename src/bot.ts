@@ -90,32 +90,7 @@ export default class PankyBot extends Discord.Client {
       name: `Member count: ${guild.memberCount}`
     });
   }
-
-  handleTicketMessage = async (message: Discord.Message, type: string) => {
-    const guild = this.guilds.cache.get('647960154079232041')
-    if(!guild) 
-      return console.error(`Couldn't find guild to handle ticket message`)
-    
-    let channel: Discord.TextChannel | void = guild.channels.cache.find(c => c.name === message.author.id) as Discord.TextChannel
-    
-    if(!channel && (type !== 'reply')) 
-      return console.error(`Couldn't find channel: ${message.author.id} : ${type}`)
-
-    switch(type) {
-      case 'dm':
-        if(channel)
-          channel.send(`[ ${message.author.username} ] - ${message.content}`)
-        break;
-      case 'reply':
-        const ticketer = guild.members.cache.find(m => (message.channel as Discord.TextChannel).name === m.id)
-        if(ticketer)
-          ticketer.send(`[ ${message.author.username} ] - ${message.content}`)
-        break;
-      default:
-        console.error('What ticket?')
-    }
-  }
-
+  
   randPres = () => {
     const { user } = this;
     if (!user) return console.log("Is client dead? Can't find in presence.");

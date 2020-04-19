@@ -20,7 +20,20 @@ export default {
                 score.points < 100 ? 'keep counting!' : 
                 score.points < 500 ? 'holy cow!' : 'get a job!';
 
+      const frogPogNum = Math.floor(score.points/100 % 10);
+
       message.channel.send(`${member.displayName} has ${score.points} counting points, ${msg}`);
+      if (frogPogNum !== 0 && frogPogNum < 8) {
+        message.channel.send(
+          {
+            files: [{
+              attachment: `images/fp${frogPogNum}.png`,
+              name: `fp${frogPogNum}.png`
+            }]
+          }
+        )
+        .catch(console.error);
+      }
     } else {
       const SCORES = GUILD_SCORE.all(message.guild.id);
 

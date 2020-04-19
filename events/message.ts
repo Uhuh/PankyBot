@@ -1,4 +1,4 @@
-import { Message, TextChannel } from 'discord.js'
+import { Message } from 'discord.js'
 import commands from '../commands/help/commands'
 import PankyBot from '../src/bot'
 import * as logger from "log-to-file"
@@ -7,15 +7,6 @@ export default async function (client: PankyBot, message: Message) {
   //Don't care about bots.
   if (message.author.bot) { return "Bot" }
 
-  if (client.tickets.has((message.channel as TextChannel).name)) {
-    return client.handleTicketMessage(message, 'reply')
-  } else if (
-    message.channel.type === 'dm' &&
-    client.tickets.has(message.author.id)
-  ) {
-    return client.handleTicketMessage(message, 'dm')
-  }
-  
   const mention = message.mentions.users.first();
 
   if (mention && client.user && mention.id === client.user.id) {
