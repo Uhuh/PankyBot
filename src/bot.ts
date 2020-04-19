@@ -46,11 +46,11 @@ export default class PankyBot extends Discord.Client {
     
     // Discord bot list, gotta up them server numbers for certified )
     this.on('ready', () => {
-      let baseIndex = 1;
-      const bases = [2, 8, 16, 32, 36];
+//      let baseIndex = 1;
+//      const bases = [2, 8, 16, 32, 36];
       console.log(`[Started]: ${new Date()}`)
       this.setInterval(() => this.randPres(), 10000);
-      this.setInterval(() => {
+/*      this.setInterval(() => {
         const C_ID = "676613498968473610";
         const G_ID = "647960154079232041";
         const base = bases[baseIndex];
@@ -59,7 +59,7 @@ export default class PankyBot extends Discord.Client {
         this.baseType = base;
         channel.send(`Start counting in base ${base}!`)
           .then(m => this.setTimeout(() => m.delete(), 600000));
-      }, 600000);
+      }, 600000); */
       this.memberCount();
     })
 

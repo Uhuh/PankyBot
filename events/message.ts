@@ -21,7 +21,7 @@ export default async function (client: PankyBot, message: Message) {
   if (mention && client.user && mention.id === client.user.id) {
     const length = message.content.split(' ')[0].length;
     // + 1 for the damn space.
-    const [command, ...args] = message.content.substring(length + 1).split(' ')
+    const [command, ...args] = message.content.substring(length + 1).match(/\S+/g) || [];
 
     // If the user mentions the bot then send them a pm with commands.
     if (!command) {
