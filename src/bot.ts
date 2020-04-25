@@ -13,53 +13,26 @@ interface Command {
   run: Function
 }
 
-interface Ticket {
-  user: {
-    id: string,
-    name: string
-  },
-  message: string
-}
-
 export default class PankyBot extends Discord.Client {
   config: any;
-  dbl: any;
   prevCount: number | null;
   prevCounter: Discord.User | null;
   baseType: number;
-  tickets: Discord.Collection<string, boolean>;
-  ticketQueue: Ticket[];
-  questions: string[];
   commands: Discord.Collection<string, Command>;
   constructor() {
     super()
 
     this.config = config;
     this.commands = new Discord.Collection()
-    this.tickets = new Discord.Collection()
-    this.ticketQueue = []
-    this.questions = []
     this.baseType = 2;
     this.prevCount = null;
     this.prevCounter = null;
-    commandHandler(this)
+    commandHandler(this);
     
     // Discord bot list, gotta up them server numbers for certified )
-    this.on('ready', () => {
-//      let baseIndex = 1;
-//      const bases = [2, 8, 16, 32, 36];
-      console.log(`[Started]: ${new Date()}`)
+    this.once('ready', () => {
+      console.log(`[Started]: ${new Date()}`);
       this.setInterval(() => this.randPres(), 10000);
-/*      this.setInterval(() => {
-        const C_ID = "676613498968473610";
-        const G_ID = "647960154079232041";
-        const base = bases[baseIndex];
-        baseIndex === 4 ? (baseIndex=0) : baseIndex++;
-        const channel = this.guilds.cache.get(G_ID)?.channels.cache.get(C_ID) as Discord.TextChannel;
-        this.baseType = base;
-        channel.send(`Start counting in base ${base}!`)
-          .then(m => this.setTimeout(() => m.delete(), 600000));
-      }, 600000); */
       this.memberCount();
     })
 
@@ -165,6 +138,6 @@ export default class PankyBot extends Discord.Client {
   }
 
   async start() {
-    await this.login(this.config.TOKEN)
+    await this.login(this.config.TOKEN);
   }
 }
