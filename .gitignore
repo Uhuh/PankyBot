@@ -22,3 +22,5 @@ yarn-error*
 
 npm*
 
+errors.log
+scores.sqlite*

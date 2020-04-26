@@ -18,6 +18,7 @@ export default class PankyBot extends Discord.Client {
   prevCount: number | null;
   prevCounter: Discord.User | null;
   baseType: number;
+  shopItems: Map<string, any>;
   commands: Discord.Collection<string, Command>;
   constructor() {
     super()
@@ -27,17 +28,41 @@ export default class PankyBot extends Discord.Client {
     this.baseType = 2;
     this.prevCount = null;
     this.prevCounter = null;
+    /**
+     * My CS server is in shambles with this economy now lol
+     * CNA = Can not afford
+     */
+    this.shopItems = new Map([
+      ['1', { name: `Pizza`, price: 15000, CNA: `you can't afford that...`, 
+      bought: `bought a pizza.`, desc: `Get any 1 topping pizza from dominos lol. (Pickup)`}],
+      ['2', { name: `Discord Nitro`, price: 15000, CNA: `you can't afford a gift.`, 
+      bought: `bought a nitro.`, desc: `Nitro gift lol`}],
+      ['3', { name: `Steam Gift`, price: 15000, CNA: `you can't get steam gift.`, 
+      bought: `bought steam gift.`, desc: `Steam gift $10 or under.`}],
+      ['4', { name: `Add emoji`, price: 500, CNA: `you can't afford an emoji.`, 
+      bought: `bought an emoji slot.`, desc: `Add an emoji to the server.`}],
+      ['5', { name: `Solid picture`, price: 200, CNA: `you can't afford an image :(`, 
+      bought: `bought a SOLID PHOTO :O`, desc: `I take a picture of Solid and send it.`}],
+      ['6', { name: `Barrel oil`, price: 100, CNA: `dude, it's cheap cmon, work harder.`, 
+      bought: `bought oil lol.`, desc: `Literally a barrel of oil, have fun?`}]
+    ]);
+    
     commandHandler(this);
     
     // Discord bot list, gotta up them server numbers for certified )
     this.once('ready', () => {
       console.log(`[Started]: ${new Date()}`);
       this.setInterval(() => this.randPres(), 10000);
-      this.memberCount();
-    })
+      if(config.BETA === '0') {
+        this.memberCount();
+      }
+    });
 
     this.on('message', (message: Discord.Message) => {
-      if(message.channel.id === '676613498968473610') {
+      if(
+        message.channel.id === '676613498968473610' &&
+        config.BETA === '0'
+      ) {
         if (message.author.bot) return;
         this.count(message);
       } else {
@@ -118,7 +143,7 @@ export default class PankyBot extends Discord.Client {
     this.prevCount = num;
     this.prevCounter = msg.author;
     
-    if(msg.member && 
+    if(msg.member &&
       guild.roles.cache.get(ROLE_ID) && !guild.roles.cache.get(ROLE_ID)!.members.find(m => msg!.member === m) &&
       !msg.member.roles.cache.find(r => r.id === MOD_ID)
       ) {

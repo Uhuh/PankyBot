@@ -14,16 +14,18 @@ export default {
       if(!member) return;
       const score = GET_SCORE.get(member.id, message.guild.id);
       if(!score) {
-        return message.channel.send(`${member.displayName} has no counting points... :(`);
+        return message.channel.send(`${member.displayName} has no clownbucks... :(`);
       }
       let msg = score.points < 0 ? 'yikes...' : 
                 score.points < 100 ? 'keep counting!' : 
-                score.points < 500 ? 'holy cow!' : 'get a job!';
+                score.points < 500 ? 'holy cow!' : 
+                score.points < 1000 ? 'get a job!' : 'one percenter out here.';
 
-      const frogPogNum = Math.floor(score.points/100 % 10);
+      let frogPogNum = Math.floor(score.points/100 % 10);
 
-      message.channel.send(`${member.displayName} has ${score.points} counting points, ${msg}`);
-      if (frogPogNum !== 0 && frogPogNum < 8) {
+      message.channel.send(`${member.displayName} has ${score.points} clownbucks, ${msg}`);
+      if (frogPogNum !== 0) {
+        frogPogNum = frogPogNum >= 8 ? 7 : frogPogNum;
         message.channel.send(
           {
             files: [{
@@ -39,13 +41,13 @@ export default {
 
       const embed = new MessageEmbed();
 
-      embed.setTitle('**Counting scoreboard**')
+      embed.setTitle('**Circus scoreboard**')
         .setColor(16711684)
         .setFooter('Have a great day :D')
         .setTimestamp(new Date());
 
       for (const s of SCORES) {
-        embed.addField(`**${message.guild.members.cache.get(s.user)?.displayName}**`, `Counting points: ${s.points}`)
+        embed.addField(`**${message.guild.members.cache.get(s.user)?.displayName}**`, `Clownbucks: ${s.points}`)
       }
       message.channel.send({ embed })
     }

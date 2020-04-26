@@ -13,10 +13,9 @@ export default {
     if (!members)
       throw new Error("Idk how it got here without a mention...");
 
-    const member = members.find(val => val.id !== user.id);
+    const member = members.last();
     const embed = new MessageEmbed();
-
-    const m = member || message.member;
+    const m = members.size === 1 ? message.member : member || message.member;
 
     if (!m)
       throw new Error("Somehow user doesn't exist");
