@@ -44,7 +44,9 @@ export default class PankyBot extends Discord.Client {
       ['5', { name: `Solid picture`, price: 200, CNA: `you can't afford an image :(`, 
       bought: `bought a SOLID PHOTO :O`, desc: `I take a picture of Solid and send it.`}],
       ['6', { name: `Barrel oil`, price: 100, CNA: `dude, it's cheap cmon, work harder.`, 
-      bought: `bought oil lol.`, desc: `Literally a barrel of oil, have fun?`}]
+      bought: `bought oil lol.`, desc: `Literally a barrel of oil, have fun?`}],
+      ['7', { name: `Perm ban any user`, price: 666666, CNA: `try harder`, 
+      bought: `banned someone lmao`, desc: `Ban any user you want lol`}]
     ]);
     
     commandHandler(this);
