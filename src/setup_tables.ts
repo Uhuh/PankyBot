@@ -13,7 +13,7 @@ export function setup() {
   const timeTable = sql.prepare(`SELECT count(*) FROM sqlite_master WHERE type='table' AND name='timely_money';`).get();
   if(!timeTable['count(*)']) {
     sql.prepare(`CREATE TABLE timely_money (id TEXT PRIMARY KEY, user TEXT, guild TEXT, daily TEXT, weekly TEXT);`).run();
-    sql.prepare(`CREATE UNIQUE INDEX idx_scores_id ON timely_money (id);`).run();
+    sql.prepare(`CREATE UNIQUE INDEX idx_timely_id ON timely_money (id);`).run();
     sql.pragma("synchronous = 1");
     sql.pragma('journal_mode = wal');
   }
