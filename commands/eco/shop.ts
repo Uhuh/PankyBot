@@ -29,7 +29,7 @@ export default {
       embed.addField(`**[${k}] ${item.name} : ${numberWithCommas(item.price)} clownbucks**`, `${item.desc}`);
     }
    
-    message.channel.send({ embed })
+    message.channel.send({ embed });
 
     return;
   }
