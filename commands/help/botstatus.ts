@@ -6,6 +6,7 @@ export default {
   desc: 'Gives a list of things about the bot',
   name: 'botstatus',
   args: '',
+  type: 'general',
   run: async function (message: Message, _args: string[], client: PankyBot) {
 
     const {user} = client;

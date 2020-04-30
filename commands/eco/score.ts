@@ -6,6 +6,7 @@ export default {
   desc: 'Counting score. :)',
   name: 'score',
   args: '',
+  type: 'economy',
   run: (message: Message, _args: string[], client: PankyBot) => {
     if(!message.guild) return;
 

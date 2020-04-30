@@ -6,6 +6,7 @@ export default {
   desc: 'Redeem your points.',
   name: 'redeem',
   args: '<shop number>',
+  type: 'economy',
   run: (message: Message, args: string[], client: PankyBot) => {
     if(!message.guild) return;
     const G_ID = message.guild.id;

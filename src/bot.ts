@@ -10,6 +10,7 @@ interface Command {
   desc: string,
   name: string,
   args: string,
+  type: string,
   run: Function
 }
 

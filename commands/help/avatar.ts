@@ -5,6 +5,7 @@ export default {
   desc: 'Grabs users avatar link.',
   name: 'avatar',
   args: '<user mention (optional)>',
+  type: 'general',
   run: (message: Message, _args: string[], client: PankyBot) => {
     const { user }= client;
     const { members } = message.mentions;
@@ -20,10 +21,10 @@ export default {
     if (!m)
       throw new Error("Somehow user doesn't exist");
 
-    embed.setTitle(`${m.displayName}'s Avatar`)
-    embed.setDescription(`[Link to Avatar](${m.user.avatarURL()})`)
+    embed.setTitle(`${m.displayName}'s Avatar`);
+    embed.setDescription(`[Link to Avatar](${m.user.avatarURL({ dynamic: true })})`);
     embed.setImage(m.user.avatarURL() || "");
 
-    message.channel.send(embed)
+    message.channel.send(embed);
   }
 }

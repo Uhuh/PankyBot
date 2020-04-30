@@ -1,12 +1,12 @@
-import { Message } from "discord.js";
+import { Message, MessageEmbed } from "discord.js";
 import PankyBot from "../../src/bot";
 
 export default {
   desc: 'Information about the user; created account, roles, etc.',
   name: 'userinfo',
   args: '',
+  type: 'general',
   run: async function (message: Message, _args: string[], client: PankyBot) {
-    let info = "";
     const { user } = client;
 
     if (!user || !message.mentions || !message.mentions.members) return;
@@ -17,15 +17,26 @@ export default {
 
     if (!member) return;
 
-    info = `User: ${member.user.tag}`;
-    info += `\nID: ${member.user.id}`;
-    info += `\nName: ${member.displayName}`;
-    info += `\nCreated: ${member.user.createdAt}`;
-    if (member.user.presence.activities[0]) {
-      info += `\nPresence: ${member.user.presence.activities[0]}`;
-    }
-    if (message.guild) { info += `\nJoined: ${member.joinedAt}`; }
-    info += `\nAvatarURL: ${member.user.avatarURL()}`;
-    message.channel.send(`\`\`\`ruby\n${info}\n\`\`\``)
+    const embed = new MessageEmbed();
+
+    embed.setTitle(`**User Info**`)
+      .setColor(7419530)
+      .setThumbnail(member.user.avatarURL({dynamic: true}) || "")
+      .setFooter(`Replying to: ${message.author.tag}`)
+      .addField(`**DETAILS**`, 
+        `\`\`\`asciidoc
+• Username :: ${member.user.tag}
+• ID       :: ${member.user.id}
+• Created  :: ${member.user.createdAt.toDateString()}
+• Joined   :: ${member.joinedAt?.toDateString()}\`\`\``
+      )
+      .addField(`**STATUS**`, 
+        `\`\`\`asciidoc
+• Type     :: ${member.user.bot ?  "Beepboop, I'm a bot." : "I'm Human."}
+• Presence :: ${member.presence.activities[0]}\`\`\``
+      )
+      .setTimestamp(new Date());
+
+    message.channel.send({ embed })
   }
 }

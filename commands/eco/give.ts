@@ -5,6 +5,7 @@ export default {
   desc: 'Give counting points to someone',
   name: 'give',
   args: '<amount> <user>',
+  type: 'economy',
   run: (message: Message, args: string[]) => {
     if(!message.mentions.members || !message.guild) return;
     if(!args || args.length !== 2 || message.mentions.members.size !== 2) {

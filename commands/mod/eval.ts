@@ -5,6 +5,7 @@ export default {
   desc: '',
   name: 'eval',
   args: '',
+  type: 'owner',
   run: async (message: Discord.Message, args: string[], client: PankyBot) => {
     if (message.author.id !== client.config.BOT_OWNER) return
 

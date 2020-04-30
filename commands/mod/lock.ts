@@ -5,6 +5,7 @@ export default {
   desc: 'Locks a channel for X minutes.',
   name: 'lock',
   args: '<number of minute(s)> <#Channel-name(s)>',
+  type: 'mod',
   run: (message: Message, args: string[], client: PankyBot) => {
     const guild = message.guild;
     const channels = message.mentions.channels;

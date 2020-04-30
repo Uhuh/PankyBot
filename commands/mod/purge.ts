@@ -5,6 +5,7 @@ export default {
   desc: 'Deletes number of messages requested, or delete user specific commands if given.',
   name: 'purge',
   args: '<# of messages> <user mention(optional)>',
+  type: 'mod',
   run: (message: Message, args: string[], client: PankyBot) => {
     let amount = Number(args[0]);
     const { user } = client;

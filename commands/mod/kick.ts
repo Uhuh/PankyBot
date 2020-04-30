@@ -5,6 +5,7 @@ export default {
   desc: 'Kicks requested user, assuming requestee has permissions and user can be kicked.',
   name: 'kick',
   args: '<user mention> <reason(optional)>',
+  type: 'mod',
   run: (message: Message, args: string[], client: PankyBot) => {
     let reason = ""
 

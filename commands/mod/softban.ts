@@ -5,6 +5,7 @@ export default {
   desc: 'Bans and then ubans a user, which clears 7 days worth of messages.',
   name: 'softban',
   args: '<user to softban>',
+  type: 'mod',
   run: (message: Message, _args: string[], client: PankyBot) => {
     const { user } = client;
     const { mentions, guild, member } = message;

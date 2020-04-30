@@ -9,6 +9,7 @@ export default {
   desc: 'Look at all the items.',
   name: 'shop',
   args: '',
+  type: 'economy',
   run: (message: Message, _args: string[], client: PankyBot) => {
     
     const embed = new MessageEmbed();

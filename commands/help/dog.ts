@@ -4,6 +4,7 @@ export default {
   desc: 'Sends a photo or gif of a random dog.',
   name: 'dog',
   args: '',
+  type: 'general',
   run: async function (message: Message) {
     const request = require('request')
     const url = 'http://random.dog/woof'

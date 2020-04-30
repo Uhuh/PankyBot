@@ -4,6 +4,7 @@ export default {
   desc: 'Make a colored role based on a hexcode.',
   name: 'color',
   args: '<hex code>',
+  type: 'general',
   run: (message: Message, args: string[]) => {
 
     if (!args.length) return message.delete();

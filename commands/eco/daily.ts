@@ -6,6 +6,7 @@ export default {
   desc: 'Collect your daily clownbucks.',
   name: 'daily',
   args: '',
+  type: 'economy',
   run: (message: Message) => {
     if(!message.guild) return;
     const G_ID = message.guild.id;

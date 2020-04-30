@@ -5,6 +5,7 @@ export default {
   desc: 'Take points :)',
   name: 'take',
   args: '<amount> <user>',
+  type: 'owner',
   run: (message: Message, args: string[]) => {
     if(!message.mentions.members || !message.guild) return;
     if(!args || args.length !== 2 || message.mentions.members.size !== 2) {
