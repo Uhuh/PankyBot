@@ -1,7 +1,7 @@
 import { Message } from "discord.js";
 
 export default {
-  desc: 'Sends a photo or gif of a random dog.',
+  desc: 'Dog pic',
   name: 'dog',
   args: '',
   type: 'general',

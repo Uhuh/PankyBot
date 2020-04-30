@@ -2,7 +2,7 @@ import { Message, MessageEmbed } from "discord.js";
 import PankyBot from "../../src/bot";
 
 export default {
-  desc: 'Information about the user; created account, roles, etc.',
+  desc: 'Information about user.',
   name: 'userinfo',
   args: '',
   type: 'general',

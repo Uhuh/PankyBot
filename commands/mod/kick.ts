@@ -2,9 +2,9 @@ import { Message } from "discord.js";
 import PankyBot from "../../src/bot";
 
 export default {
-  desc: 'Kicks requested user, assuming requestee has permissions and user can be kicked.',
+  desc: 'Kick user(s)',
   name: 'kick',
-  args: '<user mention> <reason(optional)>',
+  args: '<user> [reason]',
   type: 'mod',
   run: (message: Message, args: string[], client: PankyBot) => {
     let reason = ""

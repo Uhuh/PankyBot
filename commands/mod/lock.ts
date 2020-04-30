@@ -2,9 +2,9 @@ import { Message } from "discord.js";
 import PankyBot from "../../src/bot";
 
 export default {
-  desc: 'Locks a channel for X minutes.',
+  desc: 'Locks channel(s) for a set time.',
   name: 'lock',
-  args: '<number of minute(s)> <#Channel-name(s)>',
+  args: '<minutes> <#channel(s)>',
   type: 'mod',
   run: (message: Message, args: string[], client: PankyBot) => {
     const guild = message.guild;

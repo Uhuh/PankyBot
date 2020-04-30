@@ -2,9 +2,9 @@ import { Message } from "discord.js";
 import PankyBot from "../../src/bot";
 
 export default {
-  desc: 'Deletes number of messages requested, or delete user specific commands if given.',
+  desc: 'Clear messages.',
   name: 'purge',
-  args: '<# of messages> <user mention(optional)>',
+  args: '<amount> [user]',
   type: 'mod',
   run: (message: Message, args: string[], client: PankyBot) => {
     let amount = Number(args[0]);

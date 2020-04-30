@@ -4,7 +4,7 @@ import PankyBot from '../../src/bot'
 export default {
   desc: 'Grabs users avatar link.',
   name: 'avatar',
-  args: '<user mention (optional)>',
+  args: '[user]',
   type: 'general',
   run: (message: Message, _args: string[], client: PankyBot) => {
     const { user }= client;
