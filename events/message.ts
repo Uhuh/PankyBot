@@ -1,4 +1,4 @@
-import { Message } from 'discord.js'
+import { Message, MessageEmbed, TextChannel } from 'discord.js'
 import commands from '../commands/help/commands'
 import PankyBot from '../src/bot'
 import * as logger from "log-to-file"
@@ -24,14 +24,29 @@ export default async function (client: PankyBot, message: Message) {
 
     //If the command isn't in the big ol' list.
     if (!clientCommand) { 
-      return console.log('Command DNE'); 
+      return; 
     }
 
     try {
       // Find the command and run it.
       clientCommand.run(message, args, client);
     } catch (e) {
-      logger(`Error occurred trying to run command: ${e}`, 'errors.log');
+      // CS server bot spam.
+      const channel = client.channels.cache.get('676617287473692679') as TextChannel;
+      if(channel) {
+        const embed = new MessageEmbed();
+
+        embed.setTitle(`**Error running command: ${command}**`)
+          .setDescription(`${e}`)
+          .setColor(16711684)
+          .setFooter(`Command by: ${message.author.tag}`)
+          .setTimestamp(new Date());
+
+        channel.send({ embed });
+      }
+      return logger(`Error occurred trying to run command: ${e}`, 'errors.log');
     }
+
+    return;
   }
 }

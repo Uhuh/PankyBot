@@ -21,6 +21,7 @@
   "homepage": "https://github.com/Uhuh/PankyBot#readme",
   "dependencies": {
     "@types/better-sqlite3": "^5.4.0",
+    "@types/mathjs": "^6.0.5",
     "@types/moment": "^2.13.0",
     "@types/node": "^13.7.0",
     "@types/sqlite3": "^3.1.6",
@@ -31,6 +32,7 @@
     "dotenv": "^8.2.0",
     "fs": "^0.0.1-security",
     "log-to-file": "^2.0.2",
+    "mathjs": "^6.6.4",
     "moment": "^2.24.0",
     "os": "^0.1.1",
     "pm2": "^4.4.0",
