@@ -3,8 +3,8 @@ import { Message, MessageEmbed } from "discord.js";
 export default {
   desc: 'Make a poll',
   name: 'poll',
-  args: '',
-  type: '<Words words>',
+  args: '<Words words> | <time in minutes>',
+  type: 'general',
   run: async (message: Message, args: string[]) => {
     if(args.length === 0) {
       return message.channel.send(`You need to give me something to poll.`);
@@ -39,7 +39,7 @@ export default {
         m.awaitReactions(filter, { max: 500, time: Number(time) * 60000 })
           .then(colleected => {
             for(const [, r] of colleected) {
-              embed.addField(r.emoji.name, r.count, true);
+              embed.addField(r.emoji.name, r.count!-1, true);
             }
             message.channel.send({ embed })
           })

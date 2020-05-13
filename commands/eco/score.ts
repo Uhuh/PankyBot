@@ -3,9 +3,9 @@ import { GET_SCORE, GUILD_SCORE } from "../../src/setup_tables";
 import PankyBot from "../../src/bot";
 
 export default {
-  desc: 'Counting score. :)',
+  desc: 'Check scoreboard or user score',
   name: 'score',
-  args: '',
+  args: '[user]',
   type: 'economy',
   run: (message: Message, _args: string[], client: PankyBot) => {
     if(!message.guild) return;

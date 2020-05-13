@@ -66,11 +66,11 @@ export default class PankyBot extends Discord.Client {
     });
 
     this.on('message', (message: Discord.Message) => {
+      if (message.author.bot) return;
       if(
         message.channel.id === '676613498968473610' &&
         config.BETA === '0'
       ) {
-        if (message.author.bot) return;
         this.count(message);
       } else {
        this.messagePoints(message);
