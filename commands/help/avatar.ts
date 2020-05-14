@@ -23,7 +23,7 @@ export default {
 
     embed.setTitle(`${m.displayName}'s Avatar`);
     embed.setDescription(`[Link to Avatar](${m.user.avatarURL({ dynamic: true })})`);
-    embed.setImage(m.user.avatarURL() || "");
+    embed.setImage(m.user.avatarURL({ dynamic: true }) || "");
 
     message.channel.send(embed);
   }
