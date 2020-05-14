@@ -133,6 +133,8 @@ export default class PankyBot extends Discord.Client {
   }
 
   messagePoints = (message: Discord.Message) => {
+    // Ignore this damn bot-testing channel. The kiddos be farming points
+    if(message.channel.id === '672912829032169474') return;
     if(message.guild) {
       // Let's see how many times they've spoken.
       let num = this.userMsgCount.get(message.author.id);
