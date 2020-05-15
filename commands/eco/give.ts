@@ -1,5 +1,5 @@
 import { Message } from "discord.js";
-import { GET_SCORE, SET_SCORE } from "../../src/setup_tables";
+import { SET_SCORE } from "../../src/setup_tables";
 import PankyBot from "../../src/bot";
 
 export default {
