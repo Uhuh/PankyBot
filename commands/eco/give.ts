@@ -1,25 +1,26 @@
 import { Message } from "discord.js";
 import { GET_SCORE, SET_SCORE } from "../../src/setup_tables";
+import PankyBot from "../../src/bot";
 
 export default {
   desc: 'Give counting points to someone',
   name: 'give',
   args: '<amount> <user>',
   type: 'economy',
-  run: (message: Message, args: string[]) => {
+  run: (message: Message, args: string[], client: PankyBot) => {
     if(!message.mentions.members || !message.guild) return;
     if(!args || args.length !== 2 || message.mentions.members.size !== 2) {
       return;
     }
     const G_ID = message.guild.id;
 
-    const user_score = GET_SCORE.get(message.author.id, G_ID);
+    const user_score = client.getUserScore(message.author.id, G_ID);
     const userToGive = message.mentions.members.last(); // Should be last one.
     if(!userToGive) return;
     if(userToGive.id === message.author.id) {
       return message.reply(`you can't give points to yourself.`);
     }
-    const userToGiveScore = GET_SCORE.get(userToGive.id, G_ID);
+    const userToGiveScore = client.getUserScore(userToGive.id, G_ID);
     const amount = Math.floor(Number(args.shift()));
 
     if(Number.isNaN(amount) || amount === 0) {
