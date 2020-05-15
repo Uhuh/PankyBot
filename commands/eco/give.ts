@@ -16,10 +16,13 @@ export default {
     const user_score = GET_SCORE.get(message.author.id, G_ID);
     const userToGive = message.mentions.members.last(); // Should be last one.
     if(!userToGive) return;
+    if(userToGive.id === message.author.id) {
+      return message.reply(`you can't give points to yourself.`);
+    }
     const userToGiveScore = GET_SCORE.get(userToGive.id, G_ID);
-    const amount = Number(args.shift());
+    const amount = Math.floor(Number(args.shift()));
 
-    if(Number.isNaN(amount)) {
+    if(Number.isNaN(amount) || amount === 0) {
       return;
     }
 
