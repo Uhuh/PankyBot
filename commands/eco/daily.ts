@@ -18,18 +18,18 @@ export default {
 
     console.log(daily);
     
-    let user_score = GET_SCORE.get(message.author.id, G_ID);
+    let user_score = GET_SCORE(message.author.id, G_ID, 'points');
     let user_daily = daily
     
     if(!user_score) {
       user_score = { 
         id: `${message.author.id}-${G_ID}`, user: message.author.id, 
-        guild: G_ID, points: 0, daily: moment().toString(), 
+        guild: G_ID, points: 0 
       };
       user_score.points += 50;
       message.reply(`you claimed 50 clownbucks for today.`);
       user_daily.daily = moment().toString();
-      SET_SCORE.run(user_score);
+      SET_SCORE(user_score, 'points');
       SET_DAILY.run(user_daily);
     } else {
       const daily_expire = moment(u_daily).add(1, 'd');
@@ -42,7 +42,7 @@ export default {
       user_score.points += 50;
       message.reply(`you gained 50 clownbucks for today.`);
       user_daily.daily = moment().toString();
-      SET_SCORE.run(user_score);
+      SET_SCORE(user_score, 'points');
       SET_DAILY.run(user_daily);
     }
 

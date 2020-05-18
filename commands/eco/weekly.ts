@@ -17,7 +17,7 @@ export default {
     console.log(weekly);
     const today = moment();
     
-    let user_score = GET_SCORE.get(message.author.id, G_ID);
+    let user_score = GET_SCORE(message.author.id, G_ID, 'points');
     let user_weekly = weekly;
 
     if(!user_score) {
@@ -25,7 +25,7 @@ export default {
       user_score.points += 500;
       message.reply(`you claimed 500 clownbucks this week.`);
       user_weekly.weekly = today.toString();
-      SET_SCORE.run(user_score);
+      SET_SCORE(user_score, 'points');
       SET_WEEKLY.run(user_weekly);
     } else {
       const weekly_expire = moment(u_weekly).add(7, 'days');
@@ -38,7 +38,7 @@ export default {
       user_score.points += 500;
       message.reply(`you gained 500 clownbucks for today.`);
       user_weekly.weekly = today.toString();
-      SET_SCORE.run(user_score);
+      SET_SCORE(user_score, 'points');
       SET_WEEKLY.run(user_weekly);
     }
 

@@ -3,17 +3,22 @@ import { GET_SCORE, GUILD_SCORE } from "../../src/setup_tables";
 import PankyBot from "../../src/bot";
 
 export default {
-  desc: 'Check scoreboard or user score',
+  desc: 'Check clownbuck score or counting score.',
   name: 'score',
-  args: '[user]',
+  args: '[user] <scores|points>',
   type: 'economy',
-  run: (message: Message, _args: string[], client: PankyBot) => {
+  run: (message: Message, args: string[], client: PankyBot) => {
     if(!message.guild) return;
+    
+    let type = args.length ? args[0] : 'scores';
+    if(args.length && args[0] !== 'points' && args[0] !== 'scores') {
+      type = 'scores'
+    }
 
     if(message.mentions.members!.size > 1) {
       const member = message.mentions.members?.find(m => m.id !== client.user!.id);
       if(!member) return;
-      const score = GET_SCORE.get(member.id, message.guild.id);
+      const score = GET_SCORE(member.id, message.guild.id, type);
       if(!score) {
         return message.channel.send(`${member.displayName} has no clownbucks... :(`);
       }
@@ -38,17 +43,22 @@ export default {
         .catch(console.error);
       }
     } else {
-      const SCORES = GUILD_SCORE.all(message.guild.id);
+      console.log(`Gettings scores for ${type}`);
+      const SCORES = GUILD_SCORE(message.guild.id, type);
+      console.log(SCORES);
+
+      const curr = type === 'points' ? 'Clownbucks' : 'Counting';
+      const scoreType = type === 'points' ? 'clownbucks' : 'counting'
 
       const embed = new MessageEmbed();
 
-      embed.setTitle('**Circus scoreboard**')
+      embed.setTitle(`**${scoreType.toUpperCase()} SCOREBOARD**`)
         .setColor(16711684)
         .setFooter('Have a great day :D')
         .setTimestamp(new Date());
 
       for (const s of SCORES) {
-        embed.addField(`**${message.guild.members.cache.get(s.user)?.displayName}**`, `Clownbucks: ${s.points}`)
+        embed.addField(`**${message.guild.members.cache.get(s.user)?.displayName}**`, `${curr}: ${s.points}`)
       }
       message.channel.send({ embed })
     }

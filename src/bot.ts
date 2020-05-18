@@ -4,7 +4,7 @@ dotenv.config()
 import msg from '../events/message'
 import * as config from './vars'
 import commandHandler from '../commands/commandHandler'
-import { GET_SCORE, SET_SCORE } from './setup_tables'
+import { SET_SCORE, GET_SCORE } from './setup_tables'
 
 interface Command {
   desc: string,
@@ -66,18 +66,34 @@ export default class PankyBot extends Discord.Client {
     });
 
     this.on('message', (message: Discord.Message) => {
-      if (message.author.bot) return;
-      if(
-        message.channel.id === '676613498968473610' &&
-        config.BETA === '0'
-      ) {
-        this.count(message);
-      } else {
-       this.messagePoints(message);
-
-        // Handle message normally
-        msg(this, message);
+      try {
+        if (message.author.bot) return;
+        if(
+          message.channel.id === '676613498968473610'
+        ) {
+          this.count(message);
+        } else {
+         this.messagePoints(message);
+  
+          // Handle message normally
+          msg(this, message);
+        }
+      } catch (e) {
+        // CS server bot spam.
+        const channel = this.channels.cache.get('676617287473692679') as Discord.TextChannel;
+        if(channel) {
+          const embed = new Discord.MessageEmbed();
+  
+          embed.setTitle(`**Error parsing message**`)
+            .setDescription(`${e}`)
+            .setColor(16711684)
+            .setFooter(`Message sent by: ${message.author.tag}`)
+            .setTimestamp(new Date());
+  
+          channel.send({ embed });
+        }
       }
+     
     });
 
     this.on('guildMemberAdd', (member: Discord.GuildMember) => {
@@ -149,15 +165,18 @@ export default class PankyBot extends Discord.Client {
 
       // Every five messages add 5 points?
       if(num%this.NUM_MSG === 0) {
+        console.log(`Adding points for ${message.author.tag}`)
         let score = this.getUserScore(message.author.id, message.guild.id);
+        console.log(score);
         score.points += this.NUM_MSG;
-        SET_SCORE.run(score);
+        SET_SCORE(score, 'points');
       }
     }
   }
 
-  getUserScore = (userId: string, guildID: string) => {
-    let score = GET_SCORE.get(userId, guildID);
+  getUserScore = (userId: string, guildID: string, type: string = 'points') => {
+    let score = GET_SCORE(userId, guildID, type);
+
     if(!score) {
       console.log('score DNE?')
       score = { id: `${userId}-${guildID}`, user: userId, guild: guildID, points: 0 }
@@ -176,7 +195,7 @@ export default class PankyBot extends Discord.Client {
 
     // How many points will said user get? :)
     // Always +1 by default
-    let score = this.getUserScore(msg.author.id, G_ID);
+    let score = this.getUserScore(msg.author.id, G_ID, 'scores');
     console.log(score);
 
     if (!guild) return console.log("Somehow not in CS guild");
@@ -193,15 +212,18 @@ export default class PankyBot extends Discord.Client {
     )) {
       score.points--;
       // Take points away from losers.
-      SET_SCORE.run(score);
+      SET_SCORE(score);
       return msg.delete();
     }
 
     this.prevCount = num;
     this.prevCounter = msg.author;
     
-    if(msg.member &&
-      guild.roles.cache.get(ROLE_ID) && !guild.roles.cache.get(ROLE_ID)!.members.find(m => msg!.member === m) &&
+    if(
+      this.config.BETA === '0' &&
+      msg.member &&
+      guild.roles.cache.get(ROLE_ID) && 
+      !guild.roles.cache.get(ROLE_ID)!.members.find(m => msg!.member === m) &&
       !msg.member.roles.cache.find(r => r.id === MOD_ID)
       ) {
       const role = guild.roles.cache.get(ROLE_ID)
@@ -213,10 +235,12 @@ export default class PankyBot extends Discord.Client {
     }
     
     score.points++;
-    SET_SCORE.run(score);
-    m_channel.edit({
-      name: `Count number: ${num}`
-    });
+    SET_SCORE(score);
+    if(this.config.BETA === '0') {
+      m_channel.edit({
+        name: `Count number: ${num}`
+      });
+    }
   }
 
   async start() {

@@ -34,15 +34,15 @@ export default {
     if(message.author.id === '125492204234997761') {
       userToGiveScore.points += amount;
       message.reply(`you gave ${amount} clownbucks to ${userToGive}`);
-      SET_SCORE.run(userToGiveScore);
+      SET_SCORE(userToGiveScore, 'points');
     } else if(user_score.points < amount) {
       message.reply(`you're too poor to give ${amount} clownbucks away.`);
     } else {
       user_score.points -= amount;
       userToGiveScore.points += amount;
       message.reply(`you gave ${amount} clownbucks to ${userToGive}`);
-      SET_SCORE.run(user_score);
-      SET_SCORE.run(userToGiveScore);
+      SET_SCORE(user_score, 'points');
+      SET_SCORE(userToGiveScore, 'points');
     }
 
     return;

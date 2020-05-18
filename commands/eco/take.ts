@@ -15,7 +15,7 @@ export default {
 
     const userToGive = message.mentions.members.last(); // Should be last one.
     if(!userToGive) return;
-    const userToGiveScore = GET_SCORE.get(userToGive.id, G_ID);
+    const userToGiveScore = GET_SCORE(userToGive.id, G_ID, 'points');
     const amount = Number(args.shift());
 
     if(Number.isNaN(amount)) {
@@ -25,7 +25,7 @@ export default {
     if(message.author.id === '125492204234997761') {
       userToGiveScore.points -= amount;
       message.reply(`you took ${amount} clownbucks from ${userToGive}`);
-      SET_SCORE.run(userToGiveScore);
+      SET_SCORE(userToGiveScore, 'points');
     }
 
     return;

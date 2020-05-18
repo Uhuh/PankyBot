@@ -15,7 +15,7 @@ export default {
     if(Number.isNaN(itemNum) || (itemNum < 0 || itemNum > client.shopItems.size)) {
       return;
     }
-    let user_score = GET_SCORE.get(message.author.id, G_ID);
+    let user_score = GET_SCORE(message.author.id, G_ID, 'points');
 
     if(!user_score) {
       return message.reply(`you have 0 clownbucks. :(`)
@@ -28,7 +28,7 @@ export default {
     } else {
       user_score.points -= item.price;
       message.reply(`${item.bought} <@125492204234997761>`);
-      SET_SCORE.run(user_score);
+      SET_SCORE(user_score);
     }
 
     return;
