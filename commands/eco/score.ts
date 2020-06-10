@@ -5,13 +5,13 @@ import PankyBot from "../../src/bot";
 export default {
   desc: 'Check clownbuck score or counting score.',
   name: 'score',
-  args: '[user] <scores|points>',
+  args: '[user] <scores|bucks>',
   type: 'economy',
   run: (message: Message, args: string[], client: PankyBot) => {
     if(!message.guild) return;
     
     let type = args.length ? args[0] : 'scores';
-    if(args.length && args[0] !== 'points' && args[0] !== 'scores') {
+    if(args.length && args[0] !== 'bucks' && args[0] !== 'scores') {
       type = 'scores'
     }
 
@@ -47,8 +47,8 @@ export default {
       const SCORES = GUILD_SCORE(message.guild.id, type);
       console.log(SCORES);
 
-      const curr = type === 'points' ? 'Clownbucks' : 'Counting';
-      const scoreType = type === 'points' ? 'clownbucks' : 'counting'
+      const curr = type === 'bucks' ? 'Clownbucks' : 'Counting';
+      const scoreType = type === 'bucks' ? 'clownbucks' : 'counting'
 
       const embed = new MessageEmbed();
 

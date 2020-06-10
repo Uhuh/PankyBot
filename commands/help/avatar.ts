@@ -21,9 +21,8 @@ export default {
     if (!m)
       throw new Error("Somehow user doesn't exist");
 
-    embed.setTitle(`${m.displayName}'s Avatar`);
-    embed.setDescription(`[Link to Avatar](${m.user.avatarURL({ dynamic: true })})`);
-    embed.setImage(m.user.avatarURL({ dynamic: true }) || "");
+    embed.setDescription(`[Link to Avatar](${m.user.avatarURL({ dynamic: true, size: 2048 })})`);
+    embed.setImage(m.user.avatarURL({ dynamic: true, size: 2048 }) || "");
 
     message.channel.send(embed);
   }
