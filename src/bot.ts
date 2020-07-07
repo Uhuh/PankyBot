@@ -4,7 +4,8 @@ dotenv.config()
 import msg from '../events/message'
 import * as config from './vars'
 import commandHandler from '../commands/commandHandler'
-import { SET_SCORE, GET_SCORE } from './setup_tables'
+import { SET_SCORE, GET_SCORE, SET_CHANNEL_COUNT, GET_OPT } from './setup_tables'
+import moment = require('moment')
 
 interface Command {
   desc: string,
@@ -68,14 +69,14 @@ export default class PankyBot extends Discord.Client {
     this.on('message', (message: Discord.Message) => {
       try {
         if (message.author.bot) return;
-        if(
-          message.channel.id === '676613498968473610'
-        ) {
+        if(message.guild && GET_OPT(message.author.id)) {
+          console.log(`Logging message count for ${message.author.username}`);
+          SET_CHANNEL_COUNT(message.author.id,  message.channel.id, moment().format('YYYY-MM-DD'));
+        }
+        if(message.channel.id === '676613498968473610') {
           this.count(message);
         } else {
-         this.messagePoints(message);
-  
-          // Handle message normally
+          this.messagePoints(message);
           msg(this, message);
         }
       } catch (e) {
@@ -165,9 +166,7 @@ export default class PankyBot extends Discord.Client {
 
       // Every five messages add 5 points?
       if(num%this.NUM_MSG === 0) {
-        console.log(`Adding points for ${message.author.tag}`)
         let score = this.getUserScore(message.author.id, message.guild.id);
-        console.log(score);
         score.points += this.NUM_MSG;
         SET_SCORE(score, 'points');
       }
