@@ -8,14 +8,11 @@ export default {
   run: async function (message: Message) {
     const embed = new MessageEmbed()
     const {guild} = message;
-    const roles = []
     let textC = 0
     let voiceC = 0
     if (message.channel.type === 'dm') { return; }
 
     if (!guild) return;
-
-    for (const [, role] of guild.roles.cache) { roles.push(role) }
 
     for (const [, channel] of guild.channels.cache) {
       if (channel.type === 'text') { textC++; }
@@ -29,13 +26,12 @@ export default {
       .setDescription(`**Server information for _${guild.name}_**`);
 
     if(owner)
-      embed.addField(`_**> Owner**_`, `\`${owner.user.tag}\``, true);
+      embed.addField(`**Owner**`, `\`${owner.user.tag}\``);
 
-    embed.addField(`_**> OwnerID**_`, `\`${guild.ownerID}\``, true)
-      .addField(`_**> Users**_`, `\`${guild.memberCount}\``, true)
-      .addField(`_**> Text Channels**_`, `\`${textC}\``, true)
-      .addField(`_**> Voice Channels**_`, `\`${voiceC}\``, true)
-      .addField(`_**> Roles** from highest to lowest_`, `${roles.reverse().join(' ')}`, true);
+    embed.addField(`**OwnerID**`, `\`${guild.ownerID}\``)
+      .addField(`**Users**`, `\`${guild.memberCount}\``)
+      .addField(`**Text Channels**`, `\`${textC}\``)
+      .addField(`**Voice Channels**`, `\`${voiceC}\``)
 
     message.channel.send(embed);
   }

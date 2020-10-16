@@ -7,29 +7,29 @@ export function setup() {
    * Some people wanted a separate thing for counting rather than overall points which included counting.
    */
   const countTable = sql.prepare(`SELECT count(*) FROM sqlite_master WHERE type='table' AND name='scores';`).get();
-  if(!countTable['count(*)']) {
+  if (!countTable['count(*)']) {
     sql.prepare(`CREATE TABLE scores (id TEXT PRIMARY KEY, user TEXT, guild TEXT, points INTEGER, level INTEGER);`).run();
     sql.prepare(`CREATE UNIQUE INDEX idx_scores_id ON scores (id);`).run();
     sql.pragma("synchronous = 1");
     sql.pragma('journal_mode = wal');
   }
   const pointTable = sql.prepare(`SELECT count(*) FROM sqlite_master WHERE type='table' AND name='points';`).get();
-  if(!pointTable['count(*)']) {
+  if (!pointTable['count(*)']) {
     sql.prepare(`CREATE TABLE points (id TEXT PRIMARY KEY, user TEXT, guild TEXT, points INTEGER, level INTEGER);`).run();
     sql.prepare(`CREATE UNIQUE INDEX idx_points_id ON scores (id);`).run();
     sql.pragma("synchronous = 1");
     sql.pragma('journal_mode = wal');
   }
   const timeTable = sql.prepare(`SELECT count(*) FROM sqlite_master WHERE type='table' AND name='timely_money';`).get();
-  if(!timeTable['count(*)']) {
+  if (!timeTable['count(*)']) {
     sql.prepare(`CREATE TABLE timely_money (id TEXT PRIMARY KEY, user TEXT, guild TEXT, daily TEXT, weekly TEXT);`).run();
   }
   const userReport = sql.prepare(`SELECT count(*) FROM sqlite_master WHERE type='table' AND name='user_report';`).get();
-  if(!userReport['count(*)']) {
+  if (!userReport['count(*)']) {
     sql.prepare(`CREATE TABLE user_report (id TEXT PRIMARY KEY, user_id TEXT, opt_in INTEGER);`).run();
   }
   const channelReport = sql.prepare(`SELECT count(*) FROM sqlite_master WHERE type='table' AND name='channel_report';`).get();
-  if(!channelReport['count(*)']) {
+  if (!channelReport['count(*)']) {
     sql.prepare(`CREATE TABLE channel_report (user_id TEXT, channel_id TEXT, count TEXT, date TEXT, PRIMARY KEY (user_id, channel_id, date));`).run();
   }
 }
@@ -55,9 +55,9 @@ export const SET_CHANNEL_COUNT = (user_id: string, channel_id: string, date: str
     INSERT OR IGNORE INTO channel_report (user_id, channel_id, count, date) VALUES (@user_id, @channel_id, 1, @date)
     `
   ).run({ user_id, channel_id, date });
-  
+
   // Changes being equal to 0 means the user is already in the DB with the prim key pair of (user_id, channel_id)
-  if(!data.changes) {
+  if (!data.changes) {
     sql.prepare(`UPDATE channel_report SET count = count + 1 WHERE user_id=@user_id AND channel_id=@channel_id AND date=@date`)
       .run({ user_id, channel_id, date });
   }
@@ -77,7 +77,7 @@ export const GET_SCORE = (user: string, guild: string, type = 'scores'): {
 } => sql.prepare(
   `SELECT * FROM ${type} WHERE user = @user AND guild = @guild`
 ).get({ user, guild });
-export const SET_SCORE = (score: {id: string, user: string, guild: string, points: number}, type = 'scores') =>
+export const SET_SCORE = (score: { id: string, user: string, guild: string, points: number }, type: 'scores' | 'points') =>
   sql.prepare(`INSERT OR REPLACE INTO ${type} (id, user, guild, points) VALUES (@id, @user, @guild, @points)`)
     .run({ ...score });
 

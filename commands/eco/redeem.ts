@@ -28,7 +28,7 @@ export default {
     } else {
       user_score.points -= item.price;
       message.reply(`${item.bought} <@125492204234997761>`);
-      SET_SCORE(user_score);
+      SET_SCORE(user_score, "points");
     }
 
     return;
