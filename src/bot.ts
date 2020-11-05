@@ -30,7 +30,7 @@ export default class PankyBot extends Discord.Client {
   commands: Discord.Collection<string, Command>;
   userMsgCount: Discord.Collection<string, number>;
   constructor() {
-    super();
+    super({ ws: { intents: ['GUILDS', 'GUILD_MESSAGES', 'GUILD_MEMBERS'] } });
 
     this.config = config;
     this.commands = new Discord.Collection();
