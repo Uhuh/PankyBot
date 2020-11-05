@@ -6,14 +6,16 @@ export default {
   name: 'userinfo',
   args: '',
   type: 'general',
-  run: async function (message: Message, _args: string[], client: PankyBot) {
+  run: async function (message: Message, args: string[], client: PankyBot) {
     const { user } = client;
 
-    if (!user || !message.mentions || !message.mentions.members) return;
+    if (!user) return;
+
+    const userId = message.mentions.members?.first()?.id || args.shift() || message.author.id;
 
     // There is some issues with discord and cached users so if someone hasn't sent a message this command won't
     // work for said user. Assuming the person mentions a new user.
-    const member = message.mentions.members.find(val => val.id !== user.id) || message.member;
+    const member = message.guild?.members.cache.get(userId || '');
 
     if (!member) return;
 
