@@ -32,8 +32,8 @@ export default class PankyBot extends Discord.Client {
   MSG_VC = '676639231648464908';
   ROLE_ID = '677235204435476480';
   MOD_ID = '647963820043534356';
-  cs_guild = this.guilds.cache.get(this.G_ID);
-  m_channel = this.guild?.channels.cache.get(this.MSG_VC);
+  cs_guild: Discord.Guild;
+  m_channel: Discord.TextChannel;
   constructor() {
     super({ ws: { intents: ['GUILDS', 'GUILD_MESSAGES', 'GUILD_MEMBERS'] } });
 
@@ -44,8 +44,11 @@ export default class PankyBot extends Discord.Client {
     this.NUM_MSG = 5;
     this.prevCount = null;
     this.prevCounter = null;
+    //@ts-ignore
     this.cs_guild = this.guilds.cache.get(this.G_ID);
-    this.m_channel = this.cs_guild?.channels.cache.get(this.MSG_VC);
+    this.m_channel = this.cs_guild?.channels.cache.get(
+      this.MSG_VC
+    ) as Discord.TextChannel;
     commandHandler(this);
 
     // Discord bot list, gotta up them server numbers for certified )
