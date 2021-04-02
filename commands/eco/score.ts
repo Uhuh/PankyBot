@@ -56,9 +56,7 @@ export default {
           .catch(console.error);
       }
     } else {
-      console.log(`Gettings scores for ${type}`);
       const SCORES = GUILD_SCORE(message.guild.id, type);
-      console.log(SCORES);
 
       const curr = type === 'points' ? 'Clownbucks' : 'Counting';
       const scoreType = type === 'points' ? 'clownbucks' : 'counting';

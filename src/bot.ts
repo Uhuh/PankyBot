@@ -208,7 +208,6 @@ export default class PankyBot extends Discord.Client {
 
     score.points++;
     SET_SCORE(score, 'scores');
-    console.log(this.m_channel.name);
     if (this.config.BETA === '0') {
       this.m_channel.edit({
         name: `Count number: ${num}`,
