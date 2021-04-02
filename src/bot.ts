@@ -28,6 +28,12 @@ export default class PankyBot extends Discord.Client {
   NUM_MSG: number;
   commands: Discord.Collection<string, Command>;
   userMsgCount: Discord.Collection<string, number>;
+  G_ID = '647960154079232041';
+  MSG_VC = '676639231648464908';
+  ROLE_ID = '677235204435476480';
+  MOD_ID = '647963820043534356';
+  cs_guild = this.guilds.cache.get(this.G_ID);
+  m_channel = this.guild?.channels.cache.get(this.MSG_VC);
   constructor() {
     super({ ws: { intents: ['GUILDS', 'GUILD_MESSAGES', 'GUILD_MEMBERS'] } });
 
@@ -38,7 +44,8 @@ export default class PankyBot extends Discord.Client {
     this.NUM_MSG = 5;
     this.prevCount = null;
     this.prevCounter = null;
-
+    this.cs_guild = this.guilds.cache.get(this.G_ID);
+    this.m_channel = this.cs_guild?.channels.cache.get(this.MSG_VC);
     commandHandler(this);
 
     // Discord bot list, gotta up them server numbers for certified )
@@ -148,19 +155,12 @@ export default class PankyBot extends Discord.Client {
     return score;
   };
 
-  G_ID = '647960154079232041';
-  MSG_VC = '676639231648464908';
-  ROLE_ID = '677235204435476480';
-  MOD_ID = '647963820043534356';
-  guild = this.guilds.cache.get(this.G_ID);
-  m_channel = this.guild?.channels.cache.get(this.MSG_VC);
-
   count = (msg: Discord.Message) => {
     // How many points will said user get? :)
     // Always +1 by default
     let score = this.getUserScore(msg.author.id, this.G_ID, 'scores');
 
-    if (!this.guild) return console.log('Somehow not in CS guild');
+    if (!this.cs_guild) return console.log('Somehow not in CS guild');
 
     if (!this.m_channel) return;
 
@@ -183,13 +183,13 @@ export default class PankyBot extends Discord.Client {
     if (
       this.config.BETA === '0' &&
       msg.member &&
-      this.guild.roles.cache.get(this.ROLE_ID) &&
-      !this.guild.roles.cache
+      this.cs_guild.roles.cache.get(this.ROLE_ID) &&
+      !this.cs_guild.roles.cache
         .get(this.ROLE_ID)!
         .members.find((m) => msg!.member === m) &&
       !msg.member.roles.cache.find((r) => r.id === this.MOD_ID)
     ) {
-      const role = this.guild.roles.cache.get(this.ROLE_ID);
+      const role = this.cs_guild.roles.cache.get(this.ROLE_ID);
       if (role) {
         role.members.forEach((m) => m.roles.remove(this.ROLE_ID));
       }
