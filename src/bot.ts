@@ -49,11 +49,17 @@ export default class PankyBot extends Discord.Client {
     this.m_channel = this.cs_guild?.channels.cache.get(
       this.MSG_VC
     ) as Discord.TextChannel;
+
     commandHandler(this);
 
     // Discord bot list, gotta up them server numbers for certified )
     this.once('ready', () => {
       console.log(`[Started]: ${new Date()}`);
+      //@ts-ignore
+      this.cs_guild = this.guilds.cache.get(this.G_ID);
+      this.m_channel = this.cs_guild?.channels.cache.get(
+        this.MSG_VC
+      ) as Discord.TextChannel;
       if (config.BETA === '0') {
         this.memberCount();
       }
