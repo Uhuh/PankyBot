@@ -26,7 +26,6 @@ export default class PankyBot extends Discord.Client {
   prevCounter: Discord.User | null;
   baseType: number;
   NUM_MSG: number;
-  shopItems: Map<string, any>;
   commands: Discord.Collection<string, Command>;
   userMsgCount: Discord.Collection<string, number>;
   constructor() {
@@ -39,89 +38,12 @@ export default class PankyBot extends Discord.Client {
     this.NUM_MSG = 5;
     this.prevCount = null;
     this.prevCounter = null;
-    /**
-     * My CS server is in shambles with this economy now lol
-     * CNA = Can not afford
-     */
-    this.shopItems = new Map([
-      [
-        '1',
-        {
-          name: `Pizza`,
-          price: 15000,
-          CNA: `you can't afford that...`,
-          bought: `bought a pizza.`,
-          desc: `Get any 1 topping pizza from dominos lol. (Pickup)`,
-        },
-      ],
-      [
-        '2',
-        {
-          name: `Discord Nitro`,
-          price: 15000,
-          CNA: `you can't afford a gift.`,
-          bought: `bought a nitro.`,
-          desc: `Nitro gift lol`,
-        },
-      ],
-      [
-        '3',
-        {
-          name: `Steam Gift`,
-          price: 15000,
-          CNA: `you can't get steam gift.`,
-          bought: `bought steam gift.`,
-          desc: `Steam gift $10 or under.`,
-        },
-      ],
-      [
-        '4',
-        {
-          name: `Add emoji`,
-          price: 500,
-          CNA: `you can't afford an emoji.`,
-          bought: `bought an emoji slot.`,
-          desc: `Add an emoji to the server.`,
-        },
-      ],
-      [
-        '5',
-        {
-          name: `Solid picture`,
-          price: 200,
-          CNA: `you can't afford an image :(`,
-          bought: `bought a SOLID PHOTO :O`,
-          desc: `I take a picture of Solid and send it.`,
-        },
-      ],
-      [
-        '6',
-        {
-          name: `Barrel oil`,
-          price: 100,
-          CNA: `dude, it's cheap cmon, work harder.`,
-          bought: `bought oil lol.`,
-          desc: `Literally a barrel of oil, have fun?`,
-        },
-      ],
-      [
-        '7',
-        {
-          name: `Perm ban any user`,
-          price: 666666,
-          CNA: `try harder`,
-          bought: `banned someone lmao`,
-          desc: `Ban any user you want lol`,
-        },
-      ],
-    ]);
 
     commandHandler(this);
 
     // Discord bot list, gotta up them server numbers for certified )
     this.once('ready', () => {
       console.log(`[Started]: ${new Date()}`);
-      this.setInterval(() => this.randPres(), 10000);
       if (config.BETA === '0') {
         this.memberCount();
       }
@@ -141,7 +63,6 @@ export default class PankyBot extends Discord.Client {
         if (message.channel.id === '676613498968473610') {
           this.count(message);
         } else {
-          this.messagePoints(message);
           msg(this, message);
         }
       } catch (e) {
@@ -211,51 +132,6 @@ export default class PankyBot extends Discord.Client {
     });
   };
 
-  randPres = () => {
-    const { user } = this;
-    if (!user) return console.log("Is client dead? Can't find in presence.");
-
-    const presArr = [
-      `@${user.username} help`,
-      `in ${this.guilds.cache.size} guilds`,
-      `moderation...`,
-    ];
-
-    user
-      .setPresence({
-        activity: {
-          name: presArr[Math.floor(Math.random() * presArr.length)],
-          type: 'CUSTOM_STATUS',
-        },
-        status: 'online',
-      })
-      .catch(console.error);
-  };
-
-  messagePoints = (message: Discord.Message) => {
-    // Ignore this damn bot-testing channel. The kiddos be farming points
-    if (message.channel.id === '672912829032169474') return;
-    if (message.guild) {
-      // Let's see how many times they've spoken.
-      let num = this.userMsgCount.get(message.author.id);
-      // Increment num if it exist. Else create.
-      if (num) {
-        num++;
-        this.userMsgCount.set(message.author.id, num);
-      } else {
-        this.userMsgCount.set(message.author.id, 1);
-        num = 1;
-      }
-
-      // Every five messages add 5 points?
-      if (num % this.NUM_MSG === 0) {
-        let score = this.getUserScore(message.author.id, message.guild.id);
-        score.points += this.NUM_MSG;
-        SET_SCORE(score, 'points');
-      }
-    }
-  };
-
   getUserScore = (userId: string, guildID: string, type = 'points') => {
     let score = GET_SCORE(userId, guildID, type);
 
@@ -272,22 +148,21 @@ export default class PankyBot extends Discord.Client {
     return score;
   };
 
+  G_ID = '647960154079232041';
+  MSG_VC = '676639231648464908';
+  ROLE_ID = '677235204435476480';
+  MOD_ID = '647963820043534356';
+  guild = this.guilds.cache.get(this.G_ID);
+  m_channel = this.guild?.channels.cache.get(this.MSG_VC);
+
   count = (msg: Discord.Message) => {
-    const G_ID = '647960154079232041';
-    const MSG_VC = '676639231648464908';
-    const ROLE_ID = '677235204435476480';
-    const MOD_ID = '647963820043534356';
-
-    const guild = this.guilds.cache.get(G_ID);
-
     // How many points will said user get? :)
     // Always +1 by default
-    let score = this.getUserScore(msg.author.id, G_ID, 'scores');
+    let score = this.getUserScore(msg.author.id, this.G_ID, 'scores');
 
-    if (!guild) return console.log('Somehow not in CS guild');
+    if (!this.guild) return console.log('Somehow not in CS guild');
 
-    const m_channel = guild.channels.cache.get(MSG_VC);
-    if (!m_channel) return;
+    if (!this.m_channel) return;
 
     const num = parseInt(msg.content.replace(/\s/g, ''), this.baseType);
 
@@ -308,22 +183,25 @@ export default class PankyBot extends Discord.Client {
     if (
       this.config.BETA === '0' &&
       msg.member &&
-      guild.roles.cache.get(ROLE_ID) &&
-      !guild.roles.cache.get(ROLE_ID)!.members.find((m) => msg!.member === m) &&
-      !msg.member.roles.cache.find((r) => r.id === MOD_ID)
+      this.guild.roles.cache.get(this.ROLE_ID) &&
+      !this.guild.roles.cache
+        .get(this.ROLE_ID)!
+        .members.find((m) => msg!.member === m) &&
+      !msg.member.roles.cache.find((r) => r.id === this.MOD_ID)
     ) {
-      const role = guild.roles.cache.get(ROLE_ID);
+      const role = this.guild.roles.cache.get(this.ROLE_ID);
       if (role) {
-        role.members.forEach((m) => m.roles.remove(ROLE_ID));
+        role.members.forEach((m) => m.roles.remove(this.ROLE_ID));
       }
       // Good player, here's some points.
-      msg.member.roles.add(ROLE_ID);
+      msg.member.roles.add(this.ROLE_ID);
     }
 
     score.points++;
     SET_SCORE(score, 'scores');
+    console.log(this.m_channel.name);
     if (this.config.BETA === '0') {
-      m_channel.edit({
+      this.m_channel.edit({
         name: `Count number: ${num}`,
       });
     }
